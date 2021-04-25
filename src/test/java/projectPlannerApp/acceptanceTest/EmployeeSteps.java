@@ -1,4 +1,4 @@
-package mainSystem.acceptanceTest;
+package projectPlannerApp.acceptanceTest;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -8,9 +8,8 @@ import io.cucumber.java.PendingException;
 
 public class EmployeeSteps {
 	@Given("an activity titled {string} exists")
-	public void anActivityTitledExists(String string) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	public void anActivityTitledExists(String activity) {
+		
 	}
 
 	@Given("an employee with initials {string} exists")
@@ -42,5 +41,4 @@ public class EmployeeSteps {
 	    // Write code here that turns the phrase above into concrete actions
 	    throw new io.cucumber.java.PendingException();
 	}
-
 }
