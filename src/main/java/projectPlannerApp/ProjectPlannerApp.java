@@ -11,13 +11,22 @@ public class ProjectPlannerApp {
 	public Project newProject(String name) {
 		Project newProject = new Project(name, projects.size()+1);
 		projects.add(newProject);
+		
 		return newProject;
 	}
 	
 	public Project newProject(String name, Calendar projectStart) {
 		Project newProject = new Project(name, projects.size()+1, projectStart);
 		projects.add(newProject);
+		
 		return newProject;
+	}
+	
+	public Employee newEmployee(String initials) {
+		Employee newEmployee = new Employee(initials);
+		employees.add(newEmployee);
+		
+		return newEmployee;
 	}
 	
 }

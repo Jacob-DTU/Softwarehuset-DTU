@@ -13,10 +13,10 @@ import projectPlannerApp.ProjectPlannerApp;
 
 
 public class ProjectSteps {
-	
-	Project project;
-	ProjectPlannerApp projectPlannerApp;
-	Calendar projectStart;
+
+	private Project project;
+	private ProjectPlannerApp projectPlannerApp;
+	private Calendar projectStart;
 	
 	public ProjectSteps(ProjectPlannerApp projectPlannerApp) {
 		this.projectPlannerApp = projectPlannerApp;
@@ -73,5 +73,5 @@ public class ProjectSteps {
 	public void theStartTimeIsAssignedToTheProject() {
 	    assertEquals(projectStart, project.projectStart);
 	}
-	
+		
 }

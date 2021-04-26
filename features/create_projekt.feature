@@ -25,9 +25,3 @@ Scenario: Create a project with a start time
 	When an employee creates a project with a start time
 	Then the project is created
 	And the start time is assigned to the project
-
-#Scenario: Create a project with wrong input
-#	Given a project exists
-#	When an employee creates a project and gives wrong input types
-#	Then the error message "Wrong input when creating project" is given
-#	And no new project is created

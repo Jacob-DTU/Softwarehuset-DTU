@@ -25,9 +25,15 @@ public class Project {
 		this.projectStart = projectStart;
 	}
 	
-	public void newActivity(String name, int start, int end, int duration) {
-		activities.add(new Activity(name, start, end, duration));
+	public Activity newActivity(String name, int start, int end, int duration) {
+		Activity activity = new Activity(name, start, end, duration);
+		activities.add(activity);
 		
+		return activity;
+	}
+	
+	public void setProjectLeader(Employee employee) {
+		this.projectLeader = employee;
 	}
 	
 }
