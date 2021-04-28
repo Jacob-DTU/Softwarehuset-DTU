@@ -2,7 +2,7 @@ package projectPlannerApp.acceptanceTest;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.Assert.assertTrue;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -47,8 +47,7 @@ public class EmployeeSteps {
 	public void theEmployeeIsAssignedToTheActivity() throws TooManyActivitiesException {
 	    try {
 			activity.addEmployee(employee);
-	    }
-	    catch(TooManyActivitiesException e) {
+	    } catch(TooManyActivitiesException e) {
 	    	errorMessageHolder.setErrorMessage(e.getMessage());
 	    }
 	}

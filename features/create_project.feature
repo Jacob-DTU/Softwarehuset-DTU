@@ -14,11 +14,11 @@ Scenario: Create a new project
 	Then the new project is created
 	And the project is assigned project number
 
-#Scenario: Create a project with a project lead assigned
-#	Given no project exists
-#	When an employee creates a project with a project lead assigned
-#	Then the project is created
-#	And the project manager is assigned to the project
+Scenario: Create a project with a project lead assigned
+	Given no project exists
+	When an employee creates a project with a project lead assigned
+	Then the project is created
+	And the project lead is assigned to the project
 
 Scenario: Create a project with a start time
 	Given no project exists

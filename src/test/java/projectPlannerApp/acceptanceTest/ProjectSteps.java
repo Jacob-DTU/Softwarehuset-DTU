@@ -1,14 +1,16 @@
 package projectPlannerApp.acceptanceTest;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import projectPlannerApp.Calendar;
+import projectPlannerApp.Employee;
 import projectPlannerApp.Project;
+import projectPlannerApp.ProjectLeadException;
 import projectPlannerApp.ProjectPlannerApp;
 
 
@@ -17,6 +19,7 @@ public class ProjectSteps {
 	private Project project;
 	private ProjectPlannerApp projectPlannerApp;
 	private Calendar projectStart;
+	private Employee projectLead;
 	
 	public ProjectSteps(ProjectPlannerApp projectPlannerApp) {
 		this.projectPlannerApp = projectPlannerApp;
@@ -73,5 +76,15 @@ public class ProjectSteps {
 	public void theStartTimeIsAssignedToTheProject() {
 	    assertEquals(projectStart, project.projectStart);
 	}
-		
+	
+	@When("an employee creates a project with a project lead assigned")
+	public void anEmployeeCreatesAProjectWithAProjectLeadAssigned() throws ProjectLeadException {
+		this.projectLead = projectPlannerApp.newEmployee("LEAD");
+	    project = projectPlannerApp.newProject("projectWithProjectLead", projectLead);
+	}
+
+	@Then("the project lead is assigned to the project")
+	public void theProjectLeadIsAssignedToTheProject() {
+		assertEquals(projectLead, project.getProjectLead());
+	}
 }

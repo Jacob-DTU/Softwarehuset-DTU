@@ -22,11 +22,28 @@ public class ProjectPlannerApp {
 		return newProject;
 	}
 	
+	public Project newProject(String name, Employee projectLead) throws ProjectLeadException {
+		Project newProject = new Project(name, projects.size()+1, projectLead);
+		projects.add(newProject);
+		
+		return newProject;
+	}
+	
+	public Project newProject(String name, Employee projectLead, Calendar projectStart) throws ProjectLeadException {
+		Project newProject = new Project(name, projects.size()+1, projectLead, projectStart);
+		projects.add(newProject);
+		
+		return newProject;
+	}
+	
+	
 	public Employee newEmployee(String initials) {
 		Employee newEmployee = new Employee(initials);
 		employees.add(newEmployee);
 		
 		return newEmployee;
 	}
+
+	
 	
 }

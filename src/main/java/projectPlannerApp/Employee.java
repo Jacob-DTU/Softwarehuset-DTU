@@ -7,6 +7,7 @@ public class Employee {
 	
 	public String initials;
 	public List<Activity> currActivities = new ArrayList<Activity>();
+	public List<Project> leadProjects = new ArrayList<Project>();
 
 	public Employee(String initials) {
 		this.initials = initials;
