@@ -9,6 +9,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import projectPlannerApp.Activity;
 import projectPlannerApp.Employee;
+import projectPlannerApp.OperationNotAllowedException;
 import projectPlannerApp.Project;
 import projectPlannerApp.ProjectLeadException;
 import projectPlannerApp.ProjectPlannerApp;
@@ -21,18 +22,21 @@ public class EmployeeSteps {
 	private Project project;
 	private Activity activity;
 	private Employee employee;
+	private Employee projectLead;
 	private ErrorMessageHolder errorMessageHolder;
 	
 	public EmployeeSteps(ProjectPlannerApp projectPlannerApp, ErrorMessageHolder errorMessageHolder) {
 		this.projectPlannerApp = projectPlannerApp;
 		this.errorMessageHolder = errorMessageHolder;
+		this.projectLead = projectPlannerApp.newEmployee("LEAD");
+		
 	}
 	
 	// employee should be project lead or activity should be added manually
 	@Given("an activity titled {string} exists")
-	public void anActivityTitledExists(String activityName) throws ProjectLeadException {
-		project = projectPlannerApp.newProject(activityName);
-		activity = project.newActivity(employee, activityName, 1, 2, 10);
+	public void anActivityTitledExists(String activityName) throws ProjectLeadException, OperationNotAllowedException {
+		project = projectPlannerApp.newProject("project", projectLead);
+		activity = project.newActivity(projectLead, activityName);
 	}
 
 	@Given("an employee with initials {string} exists")
@@ -66,9 +70,9 @@ public class EmployeeSteps {
 	}
 	
 	@Given("the employee is unavailable")
-	public void theEmployeeIsUnavailable() throws TooManyActivitiesException, ProjectLeadException {
+	public void theEmployeeIsUnavailable() throws TooManyActivitiesException, ProjectLeadException, OperationNotAllowedException {
 	    for (int i=0; i<20; i++) {
-	    	Activity tmpActivity = project.newActivity(employee, Integer.toString(i), 1, 2, 10);
+	    	Activity tmpActivity = project.newActivity(employee, Integer.toString(i));
 	    	tmpActivity.addEmployee(employee);
 	    }
 	    
@@ -85,7 +89,7 @@ public class EmployeeSteps {
 		assertFalse(employee.currActivities.contains(activity));
 	}
 	
-	@Then("error-message {string} is shown")
+	@Then("error message {string} is shown")
 	public void errorMessageIsShown(String errorMessage) {
 		assertEquals(errorMessage, errorMessageHolder.getErrorMessage());
 	}

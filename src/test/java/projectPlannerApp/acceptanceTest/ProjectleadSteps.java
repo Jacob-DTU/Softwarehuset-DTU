@@ -65,8 +65,8 @@ public class ProjectleadSteps {
 	    assertTrue(project.hasProjectLead());
 	}
 
-	@Then("the error message {string} is given")
-	public void theErrorMessageIsGiven(String errorMessage) {
+	@Then("the project lead error message {string} is given")
+	public void theProjectLeadErrorMessageIsGiven(String errorMessage) {
 		assertEquals(errorMessage, errorMessageHolder.getErrorMessage());
 	}
 

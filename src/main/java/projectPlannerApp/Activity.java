@@ -11,6 +11,10 @@ public class Activity {
 	private String name;
 	private int start, end, duration;
 	
+	public Activity(String name) {
+		this.name = name;
+	}
+	
 	public Activity(String name, int start, int end, int duration) {
 		this.name = name;
 		this.start = start;
@@ -27,12 +31,28 @@ public class Activity {
 			employee.currActivities.add(this);
 		}
 	}
-	//AddTimeframe (Man kunne sætte tidsrammen for en aktivitet senere)
-	//setStart
-	//setEnd
-	//setTime
-	//getStart
-	//getEnd
-	//getDuration
-	//getName
+	
+	public void setStart(int start) {
+		this.start = start;
+	}
+	
+	public void setEnd(int end) {
+		this.end = end;
+	}
+	
+	public void setDuration(int duration) {
+		this.duration = duration;
+	}
+	
+	public int getStart() {
+		return start;
+	}
+	
+	public int getEnd() {
+		return end;
+	}
+	
+	public int getDuration() {
+		return duration;
+	}
 }
