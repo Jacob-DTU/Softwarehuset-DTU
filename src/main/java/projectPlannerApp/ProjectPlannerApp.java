@@ -4,7 +4,8 @@ import java.util.*;
 public class ProjectPlannerApp {
 	public List<Employee> employees = new ArrayList<Employee>();
 	public List<Project> projects = new ArrayList<Project>();
-	
+	//Array af matches
+	//Calandar object.
 //	public static void main(String[] args) {
 //	}
 	

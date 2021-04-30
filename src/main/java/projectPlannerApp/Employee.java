@@ -16,5 +16,13 @@ public class Employee {
 	public boolean isAvailable() {
 		return (currActivities.size() < 20);
 	}
-	
+	//addActivity
+	//getTimeframe (Giver nok ikke mening i forhold til employee)
+	//timeSpent
+	//calendar
+	//getTimeSpent
+	//getActivity
+	//getEmployee 
+
+
 }

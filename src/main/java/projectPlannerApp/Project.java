@@ -9,7 +9,7 @@ public class Project {
 	public List<Activity> activities = new ArrayList<Activity>();
 	private ProjectLeadException errorMessage = new ProjectLeadException("Project lead is already assigned");
 
-	
+	// int year
 	public String name;
 	public String projectNumber;
 	public Calendar projectStart;
@@ -52,11 +52,11 @@ public class Project {
 		}
 	}
 	
-	public Employee getProjectLead() {
+	public Employee getProjectLead() { 
 		return projectLead;
 	}
 	
-	public void setProjectLead(Employee employee) throws ProjectLeadException {
+	public void setProjectLead(Employee employee) throws ProjectLeadException { 
 		if (projectLead == null) {
 			this.projectLead = employee;
 		}
@@ -71,6 +71,7 @@ public class Project {
 		if (projectLead == null) return false;
 		return true; 
 	}
+	//setProjectStart
+	//hasProjectLead
 
-	
 }

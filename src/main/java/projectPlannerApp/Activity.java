@@ -27,5 +27,12 @@ public class Activity {
 			employee.currActivities.add(this);
 		}
 	}
-
+	//AddTimeframe (Man kunne sætte tidsrammen for en aktivitet senere)
+	//setStart
+	//setEnd
+	//setTime
+	//getStart
+	//getEnd
+	//getDuration
+	//getName
 }
