@@ -10,6 +10,7 @@ import io.cucumber.java.en.When;
 import projectPlannerApp.Activity;
 import projectPlannerApp.Employee;
 import projectPlannerApp.Project;
+import projectPlannerApp.ProjectLeadException;
 import projectPlannerApp.ProjectPlannerApp;
 import projectPlannerApp.TooManyActivitiesException;
 
@@ -27,10 +28,11 @@ public class EmployeeSteps {
 		this.errorMessageHolder = errorMessageHolder;
 	}
 	
+	// employee should be project lead or activity should be added manually
 	@Given("an activity titled {string} exists")
-	public void anActivityTitledExists(String activityName) {
+	public void anActivityTitledExists(String activityName) throws ProjectLeadException {
 		project = projectPlannerApp.newProject(activityName);
-		activity = project.newActivity(activityName, 1, 2, 10);
+		activity = project.newActivity(employee, activityName, 1, 2, 10);
 	}
 
 	@Given("an employee with initials {string} exists")
@@ -64,9 +66,9 @@ public class EmployeeSteps {
 	}
 	
 	@Given("the employee is unavailable")
-	public void theEmployeeIsUnavailable() throws TooManyActivitiesException {
+	public void theEmployeeIsUnavailable() throws TooManyActivitiesException, ProjectLeadException {
 	    for (int i=0; i<20; i++) {
-	    	Activity tmpActivity = project.newActivity(Integer.toString(i), 1, 2, 10);
+	    	Activity tmpActivity = project.newActivity(employee, Integer.toString(i), 1, 2, 10);
 	    	tmpActivity.addEmployee(employee);
 	    }
 	    
