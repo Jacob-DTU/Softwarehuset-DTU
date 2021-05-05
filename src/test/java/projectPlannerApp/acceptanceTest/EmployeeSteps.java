@@ -25,7 +25,7 @@ public class EmployeeSteps {
 	private Employee projectLead;
 	private ErrorMessageHolder errorMessageHolder;
 	
-	public EmployeeSteps(ProjectPlannerApp projectPlannerApp, ErrorMessageHolder errorMessageHolder) {
+	public EmployeeSteps(ProjectPlannerApp projectPlannerApp, ErrorMessageHolder errorMessageHolder) throws OperationNotAllowedException {
 		this.projectPlannerApp = projectPlannerApp;
 		this.errorMessageHolder = errorMessageHolder;
 		this.projectLead = projectPlannerApp.newEmployee("LEAD");
@@ -40,7 +40,7 @@ public class EmployeeSteps {
 	}
 
 	@Given("an employee with initials {string} exists")
-	public void anEmployeeWithInitialsExists(String initials) {
+	public void anEmployeeWithInitialsExists(String initials) throws OperationNotAllowedException {
 		employee = projectPlannerApp.newEmployee(initials);
 	}
 

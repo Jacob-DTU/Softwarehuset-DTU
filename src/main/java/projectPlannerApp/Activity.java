@@ -3,16 +3,24 @@ package projectPlannerApp;
 import java.util.ArrayList;
 import java.util.List;
 
+import projectPlannerCalendar.ActivityCalendar;
+import projectPlannerCalendar.Date;
+
 public class Activity {
 	
+	private TooManyActivitiesException tooManyActivitiesError = new TooManyActivitiesException("Employee is unavailable during the given timeframe");
+	private InvalidTimeRegistrationException invalidTimeRegistrationError = new InvalidTimeRegistrationException("Invalid time registration");
+
+	
 	public List<Employee> employees = new ArrayList<Employee>();
-	private TooManyActivitiesException errorMessage = new TooManyActivitiesException("Employee is unavailable during the given timeframe");
+	public ActivityCalendar calendar;
 	
 	private String name;
 	private int start, end, duration;
 	
 	public Activity(String name) {
 		this.name = name;
+		this.calendar = new ActivityCalendar();
 	}
 	
 	public Activity(String name, int start, int end, int duration) {
@@ -20,18 +28,9 @@ public class Activity {
 		this.start = start;
 		this.end = end;
 		this.duration = duration;
+		this.calendar = new ActivityCalendar(start, end);
 	}
-	
-	public void addEmployee(Employee employee) throws TooManyActivitiesException {
-		if (employee.currActivities.size() == 20) {
-			throw errorMessage;
-		}
-		else {
-			employees.add(employee);
-			employee.currActivities.add(this);
-		}
-	}
-	
+		
 	public void setStart(int start) {
 		this.start = start;
 	}
@@ -55,4 +54,44 @@ public class Activity {
 	public int getDuration() {
 		return duration;
 	}
+	
+	public void addEmployee(Employee employee) throws TooManyActivitiesException {
+		if (employee.currActivities.size() == 20) {
+			throw tooManyActivitiesError;
+		}
+		else {
+			employees.add(employee);
+			employee.currActivities.add(this);
+		}
+	}
+	
+	public TimeRegistration newTimeRegistration(Date date, Employee employee, double hours) throws InvalidTimeRegistrationException {
+		if (hours < 0 || hours > 24) {
+			throw invalidTimeRegistrationError;
+		}
+		else {
+			TimeRegistration registration = new TimeRegistration(date, employee, hours);
+			calendar.addTimeRegistration(registration);
+			return registration;
+		}
+	}
+	
+	public TimeRegistration newTimeRegistration(PredefinedActivity predefinedActivity, Date startDate, Date endDate, Employee employee) throws InvalidTimeRegistrationException {
+		TimeRegistration registration = new TimeRegistration(startDate, endDate, employee);
+		calendar.addTimeRegistration(registration);
+		return registration;
+	}
+
+	public boolean contains(Employee employee) {
+		if (employees.contains(employee)) {
+			return true;
+		}
+		return false;
+	}
+
+	public String showTimeRegistration(TimeRegistration registration) {
+		return registration.toString();
+		
+	}
+	
 }

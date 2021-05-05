@@ -7,18 +7,20 @@ import static org.junit.Assert.assertTrue;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import projectPlannerApp.Calendar;
 import projectPlannerApp.Employee;
+import projectPlannerApp.OperationNotAllowedException;
 import projectPlannerApp.Project;
 import projectPlannerApp.ProjectLeadException;
 import projectPlannerApp.ProjectPlannerApp;
+import projectPlannerCalendar.ActivityCalendar;
+import projectPlannerCalendar.Date;
 
 
 public class ProjectSteps {
 
 	private Project project;
 	private ProjectPlannerApp projectPlannerApp;
-	private Calendar projectStart;
+	private Date projectStart;
 	private Employee projectLead;
 	
 	public ProjectSteps(ProjectPlannerApp projectPlannerApp) {
@@ -68,7 +70,7 @@ public class ProjectSteps {
 	
 	@When("an employee creates a project with a start time")
 	public void anEmployeeCreatesAProjectWithAStartTime() {
-		projectStart = new Calendar(2021, 1, 1);
+		projectStart = new Date(2021, 1, 1);
 	    project = projectPlannerApp.newProject("projectWithStartTime", projectStart);
 	}
 
@@ -78,7 +80,7 @@ public class ProjectSteps {
 	}
 	
 	@When("an employee creates a project with a project lead assigned")
-	public void anEmployeeCreatesAProjectWithAProjectLeadAssigned() throws ProjectLeadException {
+	public void anEmployeeCreatesAProjectWithAProjectLeadAssigned() throws ProjectLeadException, OperationNotAllowedException {
 		this.projectLead = projectPlannerApp.newEmployee("LEAD");
 	    project = projectPlannerApp.newProject("projectWithProjectLead", projectLead);
 	}

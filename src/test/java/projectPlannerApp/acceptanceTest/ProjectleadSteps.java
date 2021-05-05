@@ -1,6 +1,7 @@
 package projectPlannerApp.acceptanceTest;
 
 import projectPlannerApp.Employee;
+import projectPlannerApp.OperationNotAllowedException;
 import projectPlannerApp.Project;
 import projectPlannerApp.ProjectLeadException;
 import projectPlannerApp.ProjectPlannerApp;
@@ -28,7 +29,7 @@ public class ProjectleadSteps {
 	}
 	
 	@Given("an employee with initials {string} is available")
-	public void anEmployeeWithInitialsIsAvailable(String initials) {
+	public void anEmployeeWithInitialsIsAvailable(String initials) throws OperationNotAllowedException {
 	    employee = projectPlannerApp.newEmployee(initials);
 	    assertTrue(employee.isAvailable());
 	}
@@ -43,7 +44,6 @@ public class ProjectleadSteps {
 	public void theEmployeeIsAssignedAsProjectLead() throws ProjectLeadException {
 		try {
 			project.setProjectLead(employee);
-			employee.leadProjects.add(project);
 		} catch(ProjectLeadException e) {
 			errorMessageHolder.setErrorMessage(e.getMessage());
 		}
@@ -60,7 +60,7 @@ public class ProjectleadSteps {
 	}
 	
 	@Given("a project with name {string} exists with a project lead")
-	public void aProjectWithNameExistsWithAProjectLead(String projectName) throws ProjectLeadException {
+	public void aProjectWithNameExistsWithAProjectLead(String projectName) throws ProjectLeadException, OperationNotAllowedException {
 		project = projectPlannerApp.newProject(projectName, projectPlannerApp.newEmployee("IJKL"));
 	    assertTrue(project.hasProjectLead());
 	}

@@ -1,0 +1,29 @@
+
+ProjectPlannerApp:
+	- Projects overview
+	- Employees overview
+	- App calendar (predefined activities)
+
+
+Project:
+Info about project (Name, Projectlead, Project start date)
+    - New activity
+    - list of activities
+    - Project calendar
+    - If no project lead -> set project lead
+    - 
+
+
+Activities:
+Info about activity
+	- Activity calendar
+
+
+App calendar:	
+	- time registrations overview
+
+Project calendar:
+
+
+Activity calendar:
+	- If project lead -> time registrations overview

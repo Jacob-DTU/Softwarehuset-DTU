@@ -1,13 +1,24 @@
 package projectPlannerApp;
 
-import java.util.*;
+import java.util.List;
+import java.util.Map;
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import projectPlannerCalendar.Date;
+import projectPlannerCalendar.ProjectPlannerCalendar;
+
 public class ProjectPlannerApp {
-	public List<Employee> employees = new ArrayList<Employee>();
+	
+	private OperationNotAllowedException employeeAlreadyExistsError = new OperationNotAllowedException("An employee with these initials already exists");
+	
+	public Map<String, Employee> employees = new HashMap<String, Employee>();
 	public List<Project> projects = new ArrayList<Project>();
-	//Array af matches
-	//Calandar object.
-//	public static void main(String[] args) {
-//	}
+	
+	public ProjectPlannerCalendar calendar = new ProjectPlannerCalendar();
+	public List<Project> leadProjects = new ArrayList<Project>();
+	public ProjectPlannerApp() {
+	}
 	
 	public Project newProject(String name) {
 		Project newProject = new Project(name, projects.size()+1);
@@ -16,7 +27,7 @@ public class ProjectPlannerApp {
 		return newProject;
 	}
 	
-	public Project newProject(String name, Calendar projectStart) {
+	public Project newProject(String name, Date projectStart) {
 		Project newProject = new Project(name, projects.size()+1, projectStart);
 		projects.add(newProject);
 		
@@ -30,21 +41,40 @@ public class ProjectPlannerApp {
 		return newProject;
 	}
 	
-	public Project newProject(String name, Employee projectLead, Calendar projectStart) throws ProjectLeadException {
+	public Project newProject(String name, Employee projectLead, Date projectStart) throws ProjectLeadException {
 		Project newProject = new Project(name, projects.size()+1, projectLead, projectStart);
 		projects.add(newProject);
 		
 		return newProject;
 	}
+
+	public List<Project> getProjectList(){
+		return projects;
+	}
 	
-	
-	public Employee newEmployee(String initials) {
+	public Employee newEmployee(String initials) throws OperationNotAllowedException {
 		Employee newEmployee = new Employee(initials);
-		employees.add(newEmployee);
+		if (this.contains(newEmployee)) {
+			throw employeeAlreadyExistsError;
+		}
+		employees.put(initials, newEmployee);
 		
 		return newEmployee;
 	}
+	
+	public Employee getEmployee(String initialer) throws OperationNotAllowedException {
+		if (employees.containsKey(initialer)) {
+			return employees.get(initialer);
+		}
+		return newEmployee(initialer);
+	}
+	
+	public List<Employee> searchEmployees(String initials){
+		return Search.searchEmployees(employees, initials);
+	}
 
-	 
+	public boolean contains(Employee employee) {
+		return employees.containsKey(employee.getInitials());
+	}
 	
 }

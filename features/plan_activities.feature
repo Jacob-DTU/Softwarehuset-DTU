@@ -19,15 +19,3 @@ Scenario: Choosing timeframe
 	Given an activity has no timeframe
 	When the project lead adds a start time 1, end time 4 and duration 20 to the activity
 	Then a timeframe is added to the activity
-
-
-#Scenario: Add employees 
-	#Given a activty with a timeframe exits.
-	#Then add a employee to this activity.
-	#When employee isn't already in 20 other activty's
-#
-#Scenario: Make predefined activities
-	#Given an activity exists
-	#When an activity is made predefine
-	#Then lose timeframe 
-	#And become accessable for the employees to join

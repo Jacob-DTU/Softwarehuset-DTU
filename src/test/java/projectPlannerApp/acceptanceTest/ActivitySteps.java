@@ -23,7 +23,7 @@ public class ActivitySteps {
 	private Employee projectLead;
 	private Activity activity;
 	
-	public ActivitySteps(ProjectPlannerApp projectPlannerApp, ErrorMessageHolder errorMessageHolder) {
+	public ActivitySteps(ProjectPlannerApp projectPlannerApp, ErrorMessageHolder errorMessageHolder) throws OperationNotAllowedException {
 		this.projectPlannerApp = projectPlannerApp;
 		this.errorMessageHolder = errorMessageHolder;
 		this.projectLead = projectPlannerApp.newEmployee("LEAD");
@@ -42,7 +42,7 @@ public class ActivitySteps {
 
 	@Then("the activity is assigned to the project")
 	public void theActivityIsAssignedToTheProject() {
-		assertTrue(project.activities.containsValue(activity));
+		assertTrue(project.contains(activity));
 	}
 
 	@Given("an activity with name {string} is assigned to the project")
@@ -66,7 +66,7 @@ public class ActivitySteps {
 	
 	@Then("no new activity is created")
 	public void noNewActivityIsCreated() {
-	    assertTrue(activity.equals(project.activities.get("activity")));
+	    assert(activity.equals(project.activities.get("activity")));
 	}
 	
 	@Given("an activity has no timeframe")
