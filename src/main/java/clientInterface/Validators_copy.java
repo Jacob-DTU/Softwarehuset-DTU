@@ -91,27 +91,25 @@ public class Validators extends ClientInterface {
     	
     	System.out.println("Enter a date");
     	System.out.print("Year: ");
-    	year = getValidInt();
+    	if (sc.hasNextInt()) {
+			year = sc.nextInt();
+    	}
     	while (sc.hasNextInt() && year < app.calendar.YEAR) {
     		System.out.println("Not an integer or year earlier than this year");
-        	System.out.print("Year: ");
-    		year = getValidInt();
-    	}
+    		year = sc.nextInt();
     	
-    	System.out.print("Month: ");
-    	month = getValidInt();
-    	while (month < 1 || month > 12) {
-    		System.out.println("Invalid month: It must be a number in range 1 to 12");
-        	System.out.print("Month: ");
-    		month = getValidInt();
     	}
-    	int daysInMonth = YearMonth.of(year, month).lengthOfMonth();
+    	System.out.print("Month: ");
+    	while (month < 1 || month > 12) {
+    		if (sc.hasNextInt()) {
+    			month = sc.nextInt();
+    		}
+    	}
     	System.out.print("Day: ");
-    	day = getValidInt();
-    	while (day < 1 || day >= daysInMonth) {
-    		System.out.println("Invalid day: It must be a number in range 1 to " + daysInMonth);
-        	System.out.print("Day: ");
-    		day = getValidInt();
+    	while (day < 1 || day > YearMonth.of(year, month).lengthOfMonth()) {
+    		if (sc.hasNextInt()) {
+    			day = sc.nextInt();
+    		}
     	}
     	
     	
@@ -120,11 +118,10 @@ public class Validators extends ClientInterface {
     
     private static int getValidInt() {
     	while (!sc.hasNextInt()) {
-    		System.out.println("");
-    		sc.nextLine();
+    		sc.next();
     	}
     	
-    	return sc.nextInt();
+    	return sc.;
     }
 
 }
