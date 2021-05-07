@@ -56,14 +56,14 @@ public class Date {
 		return false;
 	}
 
-	public boolean isLEQThan(Date date) {
+	public boolean isLEQ(Date date) {
 		if (getDateStamp() <= date.getDateStamp()) {
 			return true;
 		}
 		return false;
 	}
 	
-	public boolean isGEQThan(Date date) {
+	public boolean isGEQ(Date date) {
 		if (getDateStamp() >= date.getDateStamp()) {
 			return true;
 		}

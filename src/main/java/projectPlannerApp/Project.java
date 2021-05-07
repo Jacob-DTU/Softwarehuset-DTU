@@ -29,13 +29,12 @@ public class Project {
 	public Project(String name, int numberOfProjects) {
 		this.name = name;
 		this.projectNumber = String.format("%ty", Year.now()) + String.format("%04d", numberOfProjects);
-		
 	}
 	
-	public Project(String name, int numberOfProjects, Date projectStart2) {
+	public Project(String name, int numberOfProjects, int year, int month, int day) {
 		this.name = name;
 		this.projectNumber = String.format("%ty", Year.now()) + String.format("%04d", numberOfProjects);
-		this.projectStart = projectStart2;
+		this.projectStart = projectCalendar.getDate(year, month, day);
 	}
 	
 	public Project(String name, int numberOfProjects, Employee projectLead) throws ProjectLeadException {
@@ -44,11 +43,15 @@ public class Project {
 		this.setProjectLead(projectLead);
 	}
 	
-	public Project(String name, int numberOfProjects, Employee projectLead,  Date projectStart) throws ProjectLeadException {
+	public Project(String name, int numberOfProjects, Employee projectLead, int year, int month, int day) throws ProjectLeadException {
 		this.name = name;
 		this.projectNumber = String.format("%ty", Year.now()) + String.format("%04d", numberOfProjects);
 		this.setProjectLead(projectLead);
-		this.projectStart = projectStart;
+		this.projectStart = projectCalendar.getDate(year, month, day);
+	}
+	
+	public List<Activity> getActivities() {
+		return (List<Activity>) activities.values();
 	}
 	
 	public String getName() {

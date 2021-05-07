@@ -1,9 +1,15 @@
 package projectPlannerCalendar;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import projectPlannerApp.Employee;
+import projectPlannerApp.TimeRegistration;
+
 import java.time.LocalDate;
 
 public class ProjectPlannerCalendar {
@@ -14,6 +20,8 @@ public class ProjectPlannerCalendar {
 	public final int DAY = LocalDate.now().getDayOfMonth();
 	
 	public Map<Integer, Date> dates = new HashMap<Integer, Date>();
+	public List<TimeRegistration> timeRegistrations = new ArrayList<TimeRegistration>();
+
 	
 	public Date startDate, endDate;
 	
@@ -53,6 +61,58 @@ public class ProjectPlannerCalendar {
 	
 	private void addDate(Date date) {
 		dates.put(date.getDateStamp(), date);
+	}
+	
+	public TimeRegistration newTimeRegistration(Date start, Date end, Employee employee) {
+		TimeRegistration registration = new TimeRegistration(getDateRange(start, end), employee);
+		
+		if (timeRegistrations.size() > 1) {
+			int index = sortInsert(timeRegistrations.size() / 2, registration);
+			timeRegistrations.add(index, registration);
+		}
+		else {
+			timeRegistrations.add(registration);
+		}
+		
+		return registration;
+	}
+	
+	public int sortInsert(int index, TimeRegistration registration) {
+		Date currDate = timeRegistrations.get(index).date;
+		Date prevDate = timeRegistrations.get(index - 1).date;
+		Date nextDate = timeRegistrations.get(index + 1).date;
+		if (prevDate.isLEQ(registration.date) && nextDate.isGEQ(registration.date)) {
+			return index;
+		}
+		else if (currDate.isLessThan(registration.date)) {
+			index += index / 2;
+		}
+		else if (currDate.isGreaterThan(registration.date)) {
+			index /= 2;
+		}
+		return sortInsert(index, registration);
+	}
+
+	public void addTimeRegistration(TimeRegistration registration) {
+		timeRegistrations.add(registration);
+	}
+	
+	public List<Date> getDateRange(Date start, Date end) {
+		List<Date> dateRange = new ArrayList<Date>();
+		dateRange.add(start);
+		
+		calendar.set(start.year, start.month, start.day);
+		Date currDate = start;
+		
+		while (currDate.isLessThan(end)) {
+			calendar.roll(DAY, true);
+			currDate = getDate(calendar.YEAR, calendar.MONTH, calendar.DATE);
+			dateRange.add(currDate);
+		}
+		
+		dateRange.add(end);
+		
+		return dateRange;
 	}
 	
 }

@@ -70,14 +70,13 @@ public class Activity {
 			throw invalidTimeRegistrationError;
 		}
 		else {
-			TimeRegistration registration = new TimeRegistration(date, employee, hours);
-			calendar.addTimeRegistration(registration);
+			TimeRegistration registration = calendar.newTimeRegistration(date, employee, hours);
 			return registration;
 		}
 	}
 	
 	public TimeRegistration newTimeRegistration(PredefinedActivity predefinedActivity, Date startDate, Date endDate, Employee employee) throws InvalidTimeRegistrationException {
-		TimeRegistration registration = new TimeRegistration(startDate, endDate, employee);
+		TimeRegistration registration = calendar.newTimeRegistration(startDate, endDate, employee);
 		calendar.addTimeRegistration(registration);
 		return registration;
 	}
@@ -87,11 +86,6 @@ public class Activity {
 			return true;
 		}
 		return false;
-	}
-
-	public String showTimeRegistration(TimeRegistration registration) {
-		return registration.toString();
-		
 	}
 	
 }

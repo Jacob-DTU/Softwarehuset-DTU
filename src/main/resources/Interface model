@@ -27,3 +27,57 @@ Project calendar:
 
 Activity calendar:
 	- If project lead -> time registrations overview
+
+	
+
+Layer structure:
+Login
+	-> Project planner app
+		-> Show client profile -> Employee
+
+		-> Employees overview
+			-> Employee
+				-> Activities overview
+				-> Projects overview (Lead)
+				
+		-> Projects overview
+			-> Project
+				-> Activities overview
+				-> Project calendar  // probably not (not implemented)
+					-> Date
+				-> Show project lead -> Employee
+				-> Set project lead
+				-> Change project name
+				-> Change project starting date
+				
+		-> Activities overview (all activities) ?? (not implemented)
+			-> Activity
+				-> Activity calendar
+					-> Date
+				-> Change activity name
+				-> Change start
+				-> Change end
+				-> Change duration
+				
+		-> App calendar
+			-> Date
+				-> Time registration
+					-> Change registered hours
+					-> Change date
+
+		-> Create project
+			-> Project with name and starting date 
+				-> Project
+			-> Project with name and lead
+				-> Project
+			-> Project with name, lead and starting date
+				-> Project
+						
+		-> Create employee
+			-> Employee
+		
+		-> Show login
+			-> Project planner app
+			
+			
+			

@@ -3,6 +3,7 @@ package projectPlannerApp;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 
 import projectPlannerCalendar.Date;
@@ -17,6 +18,7 @@ public class ProjectPlannerApp {
 	
 	public ProjectPlannerCalendar calendar = new ProjectPlannerCalendar();
 	public List<Project> leadProjects = new ArrayList<Project>();
+	
 	public ProjectPlannerApp() {
 	}
 	
@@ -27,8 +29,8 @@ public class ProjectPlannerApp {
 		return newProject;
 	}
 	
-	public Project newProject(String name, Date projectStart) {
-		Project newProject = new Project(name, projects.size()+1, projectStart);
+	public Project newProject(String name, int year, int month, int day) {
+		Project newProject = new Project(name, projects.size()+1, year, month, day);
 		projects.add(newProject);
 		
 		return newProject;
@@ -41,14 +43,18 @@ public class ProjectPlannerApp {
 		return newProject;
 	}
 	
-	public Project newProject(String name, Employee projectLead, Date projectStart) throws ProjectLeadException {
-		Project newProject = new Project(name, projects.size()+1, projectLead, projectStart);
+	public Project newProject(String name, Employee projectLead, int year, int month, int day) throws ProjectLeadException {
+		Project newProject = new Project(name, projects.size()+1, projectLead, year, month, day);
 		projects.add(newProject);
 		
 		return newProject;
 	}
-
-	public List<Project> getProjectList(){
+	
+	public List<Employee> getEmployees() {
+		return (List<Employee>) employees.values();
+	}
+	
+	public List<Project> getProjects() {
 		return projects;
 	}
 	

@@ -1,4 +1,6 @@
 package projectPlannerApp;
+import java.util.List;
+
 import projectPlannerCalendar.Date;
 
 public class TimeRegistration {
@@ -14,8 +16,13 @@ public class TimeRegistration {
 		date.addTimeRegistration(this);
 	}
 	
-	public TimeRegistration(Date startDate, Date endDate, Employee employee2) {
-		
+	public TimeRegistration(List<Date> dateRange, Employee employee) {
+		for (Date date : dateRange) {
+			this.date = date;
+			this.employee = employee;
+			this.hours = 24;
+			date.addTimeRegistration(this);
+		}
 	}
 
 	public Date getDate() {
@@ -40,5 +47,6 @@ public class TimeRegistration {
 	public String toString() {
 		return date.toString() + "\t" + employee.getInitials() + "\t" + Double.toString(hours);
 	}
+	
 	
 }
