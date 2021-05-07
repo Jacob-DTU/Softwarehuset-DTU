@@ -32,52 +32,52 @@ Activity calendar:
 
 Layer structure:
 Login
-	-> Project planner app
-		-> Show client profile -> Employee
-
-		-> Employees overview
-			-> Employee
-				-> Activities overview
-				-> Projects overview (Lead)
-				
-		-> Projects overview
-			-> Project
-				-> Activities overview
-				-> Project calendar  // probably not (not implemented)
-					-> Date
-				-> Show project lead -> Employee
-				-> Set project lead
-				-> Change project name
-				-> Change project starting date
-				
-		-> Activities overview (all activities) ?? (not implemented)
-			-> Activity
-				-> Activity calendar
-					-> Date
-				-> Change activity name
-				-> Change start
-				-> Change end
-				-> Change duration
-				
-		-> App calendar
-			-> Date
-				-> Time registration
-					-> Change registered hours
-					-> Change date
-
-		-> Create project
-			-> Project with name and starting date 
-				-> Project
-			-> Project with name and lead
-				-> Project
-			-> Project with name, lead and starting date
-				-> Project
-						
-		-> Create employee
-			-> Employee
-		
-		-> Show login
-			-> Project planner app
+	-> Project planner app													O
+		-> Show client profile -> Employee									O
+                                                                            O
+		-> Employees overview                                               O
+			-> Employee                                                     O
+				-> Activities overview                                      O
+				-> Projects overview (Lead)                                 O
+				                                                            O
+		-> Projects overview                                                O
+			-> Project                                                      O
+				-> Activities overview                                      O
+				-> Project calendar  // probably not (not implemented)      O
+					-> Date                                                 O
+				-> Show project lead -> Employee                            O
+				-> Set project lead                                         O
+				-> Change project name                                      O
+				-> Change project starting date                             O
+				                                                            O
+		-> Activities overview (all activities) ?? (not implemented)        O
+			-> Activity                                                     O
+				-> Activity calendar                                        O
+					-> Date                                                 O
+				-> Change activity name                                     O
+				-> Change start                                             O
+				-> Change end                                               O
+				-> Change duration                                          O
+				                                                            O
+		-> App calendar                                                     O
+			-> Date                                                         O
+				-> Time registration                                        O
+					-> Change registered hours                              O
+					-> Change date                                          O
+                                                                            O
+		-> Create project                                                   O
+			-> Project with name and starting date                          O
+				-> Project                                                  O
+			-> Project with name and lead                                   O
+				-> Project                                                  O
+			-> Project with name, lead and starting date                    O
+				-> Project                                                  O
+						                                                    O
+		-> Create employee                                                  O
+			-> Employee                                                     O
+		                                                                    O
+		-> Show login                                                       O
+			-> Project planner app                                          O
 			
 			
 			

@@ -9,8 +9,7 @@ import projectPlannerApp.Employee;
 import projectPlannerApp.TimeRegistration;
 
 public class ActivityCalendar extends ProjectPlannerCalendar {
-	
-	
+		
 	public ActivityCalendar() {
 		super();
 	}

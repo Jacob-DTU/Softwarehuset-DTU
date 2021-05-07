@@ -13,11 +13,12 @@ import projectPlannerApp.TimeRegistration;
 import java.time.LocalDate;
 
 public class ProjectPlannerCalendar {
-	Calendar calendar = new GregorianCalendar();
+	private Calendar calendar = new GregorianCalendar();
       
 	public final int YEAR = LocalDate.now().getYear();
 	public final int MONTH = LocalDate.now().getMonthValue();
 	public final int DAY = LocalDate.now().getDayOfMonth();
+	public final int WEEKS = calendar.getActualMaximum(calendar.WEEK_OF_YEAR);
 	
 	public Map<Integer, Date> dates = new HashMap<Integer, Date>();
 	public List<TimeRegistration> timeRegistrations = new ArrayList<TimeRegistration>();

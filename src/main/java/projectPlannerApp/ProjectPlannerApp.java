@@ -19,13 +19,33 @@ public class ProjectPlannerApp {
 	public ProjectPlannerCalendar calendar = new ProjectPlannerCalendar();
 	public List<Project> leadProjects = new ArrayList<Project>();
 	
+	public Activity vacation = new Activity("Vacation");
+	
 	public ProjectPlannerApp() {
+	}
+	
+	public Map<String, Employee> getEmployees() {
+		return employees;
+	}
+	
+	public List<Project> getProjects() {
+		return projects;
+	}
+	
+	public ProjectPlannerCalendar getCalendar() {
+		return calendar;
+	}
+	
+	public Employee getEmployee(String initialer) throws OperationNotAllowedException {
+		if (employees.containsKey(initialer)) {
+			return employees.get(initialer);
+		}
+		return newEmployee(initialer);
 	}
 	
 	public Project newProject(String name) {
 		Project newProject = new Project(name, projects.size()+1);
 		projects.add(newProject);
-		
 		return newProject;
 	}
 	
@@ -50,18 +70,6 @@ public class ProjectPlannerApp {
 		return newProject;
 	}
 	
-	public Map<String, Employee> getEmployees() {
-		return employees;
-	}
-	
-	public List<Project> getProjects() {
-		return projects;
-	}
-	
-	public ProjectPlannerCalendar getCalendar() {
-		return calendar;
-	}
-	
 	public Employee newEmployee(String initials) throws OperationNotAllowedException {
 		Employee newEmployee = new Employee(initials);
 		if (this.contains(newEmployee)) {
@@ -72,11 +80,8 @@ public class ProjectPlannerApp {
 		return newEmployee;
 	}
 	
-	public Employee getEmployee(String initialer) throws OperationNotAllowedException {
-		if (employees.containsKey(initialer)) {
-			return employees.get(initialer);
-		}
-		return newEmployee(initialer);
+	public TimeRegistration newTimeRegistration(Date start, Date end, Employee employee) {
+		vacation.newTimeRegistration(start, end, employee);
 	}
 	
 	public List<Employee> searchEmployees(String initials){

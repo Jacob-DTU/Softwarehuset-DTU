@@ -9,7 +9,7 @@ class ActivityTest {
 	@Test
 	void testA() {
 		ProjectPlannerApp app = new ProjectPlannerApp();
-		employee = app.newEmployee("HELP");
+		
 	}
 
 }

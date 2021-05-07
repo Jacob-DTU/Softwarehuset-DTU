@@ -5,12 +5,12 @@ import java.util.List;
 
 import projectPlannerCalendar.ActivityCalendar;
 import projectPlannerCalendar.Date;
+import projectPlannerCalendar.ProjectPlannerCalendar;
 
 public class Activity {
 	
 	private TooManyActivitiesException tooManyActivitiesError = new TooManyActivitiesException("Employee is unavailable during the given timeframe");
 	private InvalidTimeRegistrationException invalidTimeRegistrationError = new InvalidTimeRegistrationException("Invalid time registration");
-
 	
 	public List<Employee> employees = new ArrayList<Employee>();
 	public ActivityCalendar calendar;
@@ -30,7 +30,15 @@ public class Activity {
 		this.duration = duration;
 		this.calendar = new ActivityCalendar(start, end);
 	}
-		
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
 	public void setStart(int start) {
 		this.start = start;
 	}
@@ -53,6 +61,10 @@ public class Activity {
 	
 	public int getDuration() {
 		return duration;
+	}
+	
+	public ProjectPlannerCalendar getCalendar() {
+		return calendar;
 	}
 	
 	public void addEmployee(Employee employee) throws TooManyActivitiesException {

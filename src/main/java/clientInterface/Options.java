@@ -25,6 +25,7 @@ public class Options extends ClientInterface {
     	System.out.println(" 2. View projects");
     	System.out.println(" 3. View global calendar");
     	System.out.println(" 4. Create new project");
+		System.out.println(" 5. Create new Employee");
 	}
 	
 	public static void printEmployeeOverview() {
@@ -32,9 +33,13 @@ public class Options extends ClientInterface {
 		
 		int i = 1;
 		for (Employee employee : employees) {
-			System.out.println(i++ + ". " + employee.toString());
+			if (i < 10) {
+				System.out.println(" " + i++ + ". " + employee.toString());
+			}
+			else {
+				System.out.println(i++ + ". " + employee.toString());
+			}
 		}
-		
 	}
 	
 	public static void printProjectOverview() {
@@ -42,7 +47,13 @@ public class Options extends ClientInterface {
 
     	int i = 1;
         for (Project project : app.getProjects()) {
-            System.out.println(i++ + ". " + project.toString());
+        	if (i < 10) {
+				System.out.println(" " + i++ + ". " + project.toString());
+			}
+			else {
+				System.out.println(i++ + ". " + project.toString());
+
+			}
         }
 	}
 	
@@ -90,10 +101,10 @@ public class Options extends ClientInterface {
 	public static void printCreateProject() {
 		printToMainMenu();
 
-		System.out.println("1. Make a new project with a name");
-        System.out.println("2. Make a new project with a name and startDate");
-        System.out.println("3. Make a new project with a name and projectLead");
-        System.out.println("4. Make a new project with a name and projectLead and startDate");
+		System.out.println(" 1. Make a new project with a name");
+        System.out.println(" 2. Make a new project with a name and starting date");
+        System.out.println(" 3. Make a new project with a name and project lead");
+        System.out.println(" 4. Make a new project with a name and project lead and starting date");
 	}
 	
 	public static void printCreateActivity() {
