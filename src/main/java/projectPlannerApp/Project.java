@@ -31,10 +31,10 @@ public class Project {
 		this.projectNumber = String.format("%ty", Year.now()) + String.format("%04d", numberOfProjects);
 	}
 	
-	public Project(String name, int numberOfProjects, int year, int month, int day) {
+	public Project(String name, int numberOfProjects, Date date) {
 		this.name = name;
 		this.projectNumber = String.format("%ty", Year.now()) + String.format("%04d", numberOfProjects);
-		this.projectStart = projectCalendar.getDate(year, month, day);
+		this.projectStart = date;
 	}
 	
 	public Project(String name, int numberOfProjects, Employee projectLead) throws ProjectLeadException {
@@ -43,11 +43,11 @@ public class Project {
 		this.setProjectLead(projectLead);
 	}
 	
-	public Project(String name, int numberOfProjects, Employee projectLead, int year, int month, int day) throws ProjectLeadException {
+	public Project(String name, int numberOfProjects, Employee projectLead, Date date) throws ProjectLeadException {
 		this.name = name;
 		this.projectNumber = String.format("%ty", Year.now()) + String.format("%04d", numberOfProjects);
 		this.setProjectLead(projectLead);
-		this.projectStart = projectCalendar.getDate(year, month, day);
+		this.projectStart = date;
 	}
 	
 	public List<Activity> getActivities() {
@@ -79,21 +79,21 @@ public class Project {
 	}
 
 	
-	public Activity newActivity(Employee projectLeader, String name) throws ProjectLeadException, OperationNotAllowedException {
-		Activity activity = createActivity(projectLeader, name, -1, -1, -1);
+	public Activity newActivity(Employee client, String name) throws ProjectLeadException, OperationNotAllowedException {
+		Activity activity = createActivity(client, name, -1, -1, -1);
 		
 		return activity;
 	}
 	
-	public Activity newActivity(Employee projectLeader, String name, int start, int end, int duration) throws ProjectLeadException, OperationNotAllowedException  {
-		Activity activity = createActivity(projectLeader, name, start, end, duration);
+	public Activity newActivity(Employee client, String name, int start, int end, int duration) throws ProjectLeadException, OperationNotAllowedException  {
+		Activity activity = createActivity(client, name, start, end, duration);
 		
 		return activity;
 	}
 	
-	private Activity createActivity(Employee projectLeader, String name, int start, int end, int duration) throws ProjectLeadException, OperationNotAllowedException {
+	private Activity createActivity(Employee client, String name, int start, int end, int duration) throws ProjectLeadException, OperationNotAllowedException {
 		if (hasProjectLead()) {
-			if (projectLead.equals(this.getProjectLead())) {
+			if (client.equals(this.getProjectLead())) {
 				if (activities.containsKey(name)) {
 					throw nameAlreadyAssignedError;
 				} else {

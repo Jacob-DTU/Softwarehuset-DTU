@@ -1,5 +1,7 @@
 package clientInterface;
 
+import java.util.List;
+
 import projectPlannerApp.*;
 import projectPlannerCalendar.*;
 
@@ -10,11 +12,11 @@ public class Options extends ClientInterface {
 	 */
 	
 	public static void printToMainMenu() {
-		System.out.println(" 0. Go to main menu");
+		System.out.println("\n 0. Go to main menu");
 	}
 	
 	public static void printLogin() {
-		System.out.println(" 0. Switch user");
+		System.out.println("\n 0. Switch user");
 	}
 	
 	public static void printProjectPlannerApp() {
@@ -27,14 +29,19 @@ public class Options extends ClientInterface {
 	
 	public static void printEmployeeOverview() {
 		printToMainMenu();
-
+		
+		int i = 1;
+		for (Employee employee : employees) {
+			System.out.println(i++ + ". " + employee.toString());
+		}
+		
 	}
 	
 	public static void printProjectOverview() {
 		printToMainMenu();
 
-    	int i = 2;
-        for(Project project : app.getProjects()) {
+    	int i = 1;
+        for (Project project : app.getProjects()) {
             System.out.println(i++ + ". " + project.toString());
         }
 	}
@@ -140,6 +147,7 @@ public class Options extends ClientInterface {
 	}
 	
 	public static void printSetProjectLead() {
+		System.out.println("Please input initials for an existing employee");
 		printToMainMenu();
 
 	}

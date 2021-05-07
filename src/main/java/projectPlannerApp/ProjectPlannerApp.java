@@ -29,8 +29,8 @@ public class ProjectPlannerApp {
 		return newProject;
 	}
 	
-	public Project newProject(String name, int year, int month, int day) {
-		Project newProject = new Project(name, projects.size()+1, year, month, day);
+	public Project newProject(String name, Date date) {
+		Project newProject = new Project(name, projects.size()+1, date);
 		projects.add(newProject);
 		
 		return newProject;
@@ -43,19 +43,23 @@ public class ProjectPlannerApp {
 		return newProject;
 	}
 	
-	public Project newProject(String name, Employee projectLead, int year, int month, int day) throws ProjectLeadException {
-		Project newProject = new Project(name, projects.size()+1, projectLead, year, month, day);
+	public Project newProject(String name, Employee projectLead, Date date) throws ProjectLeadException {
+		Project newProject = new Project(name, projects.size()+1, projectLead, date);
 		projects.add(newProject);
 		
 		return newProject;
 	}
 	
-	public List<Employee> getEmployees() {
-		return (List<Employee>) employees.values();
+	public Map<String, Employee> getEmployees() {
+		return employees;
 	}
 	
 	public List<Project> getProjects() {
 		return projects;
+	}
+	
+	public ProjectPlannerCalendar getCalendar() {
+		return calendar;
 	}
 	
 	public Employee newEmployee(String initials) throws OperationNotAllowedException {
