@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import org.junit.jupiter.api.Test;
 
 
-class ProjectTest {
+class EmployeeTest {
 
 	private Project project;
 	private ProjectPlannerApp projectPlannerApp;
@@ -15,7 +15,7 @@ class ProjectTest {
 
 
 	@Test
-	void Projecttest() {
+	void TestA() {
 		ArrayList<Project> projects = new ArrayList();
 		projects.add(project);
 		assertEquals(project,projects.get(0));

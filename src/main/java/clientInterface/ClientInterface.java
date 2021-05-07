@@ -39,12 +39,13 @@ public class ClientInterface {
     }
     
     public static void showLogin() throws OperationNotAllowedException, ProjectLeadException {
-    	String initials = Validators.stringValidator("login");	
+    	String initials = Validators.stringValidator("initials");	
 		client = app.getEmployee(initials.toUpperCase());
+		showProjectPlannerApp();
     }
     
     public static void showProjectPlannerApp() throws OperationNotAllowedException, ProjectLeadException {   	
-    	while (true) {
+    	//while (true) {
 	    	Options.printProjectPlannerApp();
 	        selector = Validators.rangeValidator(4);
 	        switch(selector) {
@@ -69,7 +70,7 @@ public class ClientInterface {
 	        case 4: // Create project
 	        	Modifiers.createProject();
 	        }
-        }
+        //}
     }
     
     public static void showEmployeeOverview() throws OperationNotAllowedException, ProjectLeadException {
