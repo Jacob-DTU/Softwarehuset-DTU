@@ -8,7 +8,8 @@ class ActivityTest {
 
 	@Test
 	void testA() {
-		fail("Not yet implemented");
+		ProjectPlannerApp app = new ProjectPlannerApp();
+		employee = app.newEmployee("HELP");
 	}
 
 }
