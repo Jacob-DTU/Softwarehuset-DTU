@@ -10,11 +10,10 @@ import projectPlannerCalendar.ActivityCalendar;
 public class Activity {
 	
 	private TooManyActivitiesException tooManyActivitiesError = new TooManyActivitiesException("Employee is unavailable during the given timeframe");
-	private InvalidTimeRegistrationException invalidTimeRegistrationError = new InvalidTimeRegistrationException("Invalid time registration");
 	
-	public List<Employee> employees = new ArrayList<Employee>();
-	public ActivityCalendar calendar;
-	public boolean isPredefined;
+	private List<Employee> employees = new ArrayList<Employee>();
+	private ActivityCalendar calendar;
+	private boolean isPredefined;
 	
 	private String name;
 	private int start, end, duration;
@@ -86,19 +85,11 @@ public class Activity {
 	}
 	
 	public TimeRegistration newTimeRegistration(Date date, Employee employee, double hours) throws InvalidTimeRegistrationException {
-		if (hours < 0 || hours > 24) {
-			throw invalidTimeRegistrationError;
-		}
-		else {
-			TimeRegistration registration = calendar.newTimeRegistration(date, employee, hours);
-			return registration;
-		}
+		return calendar.newTimeRegistration(date, employee, hours);
 	}
 	
 	public TimeRegistration newTimeRegistration(Date startDate, Date endDate, Employee employee) throws InvalidTimeRegistrationException {
-		TimeRegistration registration = calendar.newTimeRegistration(startDate, endDate, employee);
-		calendar.addTimeRegistration(registration);
-		return registration;
+		return calendar.newTimeRegistration(startDate, endDate, employee);
 	}
 
 	public boolean contains(Employee employee) {
@@ -106,6 +97,10 @@ public class Activity {
 			return true;
 		}
 		return false;
+	}
+	
+	public void removeActivity(Employee employee){
+		employees.remove(employee);
 	}
 	
 }

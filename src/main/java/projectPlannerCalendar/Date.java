@@ -8,11 +8,11 @@ import projectPlannerApp.TimeRegistration;
 
 public class Date {
 	
-	public int year;
-	public int month;
-	public int day;
+	private int year;
+	private int month;
+	private int day;
 	
-	public List<TimeRegistration> timeRegistrations = new ArrayList<TimeRegistration>();
+	private List<TimeRegistration> timeRegistrations = new ArrayList<TimeRegistration>();
 	
 	public Date(int year, int month, int day) {
 		this.year = year;
@@ -20,26 +20,28 @@ public class Date {
 		this.day = day;
 	}
 	
-	public int getDateStamp() {
-		return year*10000 + month*100 + day;
+	public int getYear() {
+		return year;
 	}
-	
-	public String toString() {
-		String dayString = Integer.toString(day);
-		String monthString = Integer.toString(month);
-		String yearString = Integer.toString(year);
-		if (dayString.length() < 2) {
-			dayString = "0" + dayString;
-		}
-		if (monthString.length() < 2) {
-			monthString = "0" + monthString;
-		}
-		
-		return  dayString + "/" + monthString + "/" + yearString;
+
+	public int getMonth() {
+		return month;
+	}
+
+	public int getDay() {
+		return day;
+	}
+
+	public List<TimeRegistration> getTimeRegistrations() {
+		return timeRegistrations;
+	}
+
+	public int getDateStamp() {
+		return getYear()*10000 + getMonth()*100 + getDay();
 	}
 	
 	public void addTimeRegistration(TimeRegistration registration) {
-		timeRegistrations.add(registration);
+		getTimeRegistrations().add(registration);
 	}
 
 	public boolean isLessThan(Date date) {
@@ -71,9 +73,24 @@ public class Date {
 	}
 	
 	public boolean contains(TimeRegistration registration) {
-		if (timeRegistrations.contains(registration)) {
+		if (getTimeRegistrations().contains(registration)) {
 			return true;
 		}
 		return false;
 	}
+	
+	public String toString() {
+		String dayString = Integer.toString(getDay());
+		String monthString = Integer.toString(getMonth());
+		String yearString = Integer.toString(getYear());
+		if (dayString.length() < 2) {
+			dayString = "0" + dayString;
+		}
+		if (monthString.length() < 2) {
+			monthString = "0" + monthString;
+		}
+		
+		return  dayString + "/" + monthString + "/" + yearString;
+	}
+	
 }

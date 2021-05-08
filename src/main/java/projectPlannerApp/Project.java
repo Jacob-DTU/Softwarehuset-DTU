@@ -17,15 +17,13 @@ public class Project {
 	private ProjectLeadException notProjectLeadError = new ProjectLeadException("Only " + this.getProjectLead() + " can make a new activity");
 	private OperationNotAllowedException nameAlreadyAssignedError = new OperationNotAllowedException("Activity with this name already exist");
 	
-	// int year
-	public HashMap<String, Activity> activities = new HashMap<String, Activity>();
-	public ActivityCalendar projectCalendar = new ActivityCalendar();
+	private HashMap<String, Activity> activities = new HashMap<String, Activity>();
 
-	public String name;
-	public String projectNumber;
+	private String name;
+	private String projectNumber;
 
-	public Date projectStart;
-	public Employee projectLead;	
+	private Date projectStart;
+	private Employee projectLead;	
 	
 	public Project(String name, int numberOfProjects) {
 		this.name = name;
@@ -160,6 +158,9 @@ public class Project {
 			return true;
 		}
 		return false;
+	}
+	public void removeActivity(String activity){
+		activities.remove(activity);
 	}
 	
 	public String toString() {

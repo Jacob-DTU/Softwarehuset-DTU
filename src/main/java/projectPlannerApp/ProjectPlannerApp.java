@@ -13,13 +13,13 @@ public class ProjectPlannerApp {
 	
 	private OperationNotAllowedException employeeAlreadyExistsError = new OperationNotAllowedException("An employee with these initials already exists");
 	
-	public Map<String, Employee> employees = new HashMap<String, Employee>();
-	public List<Project> projects = new ArrayList<Project>();
+	private Map<String, Employee> employees = new HashMap<String, Employee>();
+	private List<Project> projects = new ArrayList<Project>();
 	
-	public ActivityCalendar calendar = new ActivityCalendar();
-	public List<Project> leadProjects = new ArrayList<Project>();
+	private ActivityCalendar calendar = new ActivityCalendar();  // Maybe not needed
+	private List<Project> leadProjects = new ArrayList<Project>();
 	
-	public Activity vacation = new Activity("Vacation");
+	private Activity vacation = new Activity("Vacation");
 	
 	public ProjectPlannerApp() {
 	}
@@ -81,7 +81,7 @@ public class ProjectPlannerApp {
 	}
 	
 	public TimeRegistration newTimeRegistration(Date start, Date end, Employee employee) {
-		return vacation.calendar.newTimeRegistration(start, end, employee);
+		return vacation.getCalendar().newTimeRegistration(start, end, employee);
 	}
 	
 	public List<Employee> searchEmployees(String initials){
@@ -90,6 +90,12 @@ public class ProjectPlannerApp {
 
 	public boolean contains(Employee employee) {
 		return employees.containsKey(employee.getInitials());
+	}
+	public void removeEmployee(String initials){
+		employees.remove(initials);
+	}
+	public void removeProject(Project project){
+		projects.remove(project);
 	}
 	
 }

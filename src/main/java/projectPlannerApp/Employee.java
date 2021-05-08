@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Employee {
 		
-	public String initials;
+	private String initials;
 	
 	public List<Activity> currActivities = new ArrayList<Activity>();
 	public List<Project> leadProjects = new ArrayList<Project>();

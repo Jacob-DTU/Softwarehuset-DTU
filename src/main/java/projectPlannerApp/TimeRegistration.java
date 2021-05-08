@@ -5,9 +5,9 @@ import projectPlannerCalendar.Date;
 
 public class TimeRegistration {
 		
-	public Date date;
-	public Employee employee;
-	public double hours;
+	private Date date;
+	private Employee employee;
+	private double hours;
 	
 	public TimeRegistration(Date date, Employee employee, double hours) {
 		this.date = date;
@@ -28,20 +28,21 @@ public class TimeRegistration {
 	public Date getDate() {
 		return date;
 	}
+	
 	public void setDate(Date date) {
-		this.date.timeRegistrations.remove(this);
+		this.date.getTimeRegistrations().remove(this);
 		this.date = date;
 		date.addTimeRegistration(this);
 	}
+	
 	public Employee getEmployee() {
 		return employee;
 	}
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
-	}
+	
 	public double getHours() {
 		return hours;
 	}
+	
 	public void setHours(double hours) {
 		this.hours = hours;
 	}
@@ -49,6 +50,5 @@ public class TimeRegistration {
 	public String toString() {
 		return date.toString() + "\t" + employee.getInitials() + "\t" + Double.toString(hours);
 	}
-	
 	
 }

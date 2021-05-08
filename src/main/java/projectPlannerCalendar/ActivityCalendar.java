@@ -8,11 +8,15 @@ import java.util.List;
 import java.util.Map;
 
 import projectPlannerApp.Employee;
+import projectPlannerApp.InvalidTimeRegistrationException;
 import projectPlannerApp.TimeRegistration;
 
 import java.time.LocalDate;
 
 public class ActivityCalendar {
+	
+	private InvalidTimeRegistrationException invalidTimeRegistrationError = new InvalidTimeRegistrationException("Invalid time registration");
+
 	private Calendar calendar = new GregorianCalendar();
       
 	public final int YEAR = LocalDate.now().getYear();
@@ -20,11 +24,10 @@ public class ActivityCalendar {
 	public final int DAY = LocalDate.now().getDayOfMonth();
 	public final int WEEKS = calendar.getActualMaximum(calendar.WEEK_OF_YEAR);
 	
-	public Map<Integer, Date> dates = new HashMap<Integer, Date>();
-	public List<TimeRegistration> timeRegistrations = new ArrayList<TimeRegistration>();
+	private Map<Integer, Date> dates = new HashMap<Integer, Date>();
+	private List<TimeRegistration> timeRegistrations = new ArrayList<TimeRegistration>();
 
-	
-	public Date startDate, endDate;
+	private Date startDate, endDate;
 	
 	public ActivityCalendar() {
 		initCalendar();
@@ -38,17 +41,9 @@ public class ActivityCalendar {
 		initCalendar();
 	}
 	
-	public void initCalendar() {
+	private void initCalendar() {
 		calendar.setFirstDayOfWeek(Calendar.MONDAY);
 		calendar.set(YEAR, MONTH, DAY);
-		
-	}
-	
-	public boolean contains(Date date) {
-		if (dates.containsKey(date.getDateStamp())) {
-			return true;
-		}
-		return false;
 	}
 	
 	public Date getDate(int year, int month, int day) {
@@ -60,12 +55,32 @@ public class ActivityCalendar {
 		return date;
 	}
 	
+	private List<Date> getDateRange(Date start, Date end) {
+		List<Date> dateRange = new ArrayList<Date>();
+		dateRange.add(start);
+		
+		calendar.set(start.getYear(), start.getMonth(), start.getDay());
+		Date currDate = start;
+		
+		while (currDate.isLessThan(end)) {
+			calendar.roll(DAY, true);
+			currDate = getDate(calendar.YEAR, calendar.MONTH, calendar.DATE);
+			dateRange.add(currDate);
+		}
+		
+		dateRange.add(end);
+		
+		return dateRange;
+	}
+	
 	private void addDate(Date date) {
 		dates.put(date.getDateStamp(), date);
 	}
 	
-	public TimeRegistration newTimeRegistration(Date date, Employee employee, double hours) {
-		
+	public TimeRegistration newTimeRegistration(Date date, Employee employee, double hours) throws InvalidTimeRegistrationException {
+		if (hours < 0 || hours > 24) {
+			throw invalidTimeRegistrationError;
+		}
 		
 		TimeRegistration registration = new TimeRegistration(date, employee, hours);
 		
@@ -95,42 +110,26 @@ public class ActivityCalendar {
 		return registration;
 	}
 	
-	public int sortInsert(int index, TimeRegistration registration) {
-		Date currDate = timeRegistrations.get(index).date;
-		Date prevDate = timeRegistrations.get(index - 1).date;
-		Date nextDate = timeRegistrations.get(index + 1).date;
-		if (prevDate.isLEQ(registration.date) && nextDate.isGEQ(registration.date)) {
+	private int sortInsert(int index, TimeRegistration registration) {
+		Date currDate = timeRegistrations.get(index).getDate();
+		Date prevDate = timeRegistrations.get(index - 1).getDate();
+		Date nextDate = timeRegistrations.get(index + 1).getDate();
+		if (prevDate.isLEQ(registration.getDate()) && nextDate.isGEQ(registration.getDate())) {
 			return index;
 		}
-		else if (currDate.isLessThan(registration.date)) {
+		else if (currDate.isLessThan(registration.getDate())) {
 			index += index / 2;
 		}
-		else if (currDate.isGreaterThan(registration.date)) {
+		else if (currDate.isGreaterThan(registration.getDate())) {
 			index /= 2;
 		}
 		return sortInsert(index, registration);
 	}
-
-	public void addTimeRegistration(TimeRegistration registration) {
-		timeRegistrations.add(registration);
-	}
 	
-	public List<Date> getDateRange(Date start, Date end) {
-		List<Date> dateRange = new ArrayList<Date>();
-		dateRange.add(start);
-		
-		calendar.set(start.year, start.month, start.day);
-		Date currDate = start;
-		
-		while (currDate.isLessThan(end)) {
-			calendar.roll(DAY, true);
-			currDate = getDate(calendar.YEAR, calendar.MONTH, calendar.DATE);
-			dateRange.add(currDate);
+	public boolean contains(Date date) {
+		if (dates.containsKey(date.getDateStamp())) {
+			return true;
 		}
-		
-		dateRange.add(end);
-		
-		return dateRange;
+		return false;
 	}
-	
 }
