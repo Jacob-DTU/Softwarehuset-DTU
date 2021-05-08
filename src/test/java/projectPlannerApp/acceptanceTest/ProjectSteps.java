@@ -29,7 +29,7 @@ public class ProjectSteps {
 	
 	@Given("no project exists")
 	public void noProjectExists() {
-        assertTrue(projectPlannerApp.projects.isEmpty());
+        assertTrue(projectPlannerApp.getProjects().isEmpty());
 	}
 
 	@When("an employee creates a project")
@@ -39,18 +39,18 @@ public class ProjectSteps {
 
 	@Then("the project is created")
 	public void theProjectIsCreated() {
-	    assertTrue(projectPlannerApp.projects.contains(project));
+	    assertTrue(projectPlannerApp.getProjects().contains(project));
 	}
 
 	@Then("the project is assigned a project number")
 	public void theProjectIsAssignedAProjectNumber() {
-	    assertEquals("210001", project.projectNumber);
+	    assertEquals("210001", project.getProjectNumber());
 	}
 	
 	@Given("a project exists")
 	public void aProjectExists() {
 		projectPlannerApp.newProject("project");
-		assertFalse(projectPlannerApp.projects.isEmpty());
+		assertFalse(projectPlannerApp.getProjects().isEmpty());
 	}
 
 	@When("an employee creates a new project")
@@ -60,12 +60,12 @@ public class ProjectSteps {
 
 	@Then("the new project is created")
 	public void theNewProjectIsCreated() {
-		assertTrue(projectPlannerApp.projects.contains(project));
+		assertTrue(projectPlannerApp.getProjects().contains(project));
 	}
 
 	@Then("the project is assigned project number")
 	public void theProjectIsAssignedProjectNumber() {
-	    assertEquals("210002", project.projectNumber);
+	    assertEquals("210002", project.getProjectNumber());
 	}
 	
 	@When("an employee creates a project with a start time")
@@ -76,7 +76,7 @@ public class ProjectSteps {
 
 	@Then("the start time is assigned to the project")
 	public void theStartTimeIsAssignedToTheProject() {
-	    assertEquals(projectStart, project.projectStart);
+	    assertEquals(projectStart, project.getProjectStart());
 	}
 	
 	@When("an employee creates a project with a project lead assigned")

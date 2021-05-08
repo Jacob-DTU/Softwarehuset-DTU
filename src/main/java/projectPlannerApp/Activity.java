@@ -79,7 +79,7 @@ public class Activity {
 			throw tooManyActivitiesError;
 		}
 		else {
-			employees.add(employee);
+			getEmployees().add(employee);
 			employee.currActivities.add(this);
 		}
 	}
@@ -93,14 +93,18 @@ public class Activity {
 	}
 
 	public boolean contains(Employee employee) {
-		if (employees.contains(employee)) {
+		if (getEmployees().contains(employee)) {
 			return true;
 		}
 		return false;
 	}
 	
 	public void removeActivity(Employee employee){
-		employees.remove(employee);
+		getEmployees().remove(employee);
+	}
+
+	public List<Employee> getEmployees() {
+		return employees;
 	}
 	
 }

@@ -61,7 +61,7 @@ public class EmployeeSteps {
 	@Then("the employee is added to the activity")
 	public void theEmployeeIsAddedToTheActivity() {
 		
-	    assertTrue(activity.employees.contains(employee));
+	    assertTrue(activity.getEmployees().contains(employee));
 	}
 
 	@Then("the activity is added to the employee")
@@ -81,7 +81,7 @@ public class EmployeeSteps {
 
 	@Then("the employee is not added to the activity")
 	public void theEmployeeIsNotAddedToTheActivity() {
-	    assertFalse(activity.employees.contains(employee));
+	    assertFalse(activity.getEmployees().contains(employee));
 	}
 
 	@Then("the activity is not added to the employee")

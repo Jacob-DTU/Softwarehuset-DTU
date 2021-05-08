@@ -23,7 +23,7 @@ public class Project {
 	private String projectNumber;
 
 	private Date projectStart;
-	private Employee projectLead;	
+	private Employee projectLead;
 	
 	public Project(String name, int numberOfProjects) {
 		this.name = name;
@@ -150,7 +150,7 @@ public class Project {
 		if (projectLead == null) return false;
 		return true; 
 	}
-	//setProjectStart
+	
 
 
 	public boolean contains(Activity activity) {

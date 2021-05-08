@@ -3,7 +3,8 @@ package projectPlannerApp;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
-
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
 import projectPlannerApp.acceptanceTest.ErrorMessageHolder;
 
 class ActivityTest {
@@ -11,6 +12,10 @@ class ActivityTest {
 	private Employee employee;
 	private Activity activity;
 	private ErrorMessageHolder error = new ErrorMessageHolder();
+	
+	@Mock
+	String helpme;
+	
 	@Test
 	void testA() throws ProjectLeadException, OperationNotAllowedException {
 		ProjectPlannerApp app = new ProjectPlannerApp();
@@ -41,7 +46,7 @@ class ActivityTest {
 		employee = app.newEmployee("TEST");
 		project = app.newProject("testC");
 		project.setProjectLead(employee);
-		activity = project.newActivity(employee, null);
+		activity = project.newActivity(employee, "Name");
 		activity.setStart(10);
 		activity.setEnd(20);
 		activity.setDuration(30);
@@ -68,7 +73,7 @@ class ActivityTest {
 		employee = app.newEmployee("TEST");
 		project = app.newProject("testC");
 		project.setProjectLead(employee);
-		activity = project.newActivity(employee, null);
+		activity = project.newActivity(employee, "TestF");
 		activity.setName("hello");
 		assertEquals(activity.getName(),"hello");
 	}
@@ -88,5 +93,9 @@ class ActivityTest {
 			}
 		}
 		assertEquals(error.getErrorMessage(),"Employee is unavailable during the given timeframe");
+	}
+	@Test
+	void TestH() {
+		
 	}
 }

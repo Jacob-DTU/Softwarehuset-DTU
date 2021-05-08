@@ -17,12 +17,12 @@ class ProjectPlannerAppTest {
 		ProjectPlannerApp app = new ProjectPlannerApp();
 		String inputA = "TestA";
 		app.newProject(inputA);
-		project = app.projects.get(0);
+		project = app.getProjects().get(0);
 		
 
-		assertEquals(app.projects.get(0),project);
-		assertEquals(app.projects.get(0).getName(),project.getName());
-		assertEquals(app.projects.get(0).getProjectNumber(),project.getProjectNumber());
+		assertEquals(app.getProjects().get(0),project);
+		assertEquals(app.getProjects().get(0).getName(),project.getName());
+		assertEquals(app.getProjects().get(0).getProjectNumber(),project.getProjectNumber());
 	}
 	@Test
 	void testB() throws ProjectLeadException, OperationNotAllowedException {
@@ -31,9 +31,9 @@ class ProjectPlannerAppTest {
 		
 		String inputB = "TestB";
 		project = app.newProject(inputB,employee);
-		assertEquals(app.projects.get(0),project);
-		assertEquals(app.projects.get(0).getName(),project.getName());
-		assertEquals(app.projects.get(0).getProjectNumber(),project.getProjectNumber());
+		assertEquals(app.getProjects().get(0),project);
+		assertEquals(app.getProjects().get(0).getName(),project.getName());
+		assertEquals(app.getProjects().get(0).getProjectNumber(),project.getProjectNumber());
 		
 	}
 	@Test
@@ -41,12 +41,13 @@ class ProjectPlannerAppTest {
 		ProjectPlannerApp app = new ProjectPlannerApp();
 		employee = app.newEmployee("HELP");
 		String inputB = "TestB";
-		date = project.projectCalendar.getDate(2020, 4, 12);
+
+		date = project.setProjectStart();;
 		project = app.newProject(inputB,employee, date);
-		assertEquals(app.projects.get(0),project);
-		assertEquals(app.projects.get(0).getName(),project.getName());
-		assertEquals(app.projects.get(0).getProjectNumber(),project.getProjectNumber());
-		assertEquals(app.projects.get(0).getProjectStart(),project.getProjectStart());
+		assertEquals(app.getProjects().get(0),project);
+		assertEquals(app.getProjects().get(0).getName(),project.getName());
+		assertEquals(app.getProjects().get(0).getProjectNumber(),project.getProjectNumber());
+		assertEquals(app.getProjects().get(0).getProjectStart(),project.getProjectStart());
 		
 	}
 	@Test
@@ -57,7 +58,7 @@ class ProjectPlannerAppTest {
 		try {	
 				app.newProject(inputB,employee);
 				employee = app.newEmployee("TEST");
-				app.projects.get(0).setProjectLead(employee);
+				app.getProjects().get(0).setProjectLead(employee);
 		}catch(ProjectLeadException e){
 			error.setErrorMessage(e.getMessage());
 		}
