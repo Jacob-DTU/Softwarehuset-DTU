@@ -62,7 +62,7 @@ public class Options extends ClientInterface {
 
 	}
 	
-	public static void printCalendar(ProjectPlannerCalendar calendar) {
+	public static void printCalendar(ActivityCalendar calendar) {
 		printToMainMenu();
 		System.out.println(calendar.toString());
 	}

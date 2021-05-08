@@ -29,7 +29,9 @@ public class TimeRegistration {
 		return date;
 	}
 	public void setDate(Date date) {
+		this.date.timeRegistrations.remove(this);
 		this.date = date;
+		date.addTimeRegistration(this);
 	}
 	public Employee getEmployee() {
 		return employee;

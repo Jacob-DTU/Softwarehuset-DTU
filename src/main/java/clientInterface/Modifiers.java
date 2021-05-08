@@ -1,6 +1,7 @@
 package clientInterface;
 
 import projectPlannerApp.*;
+import projectPlannerCalendar.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -91,9 +92,20 @@ public class Modifiers extends ClientInterface {
     	showProjectPlannerApp();
     }
     
-    public static void createTimeRegistration() {
+    public static void createTimeRegistration() throws InvalidTimeRegistrationException {
     	Options.printCreateTimeRegistration();
-    	registration = activity.newTimeRegistration(date, employee, hours)
+    	
+    	if (activity.isPredefined) {
+    		Date start = Validators.dateValidator("registration");
+    		Date end = Validators.dateValidator("registration");
+    		registration = activity.newTimeRegistration(start, end, client);
+    	}
+    	else {
+    		date = Validators.dateValidator("registration");
+    		double hours = Validators.hoursValidator();
+    		registration = activity.newTimeRegistration(date, client, hours);
+    	}
+
     }
     
     public static void changeProjectName() throws OperationNotAllowedException, ProjectLeadException {
@@ -144,15 +156,15 @@ public class Modifiers extends ClientInterface {
     public static void changeTimeRegistrationHours() {
     	Options.printChangeTimeRegistrationHours();
     	
-    	int newEnd = Validators.getValidInt("Input");
-    	activity.setStart(newEnd);
+    	double newHours = Validators.hoursValidator();
+    	registration.setHours(newHours);
     }
     
     public static void changeTimeRegistrationDate() {
     	Options.printChangeTimeRegistrationDate();
     	
-    	int newHours = Validators.getValidInt("Input");
-    	registration.setHours(newHours);
+    	date = Validators.dateValidator("registration");
+    	registration.setDate(date);
     }
     
     public static void setProjectLead() throws OperationNotAllowedException, ProjectLeadException {

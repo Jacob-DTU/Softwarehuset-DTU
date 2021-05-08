@@ -28,7 +28,7 @@ public class ClientInterface {
 	public static Employee client, employee;
 	public static Project project;
 	public static Activity activity;
-	public static ProjectPlannerCalendar calendar;
+	public static ActivityCalendar calendar;
 	public static Date date;
 	public static TimeRegistration registration;
 

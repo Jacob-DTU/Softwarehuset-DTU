@@ -1,5 +1,5 @@
 package projectPlannerCalendar;
 
-public class ProjectCalendar extends ProjectPlannerCalendar {
+public class ProjectCalendar extends ActivityCalendar {
 
 }
