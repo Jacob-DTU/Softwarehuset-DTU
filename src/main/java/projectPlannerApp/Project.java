@@ -7,6 +7,7 @@ import projectPlannerCalendar.ActivityCalendar;
 import projectPlannerCalendar.Date;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 
 public class Project {
@@ -50,8 +51,8 @@ public class Project {
 		this.projectStart = date;
 	}
 	
-	public List<Activity> getActivities() {
-		return (List<Activity>) activities.values();
+	public Collection<Activity> getActivities() {
+		return (Collection<Activity>) activities.values();
 	}
 	
 	public String getName() {
