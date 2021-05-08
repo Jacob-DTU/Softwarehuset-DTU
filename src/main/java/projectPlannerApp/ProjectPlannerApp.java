@@ -7,7 +7,7 @@ import java.util.Collection;
 import java.util.HashMap;
 
 import projectPlannerCalendar.Date;
-import projectPlannerCalendar.ProjectPlannerCalendar;
+import projectPlannerCalendar.ActivityCalendar;
 
 public class ProjectPlannerApp {
 	
@@ -16,7 +16,7 @@ public class ProjectPlannerApp {
 	public Map<String, Employee> employees = new HashMap<String, Employee>();
 	public List<Project> projects = new ArrayList<Project>();
 	
-	public ProjectPlannerCalendar calendar = new ProjectPlannerCalendar();
+	public ActivityCalendar calendar = new ActivityCalendar();
 	public List<Project> leadProjects = new ArrayList<Project>();
 	
 	public Activity vacation = new Activity("Vacation");
@@ -32,7 +32,7 @@ public class ProjectPlannerApp {
 		return projects;
 	}
 	
-	public ProjectPlannerCalendar getCalendar() {
+	public ActivityCalendar getCalendar() {
 		return calendar;
 	}
 	
@@ -81,7 +81,7 @@ public class ProjectPlannerApp {
 	}
 	
 	public TimeRegistration newTimeRegistration(Date start, Date end, Employee employee) {
-		vacation.newTimeRegistration(start, end, employee);
+		return vacation.calendar.newTimeRegistration(start, end, employee);
 	}
 	
 	public List<Employee> searchEmployees(String initials){

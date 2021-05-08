@@ -5,7 +5,7 @@ import java.util.List;
 
 import projectPlannerCalendar.ActivityCalendar;
 import projectPlannerCalendar.Date;
-import projectPlannerCalendar.ProjectPlannerCalendar;
+import projectPlannerCalendar.ActivityCalendar;
 
 public class Activity {
 	
@@ -14,21 +14,29 @@ public class Activity {
 	
 	public List<Employee> employees = new ArrayList<Employee>();
 	public ActivityCalendar calendar;
+	public boolean isPredefined;
 	
 	private String name;
 	private int start, end, duration;
 	
 	public Activity(String name) {
+		switch (name) {
+		case "Vacation":
+			this.isPredefined = true;
+		default:
+			this.isPredefined = false;
+		}
 		this.name = name;
 		this.calendar = new ActivityCalendar();
 	}
 	
 	public Activity(String name, int start, int end, int duration) {
+		this.isPredefined = false;
 		this.name = name;
 		this.start = start;
 		this.end = end;
 		this.duration = duration;
-		this.calendar = new ActivityCalendar(start, end);
+		this.calendar = new ActivityCalendar();
 	}
 	
 	public String getName() {
@@ -63,7 +71,7 @@ public class Activity {
 		return duration;
 	}
 	
-	public ProjectPlannerCalendar getCalendar() {
+	public ActivityCalendar getCalendar() {
 		return calendar;
 	}
 	
@@ -87,7 +95,7 @@ public class Activity {
 		}
 	}
 	
-	public TimeRegistration newTimeRegistration(PredefinedActivity predefinedActivity, Date startDate, Date endDate, Employee employee) throws InvalidTimeRegistrationException {
+	public TimeRegistration newTimeRegistration(Date startDate, Date endDate, Employee employee) throws InvalidTimeRegistrationException {
 		TimeRegistration registration = calendar.newTimeRegistration(startDate, endDate, employee);
 		calendar.addTimeRegistration(registration);
 		return registration;

@@ -16,10 +16,10 @@ public class Validators extends ClientInterface {
 		
 	public static int rangeValidator(int range) {
 		if (range == 0) {
-		    System.out.println("\nPress 0 to return to main menu");
+		    System.out.println("\nInput 0 to return to main menu");
 		}
 		else {
-			System.out.println("\nPress a number between 0 and " + range);
+			System.out.println("\nInput a number between 0 and " + range);
 		}
 		
 	    selector = getValidInt("Input");
@@ -30,6 +30,19 @@ public class Validators extends ClientInterface {
 	    
 		return selector;
     }
+	
+	public static double hoursValidator() {
+		System.out.println("\nInput hours between 0 and 24");
+		
+	    double hours = getValidDouble("Input");
+	    while (hours > 24 || hours < 0 || 2*hours != (int) 2*hours) {
+            System.out.println("Invalid hours: The time registration should be within 24 hours with an accuracy of half hours");
+            hours = getValidDouble("Input");
+	    }
+	    
+		return hours;
+	}
+	
     
     public static String stringValidator(String command) throws OperationNotAllowedException, ProjectLeadException {
     	String input = null;
@@ -121,5 +134,17 @@ public class Validators extends ClientInterface {
     	
     	return sc.nextInt();
     }
+    
+    public static double getValidDouble(String inputName) {
+  		System.out.print(inputName + ": ");
+  		sc.nextLine();
+      	while (!sc.hasNextDouble()) {
+      		System.out.println("Invalid input: It must be a number");
+  			System.out.print(inputName + ": ");
+      		sc.nextLine();
+      	}
+      	
+      	return sc.nextInt();
+      }
 
 }
