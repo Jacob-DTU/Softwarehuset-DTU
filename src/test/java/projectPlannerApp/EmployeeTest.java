@@ -15,7 +15,7 @@ class EmployeeTest {
 	void testA() throws OperationNotAllowedException {
 		ProjectPlannerApp app = new ProjectPlannerApp();
 		employee = app.newEmployee("test");
-		assertEquals("test",employee.getInitials());
+		assertEquals("TEST",employee.getInitials());
 	}
 	@Test
 	void testB()  {
@@ -45,11 +45,9 @@ class EmployeeTest {
 		}catch(TooManyActivitiesException e) {
 			error.setErrorMessage(e.getMessage());
 		}
-		assertEquals("Employee is unavailable during the given timeframe", 
+		assertEquals("Employee has too many activities", 
 				error.getErrorMessage());
-		
-		
-		assertFalse(employee.isAvailable());
+				assertFalse(employee.isAvailable());
 	}
 	@Test
 	void testD() throws ProjectLeadException, OperationNotAllowedException  {
@@ -63,6 +61,6 @@ class EmployeeTest {
 		ProjectPlannerApp app = new ProjectPlannerApp();
 		employee = app.newEmployee("test");
 		app.newProject("testE", employee);
-		assertEquals(employee.getProjects(),app.getEmployee("test").getProjects());
+		assertEquals(employee.getProjects(),app.getEmployee("TEST").getProjects());
 	}
 }

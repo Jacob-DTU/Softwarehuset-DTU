@@ -1,10 +1,7 @@
 package projectPlannerApp;
 
 import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
 import projectPlannerApp.acceptanceTest.ErrorMessageHolder;
 
 class ActivityTest {
@@ -13,8 +10,7 @@ class ActivityTest {
 	private Activity activity;
 	private ErrorMessageHolder error = new ErrorMessageHolder();
 	
-	@Mock
-	String helpme;
+
 	
 	@Test
 	void testA() throws ProjectLeadException, OperationNotAllowedException {
@@ -82,14 +78,16 @@ class ActivityTest {
 		assertEquals(activity.getName(),"hello");
 	}
 	
+
+	
 	@Test
-	void TestG() throws ProjectLeadException, OperationNotAllowedException{
+	void WhiteboxTestA() throws ProjectLeadException, OperationNotAllowedException {
 		ProjectPlannerApp app = new ProjectPlannerApp();
-		Employee worker = app.newEmployee("WORK");
-		employee = app.newEmployee("TEST");
+		Employee worker = app.newEmployee("ABCD");
+		employee = app.newEmployee("LEAD");
 		project = app.newProject("testC");
 		project.setProjectLead(employee);
-		for(int i = 0; i<=40;i++) {
+		for(int i = 0; i<=20;i++) {
 			activity = project.newActivity(employee, "name" + i);
 			try {
 				activity.addEmployee(worker);
@@ -97,11 +95,34 @@ class ActivityTest {
 				error.setErrorMessage(e.getMessage());
 			}
 		}
-		assertEquals(error.getErrorMessage(),"Employee is unavailable during the given timeframe");
+		assertEquals(error.getErrorMessage(),"Employee has too many activities");
+	}
+	@Test
+	void WhiteboxTestB() throws OperationNotAllowedException, ProjectLeadException, TooManyActivitiesException {
+		ProjectPlannerApp app = new ProjectPlannerApp();
+		Employee worker = app.newEmployee("ABCD");
+		employee = app.newEmployee("LEAD");
+		project = app.newProject("testC");
+		project.setProjectLead(employee);
+		for(int i = 0; i<=19;i++) {
+			activity = project.newActivity(employee, "name" + i);
+			
+			
+		}
+		activity.addEmployee(worker);
+		assertEquals(project.getActivities().size(),20);
 	}
 	
 	@Test
-	void TestH() {
-		
+	void WhiteboxTestC() throws TooManyActivitiesException, ProjectLeadException, OperationNotAllowedException {
+		ProjectPlannerApp app = new ProjectPlannerApp();
+		Employee worker = app.newEmployee("ABCD");
+		employee = app.newEmployee("LEAD");
+		project = app.newProject("testC");
+		project.setProjectLead(employee);
+		activity = project.newActivity(employee, "TestC");
+		activity.addEmployee(worker);
+		assertEquals(project.getActivities().size(),1);
 	}
+
 }
