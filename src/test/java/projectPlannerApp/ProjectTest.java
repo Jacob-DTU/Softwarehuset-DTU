@@ -8,7 +8,7 @@ class ProjectTest {
 
 	@Test
 	void testA() {
-		fail("Not yet implemented");
+		fail("Cuzz i can");
 	}
 
 }
