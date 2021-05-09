@@ -15,8 +15,6 @@ public class Modifiers extends ClientInterface {
 	 */
 
 	public static void createEmployee() throws OperationNotAllowedException, ProjectLeadException, InvalidTimeRegistrationException {
-		Options.printCreateEmployee();
-
 		initials = Validators.stringValidator("initials");
 		employee = app.newEmployee(initials);
 
@@ -94,38 +92,29 @@ public class Modifiers extends ClientInterface {
 	}
 
 	public static void createTimeRegistration() throws InvalidTimeRegistrationException {
-		Options.printCreateTimeRegistration();
-
-		if (activity.isPredefined) {
+		if (activity.isPredefined) {			
 			Date start = Validators.dateValidator("registration");
 			Date end = Validators.dateValidator("registration");
 			registration = activity.newTimeRegistration(start, end, client);
 		}
-		else {
+		else {			
 			date = Validators.dateValidator("registration");
 			double hours = Validators.hoursValidator();
 			registration = activity.newTimeRegistration(date, client, hours);
 		}
-
 	}
 
 	public static void changeProjectName() throws OperationNotAllowedException, ProjectLeadException {
-		Options.printChangeProjectName();
-		
 		name = Validators.stringValidator("name");
 		project.setName(name);
 	}
 
 	public static void changeProjectStart() {
-		Options.printChangeProjectStart();
-
 		date = Validators.dateValidator("project");
 		project.setProjectStart(date);
 	}
 
 	public static void changeActivityName() throws OperationNotAllowedException, ProjectLeadException {
-		Options.printChangeActivityName();
-
 		name = Validators.stringValidator("name");
 		activity.setName("name");
 	}
@@ -159,22 +148,16 @@ public class Modifiers extends ClientInterface {
 	}
 
 	public static void changeTimeRegistrationHours() {
-		Options.printChangeTimeRegistrationHours();
-
 		double newHours = Validators.hoursValidator();
 		registration.setHours(newHours);
 	}
 
 	public static void changeTimeRegistrationDate() {
-		Options.printChangeTimeRegistrationDate();
-
 		date = Validators.dateValidator("registration");
 		registration.setDate(date);
 	}
 
 	public static void setProjectLead() throws OperationNotAllowedException, ProjectLeadException, InvalidTimeRegistrationException {
-		Options.printSetProjectLead();
-
 		initials = Validators.stringValidator("search");
 		employees = app.searchEmployees(initials);
 
@@ -188,8 +171,6 @@ public class Modifiers extends ClientInterface {
 	}
 	
 	public static void addEmployee() throws OperationNotAllowedException, ProjectLeadException, InvalidTimeRegistrationException {
-		Options.printAddEmployee();
-		
 		initials = Validators.stringValidator("search");
 		employees = app.searchEmployees(initials);
 		showEmployeeOverview();
@@ -207,8 +188,6 @@ public class Modifiers extends ClientInterface {
 	}
 	
 	public static void removeEmployee() throws OperationNotAllowedException, ProjectLeadException, InvalidTimeRegistrationException {
-		Options.printRemoveEmployee();
-		
 		initials = Validators.stringValidator("search");
 		employees = app.searchEmployees(initials);
 		showEmployeeOverview();

@@ -61,7 +61,6 @@ class SearchEmployeesTest {
 		map.put(two.getInitials(), two);
 		map.put(three.getInitials(), three);
 		List<Employee> found = Search.searchEmployees(map, "DE");
-		System.out.println(found.size());
 		assertTrue(found.size()== 2);
 		assertEquals(found.get(0).getInitials(),"BDEF");
 		assertEquals(found.get(1).getInitials(),"DEAB");
@@ -76,7 +75,6 @@ class SearchEmployeesTest {
 		map.put(two.getInitials(), two);
 		map.put(three.getInitials(), three);
 		List<Employee> found = Search.searchEmployees(map, "DE");
-		System.out.println(found.size());
 		assertTrue(found.size()== 2);
 		assertEquals(found.get(1).getInitials(),"GDEA");
 		assertEquals(found.get(0).getInitials(),"NODE");

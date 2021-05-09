@@ -64,7 +64,7 @@ public class Validators extends ClientInterface {
 		    	input = getValidString("Search for");
 		    	while (input.length() > 4) {
 		    		System.out.println("Invalid search: It must be a string with up to 4 letters");
-		    		input = getValidString("Search for");
+		    		input = getValidString("Search for").toUpperCase();
 	    		}
 		    	break;  
 	

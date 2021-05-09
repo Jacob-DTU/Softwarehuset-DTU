@@ -35,10 +35,10 @@ public class Activity {
 	public Activity(String name, int start, int end, int duration) {
 		this.isPredefined = false;
 		this.name = name;
+		this.calendar = new ActivityCalendar();
 		setStart(start);
 		setEnd(end);
 		this.duration = duration;
-		this.calendar = new ActivityCalendar();
 	}
 	
 	public String getName() {

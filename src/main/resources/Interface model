@@ -26,8 +26,8 @@ Activity:
 	- Calendar
 	- set time frame (fin)
 	- Set name (fin)
-	- Add Employee
-	- Remove employee
+	- Add Employee (fin)
+	- Remove employee (fin)
 	- Create time registration
 	
 	Maybe:
@@ -43,8 +43,8 @@ Date:
 	- time registrations overview
 
 Time registration:
-	- set date
-	- set hours
+	- set date (fin)
+	- set hours (fin)
 
 	
 Employees overview:
@@ -52,10 +52,10 @@ Employees overview:
 	- Employee
 
 Projects overview:
-
+	- Project
 
 Activities overview:
-
+	- Activity
 
 
 

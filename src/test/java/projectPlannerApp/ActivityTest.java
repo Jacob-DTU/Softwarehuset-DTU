@@ -28,6 +28,7 @@ class ActivityTest {
 		assertEquals(activity.getDuration(),30);
 		assertEquals(activity.getName(),"test activity");
 	}
+	
 	@Test
 	void TestB() throws OperationNotAllowedException, ProjectLeadException, TooManyActivitiesException {
 		ProjectPlannerApp app = new ProjectPlannerApp();
@@ -40,6 +41,7 @@ class ActivityTest {
 		activity.addEmployee(employee);
 		assertTrue(activity.contains(employee));
 	}
+	
 	@Test
 	void TestC() throws ProjectLeadException, OperationNotAllowedException{
 		ProjectPlannerApp app = new ProjectPlannerApp();
@@ -54,6 +56,7 @@ class ActivityTest {
 		assertEquals(activity.getEnd(),20);
 		assertEquals(activity.getDuration(),30);
 	}
+	
 	@Test
 	void TestD() throws OperationNotAllowedException {
 		ProjectPlannerApp app = new ProjectPlannerApp();
@@ -67,6 +70,7 @@ class ActivityTest {
 		assertEquals("Project lead is not assigned",error.getErrorMessage());
 		
 	}
+	
 	@Test
 	void TestF() throws ProjectLeadException, OperationNotAllowedException{
 		ProjectPlannerApp app = new ProjectPlannerApp();
@@ -77,6 +81,7 @@ class ActivityTest {
 		activity.setName("hello");
 		assertEquals(activity.getName(),"hello");
 	}
+	
 	@Test
 	void TestG() throws ProjectLeadException, OperationNotAllowedException{
 		ProjectPlannerApp app = new ProjectPlannerApp();
@@ -94,6 +99,7 @@ class ActivityTest {
 		}
 		assertEquals(error.getErrorMessage(),"Employee is unavailable during the given timeframe");
 	}
+	
 	@Test
 	void TestH() {
 		

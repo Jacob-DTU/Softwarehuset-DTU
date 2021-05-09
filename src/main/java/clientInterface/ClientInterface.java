@@ -43,6 +43,7 @@ public class ClientInterface {
 	public static void main(String[] args) throws OperationNotAllowedException, ProjectLeadException, InvalidTimeRegistrationException {
 		showLogin();
 		sc.close();
+		System.exit(0);
 	}
 	
 
@@ -61,7 +62,7 @@ public class ClientInterface {
 			switch(selector) {
 
 				case 0: // Switch user
-					break appLoop;
+					showLogin();
 
 				case 1: // View employees
 					employees = new ArrayList<Employee>(app.getEmployees().values());
@@ -106,7 +107,6 @@ public class ClientInterface {
 				case 1: // Search employee
 					initials = Validators.stringValidator("search");
 					employees = app.searchEmployees(initials);
-					showEmployeeOverview();
 					break;
 					
 				default: // Select employee
@@ -193,7 +193,7 @@ public class ClientInterface {
 		employeeLoop: while (true) {
 			Options.printEmployee();
 			
-			selector = Validators.rangeValidator(0);
+			selector = Validators.rangeValidator(2);
 			switch(selector) {
 				case 0: // close/confirm
 					break employeeLoop;
@@ -303,7 +303,7 @@ public class ClientInterface {
 		dateLoop: while (true) {
 			Options.printDate();
 			
-			selector = Validators.rangeValidator(0);
+			selector = Validators.rangeValidator(1);
 			switch(selector) {
 				case 0: // close/confirm
 					break dateLoop;
@@ -319,7 +319,7 @@ public class ClientInterface {
 		registrationLoop: while (true) {
 			Options.printTimeRegistration();
 			
-			selector = Validators.rangeValidator(0);
+			selector = Validators.rangeValidator(2);
 			switch(selector) {
 				case 0: // close/confirm
 					break registrationLoop;

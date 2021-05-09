@@ -103,42 +103,20 @@ public class Options extends ClientInterface {
 		printCloseConfirm();
 	}
 	
-	public static void printCreateEmployee() {
-		printCloseConfirm();
-	}
-	
 	public static void printCreateProject() {
 		printCloseConfirm();
 
 		System.out.println(" 1. Make a new project with a name");
         System.out.println(" 2. Make a new project with a name and starting date");
         System.out.println(" 3. Make a new project with a name and project lead");
-        System.out.println(" 4. Make a new project with a name and project lead and starting date");
+        System.out.println(" 4. Make a new project with a name, project lead and starting date");
 	}
 	
 	public static void printCreateActivity() {
 		printCloseConfirm();
-
-	}
-	
-	public static void printCreateTimeRegistration() {
-		printCloseConfirm();
-
-	}
-	
-	public static void printChangeProjectName() {
-		printCloseConfirm();
-
-	}
-	
-	public static void printChangeProjectStart() {
-		printCloseConfirm();
-
-	}
-	
-	public static void printChangeActivityName() {
-		printCloseConfirm();
-
+		
+		System.out.println(" 1. Make a new activity with a name");
+		System.out.println(" 2. Make a new activity with a name, starting date, end date and duration");
 	}
 	
 	public static void printChangeActivityStart() {
@@ -155,35 +133,6 @@ public class Options extends ClientInterface {
 		System.out.println("Set a hour number for number of hours this activity might take");
 
 	}
-	
-	public static void printChangeTimeRegistrationHours() {
-		printCloseConfirm();
-
-	}
-	
-	public static void printChangeTimeRegistrationDate() {
-		printCloseConfirm();
-
-	}
-	
-	public static void printSetProjectLead() {
-		System.out.println("Please input initials for an existing employee");
-		printCloseConfirm();
-
-	}
-	
-	public static void printAddEmployee(){
-		System.out.println("Add an new Employee by typing in a initial or part of the inital");
-	}
-	
-	public static void printRemoveEmployee() {
-		System.out.println("Remove an new Employee by typing in a initial or part of the inital");
-	}
-	
-	public static void printRemoveActivity() {
-		System.out.println("Select activity to be removed and confirm twice ");
-	}
-
 	
 	// ------------Error messages------------ //
 	
