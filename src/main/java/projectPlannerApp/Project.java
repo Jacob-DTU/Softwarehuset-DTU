@@ -99,23 +99,24 @@ public class Project {
 		
 		return activity;
 	}
+	
+
 	//Startvariable ProjectLead
-	private Activity createActivity(Employee client, String name, int start, int end, int duration) throws ProjectLeadException, OperationNotAllowedException {
+	private Activity createActivity(Employee client, String name, int start, int end, int duration) throws ProjectLeadException, OperationNotAllowedException { 
+		assert client.equals(projectLead) && !name.equals(null): "Precondition";
+		Activity activity;
 		if (hasProjectLead()) {
 			if (client.equals(projectLead)) {//1
 				if (activities.containsKey(name)) {//2
 					throw nameAlreadyAssignedError;
 				} else {
-					Activity activity;
-					if (start == -1 || end == -1 || duration == -1) {//3
+					if (start < 0 || end < 0 || duration < 0) {//3
 						activity = new Activity(name);
 					} else {
 						activity = new Activity(name, start, end, duration);
 					}
 					activity.setAssociatedProject(this);
-					activities.put(name, activity);
-					
-					return activity;
+					activities.put(name, activity); 
 				}
 			}
 			else {
@@ -127,6 +128,9 @@ public class Project {
 		else {
 			throw noProjectLeadError;
 		}
+		assert (activity.getStart() == start && activity.getEnd() == end && activity.getDuration() == duration
+		&& activity.getName().equals(name)) || activity.getName().equals(name): "Postcondition";
+		return activity;
 	}
 	
 	public boolean hasProjectLead() {
@@ -155,9 +159,13 @@ public class Project {
 	public String toString() {
 		String startText = "";
 		String leadText = "";
-		startText = getProjectStart() == null? "  ProjectStart : " + getProjectStart().toString(): "";
-		leadText = getProjectLead()== null? " ProjectLead : " + getProjectLead().toString() : "";
-		return getProjectNumber() + " : " + getName() + startText + leadText;
+		if(projectStart != null){
+			startText =  "  ProjectStart : " + getProjectStart().toString();
+		}
+		if(projectLead != null){
+			leadText = " ProjectLead : " + getProjectLead().toString();
+		}
+		return projectNumber + " : " + name + startText + leadText;
 	}
 
 }

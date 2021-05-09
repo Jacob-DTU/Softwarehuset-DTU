@@ -85,4 +85,12 @@ class CreateActivityTest {
 		assertTrue(project.contains(activity));
 	}
 
+	@Test
+	void DbCTest() throws ProjectLeadException, OperationNotAllowedException {
+		Project project;
+		project = app.newProject("Project", projectLeader);
+		Activity activity1 = project.newActivity(projectLeader, "activity1", -1, -1, -1);
+		Activity activity2 = project.newActivity(projectLeader, "activity2", 0, 0, 0);
+	}
+
 }
