@@ -53,7 +53,7 @@ public class TimeRegistrySteps {
 
 	@When("the employee registers {int} hours spent at the date {int}\\/{int}\\/{int}")
 	public void theEmployeeRegistersHoursSpentAtTheDate(double hours, int day, int month, int year) throws InvalidTimeRegistrationException {
-		date = activity.calendar.getDate(year, month, day);
+		date = activity.getCalendar().getDate(year, month, day);
 		try {
 			registration = activity.newTimeRegistration(date, employee, hours);
 		} catch(InvalidTimeRegistrationException e) {
@@ -63,7 +63,7 @@ public class TimeRegistrySteps {
 
 	@Then("the time spent is registered at the date {int}\\/{int}\\/{int}")
 	public void theTimeSpentIsRegisteredAtTheDate(int day, int month, int year) {
-	    date = activity.calendar.getDate(year, month, day);
+	    date = activity.getCalendar().getDate(year, month, day);
 	    assertTrue(date.contains(registration));
 	}
 	
@@ -80,14 +80,13 @@ public class TimeRegistrySteps {
 	@Given("the employee with initials {string} has registered {int} hours spent at date {int}\\/{int}\\/{int}")
 	public void theEmployeeWithInitialsHasRegisteredHoursSpentAtDate(String initials, double hours, int day, int month, int year) throws InvalidTimeRegistrationException, OperationNotAllowedException {
 	    employee = projectPlannerApp.newEmployee(initials);
-		date = activity.calendar.getDate(year, month, day);
-	    hoursSpent = 5;
-		registration = activity.newTimeRegistration(date, employee, hoursSpent);
+		date = activity.getCalendar().getDate(year, month, day);
+		registration = activity.newTimeRegistration(date, employee, hours);
 	}
 
 	@When("the employee accesses the time registration")
 	public void theEmployeeAccessesTheTimeRegistration() {
-		activity.showTimeRegistration(registration);
+		registration = activity.getCalendar().getTimeRegistration(date, employee);
 	}
 	
 	@Then("the hours spent is shown as {string}")
@@ -97,7 +96,7 @@ public class TimeRegistrySteps {
 	
 	@Given("the employee has registered {int} hours for the activity at the date {int}\\/{int}\\/{int}")
 	public void theEmployeeHasRegisteredHoursForTheActivityAtTheDate(double hours, int day, int month, int year) throws InvalidTimeRegistrationException {
-		date = activity.calendar.getDate(year, month, day);
+		date = activity.getCalendar().getDate(year, month, day);
 	    hoursSpent = hours;
 		registration = activity.newTimeRegistration(date, employee, hoursSpent);
 	}
@@ -109,7 +108,7 @@ public class TimeRegistrySteps {
 
 	@Then("the time spent is changed to {double}")
 	public void theTimeSpentIsChangedTo(double hours) {
-	    assertTrue(registration.hours == hours);
+	    assertTrue(registration.getHours() == hours);
 	}
 
 }

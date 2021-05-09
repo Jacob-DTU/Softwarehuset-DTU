@@ -44,9 +44,18 @@ public class Date {
 	public List<TimeRegistration> getTimeRegistrations() {
 		return timeRegistrations;
 	}
+	
+	public TimeRegistration getTimeRegistration(Employee employee) {
+		for (TimeRegistration reg : timeRegistrations) {
+			if (reg.getEmployee().equals(employee)) {
+				return reg;
+			}
+		}
+		return null;
+	}
 
 	public int getDateStamp() {
-		return getYear()*10000 + getMonth()*100 + getDay();
+		return year*10000 + month*100 + day;
 	}
 	
 	public void addTimeRegistration(TimeRegistration registration) {
@@ -89,9 +98,9 @@ public class Date {
 	}
 	
 	public String toString() {
-		String dayString = Integer.toString(getDay());
-		String monthString = Integer.toString(getMonth());
-		String yearString = Integer.toString(getYear());
+		String dayString = Integer.toString(day);
+		String monthString = Integer.toString(month);
+		String yearString = Integer.toString(year);
 		if (dayString.length() < 2) {
 			dayString = "0" + dayString;
 		}

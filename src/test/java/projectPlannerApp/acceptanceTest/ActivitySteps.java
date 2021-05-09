@@ -66,7 +66,7 @@ public class ActivitySteps {
 	
 	@Then("no new activity is created")
 	public void noNewActivityIsCreated() {
-	    assert(activity.equals(project.activities.get("activity")));
+	    assert(activity.equals(project.getActivities().get("activity")));
 	}
 	
 	@Given("an activity has no timeframe")
@@ -77,7 +77,7 @@ public class ActivitySteps {
 
 	@When("the project lead adds a start time {int}, end time {int} and duration {int} to the activity")
 	public void theProjectLeadAddsAStartTimeEndTimeAndDurationToTheActivity(int start, int end, int duration) throws ProjectLeadException {
-	    project.setActivityTimeframe(activity, start, end, duration);
+	    project.setActivityTimeframe(projectLead, activity, start, end, duration);
 	}
 
 	@Then("a timeframe is added to the activity")

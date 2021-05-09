@@ -14,8 +14,9 @@ public class Project {
 	
 	private ProjectLeadException alreadyProjectLeadError = new ProjectLeadException("Project lead is already assigned");
 	private ProjectLeadException noProjectLeadError = new ProjectLeadException("Project lead is not assigned");
-	private ProjectLeadException notProjectLeadError = new ProjectLeadException("Only " + this.getProjectLead() + " can make a new activity");
+	private ProjectLeadException notProjectLeadError = new ProjectLeadException("Only project lead can make a new activity");
 	private OperationNotAllowedException nameAlreadyAssignedError = new OperationNotAllowedException("Activity with this name already exist");
+	private OperationNotAllowedException noSuchNameError = new OperationNotAllowedException("Activity with this name does not exist");
 	
 	private HashMap<String, Activity> activities = new HashMap<String, Activity>();
 
@@ -39,18 +40,18 @@ public class Project {
 	public Project(String name, int numberOfProjects, Employee projectLead) throws ProjectLeadException {
 		this.name = name;
 		this.projectNumber = String.format("%ty", Year.now()) + String.format("%04d", numberOfProjects);
-		this.setProjectLead(projectLead);
+		this.projectLead = projectLead;
 	}
 	
 	public Project(String name, int numberOfProjects, Employee projectLead, Date date) throws ProjectLeadException {
 		this.name = name;
 		this.projectNumber = String.format("%ty", Year.now()) + String.format("%04d", numberOfProjects);
-		this.setProjectLead(projectLead);
+		this.projectLead = projectLead;
 		this.projectStart = date;
 	}
 	
-	public Collection<Activity> getActivities() {
-		return (Collection<Activity>) activities.values();
+	public HashMap<String, Activity> getActivities() {
+		return activities;
 	}
 	
 	public String getName() {
@@ -76,45 +77,6 @@ public class Project {
 	public void setProjectStart(Date projectStart) {
 		this.projectStart = projectStart;
 	}
-
-	
-	public Activity newActivity(Employee client, String name) throws ProjectLeadException, OperationNotAllowedException {
-		Activity activity = createActivity(client, name, -1, -1, -1);
-		
-		return activity;
-	}
-	
-	public Activity newActivity(Employee client, String name, int start, int end, int duration) throws ProjectLeadException, OperationNotAllowedException  {
-		Activity activity = createActivity(client, name, start, end, duration);
-		
-		return activity;
-	}
-	
-	private Activity createActivity(Employee client, String name, int start, int end, int duration) throws ProjectLeadException, OperationNotAllowedException {
-		if (hasProjectLead()) {
-			if (client.equals(this.getProjectLead())) {
-				if (activities.containsKey(name)) {
-					throw nameAlreadyAssignedError;
-				} else {
-					Activity activity;
-					if (start == -1 || end == -1 || duration == -1) {
-						activity = new Activity(name);
-					} else {
-						activity = new Activity(name, start, end, duration);
-					}
-					activities.put(name, activity);
-					
-					return activity;
-				}
-			}
-			else {
-				throw notProjectLeadError;
-			}
-		}
-		else {
-			throw noProjectLeadError;
-		}
-	}
 	
 	public Employee getProjectLead() {
 		return projectLead;
@@ -130,14 +92,55 @@ public class Project {
 		}		
 	}
 	
-	public void setActivityTimeframe(Activity activity, int start, int end, int duration) throws ProjectLeadException {
+	public void setActivityTimeframe(Employee client, Activity activity, int start, int end, int duration) throws ProjectLeadException {
 		if (hasProjectLead()) {
-			if (projectLead.equals(this.getProjectLead())) {
+			if (client.equals(projectLead)) {
 				activity.setStart(start);
 				activity.setEnd(end);
 				activity.setDuration(duration);
 			}
 			else {
+				throw notProjectLeadError;
+			}
+		}
+		else {
+			throw noProjectLeadError;
+		}
+	}
+
+	
+	public Activity newActivity(Employee client, String name) throws ProjectLeadException, OperationNotAllowedException {
+		Activity activity = createActivity(client, name, -1, -1, -1);
+		
+		return activity;
+	}
+	
+	public Activity newActivity(Employee client, String name, int start, int end, int duration) throws ProjectLeadException, OperationNotAllowedException  {
+		Activity activity = createActivity(client, name, start, end, duration);
+		
+		return activity;
+	}
+	//Startvariable ProjectLead
+	private Activity createActivity(Employee client, String name, int start, int end, int duration) throws ProjectLeadException, OperationNotAllowedException {
+		if (hasProjectLead()) {
+			if (client.equals(projectLead)) {//1
+				if (activities.containsKey(name)) {//2
+					throw nameAlreadyAssignedError;
+				} else {
+					Activity activity;
+					if (start == -1 || end == -1 || duration == -1) {//3
+						activity = new Activity(name);
+					} else {
+						activity = new Activity(name, start, end, duration);
+					}
+					activities.put(name, activity);
+					
+					return activity;
+				}
+			}
+			else {
+			System.out.println(client.getInitials());
+			System.out.println(projectLead.getInitials());
 				throw notProjectLeadError;
 			}
 		}
@@ -159,8 +162,10 @@ public class Project {
 		}
 		return false;
 	}
-	public void removeActivity(String activity){
-		activities.remove(activity);
+	public void removeActivity(String activity) throws OperationNotAllowedException{
+		if(activities.remove(activity) == null){
+			throw noSuchNameError;
+		}
 	}
 	
 	public String toString() {

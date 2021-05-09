@@ -2,6 +2,7 @@ package projectPlannerCalendar;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
@@ -11,7 +12,9 @@ import projectPlannerApp.Employee;
 import projectPlannerApp.InvalidTimeRegistrationException;
 import projectPlannerApp.TimeRegistration;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.temporal.WeekFields;
 
 public class ActivityCalendar {
 	
@@ -55,6 +58,22 @@ public class ActivityCalendar {
 		return date;
 	}
 	
+	public Date getDate(int week) {
+		WeekFields weekFields = WeekFields.of(DayOfWeek.MONDAY, 1);
+		LocalDate dateStart = LocalDate.ofYearDay(YEAR, 1).with(weekFields.weekOfYear(), week).with(weekFields.dayOfWeek(), 1);
+		Date date = new Date(dateStart.getYear(), dateStart.getMonthValue(), dateStart.getDayOfMonth());
+		
+		if (date.isLEQ(getDate(calendar.YEAR, calendar.MONTH, calendar.DATE))) {
+			dateStart = LocalDate.ofYearDay(YEAR+1, 1).with(weekFields.weekOfYear(), week).with(weekFields.dayOfWeek(), 1);
+			date = new Date(dateStart.getYear(), dateStart.getMonthValue(), dateStart.getDayOfMonth());
+		}
+		if (this.contains(date)) {
+			return dates.get(date.getDateStamp());
+		}
+		addDate(date);
+		return date;
+	}
+	
 	private List<Date> getDateRange(Date start, Date end) {
 		List<Date> dateRange = new ArrayList<Date>();
 		dateRange.add(start);
@@ -77,16 +96,20 @@ public class ActivityCalendar {
 		dates.put(date.getDateStamp(), date);
 	}
 	
+	public TimeRegistration getTimeRegistration(Date date, Employee employee) {
+		return date.getTimeRegistration(employee);
+	}
+	
 	public TimeRegistration newTimeRegistration(Date date, Employee employee, double hours) throws InvalidTimeRegistrationException {
-		if (hours < 0 || hours > 24) {
+		if (hours < 0 || hours > 24) {//1
 			throw invalidTimeRegistrationError;
 		}
 		
 		TimeRegistration registration = new TimeRegistration(date, employee, hours);
 		
-		if (timeRegistrations.size() > 1) {
-			int index = sortInsert(timeRegistrations.size() / 2, registration);
-			timeRegistrations.add(index, registration);
+		if (timeRegistrations.size() > 0) {//2
+			timeRegistrations.add(registration);
+			sort();
 		}
 		else {
 			timeRegistrations.add(registration);
@@ -99,9 +122,9 @@ public class ActivityCalendar {
 	public TimeRegistration newTimeRegistration(Date start, Date end, Employee employee) {
 		TimeRegistration registration = new TimeRegistration(getDateRange(start, end), employee);
 		
-		if (timeRegistrations.size() > 1) {
-			int index = sortInsert(timeRegistrations.size() / 2, registration);
-			timeRegistrations.add(index, registration);
+		if (timeRegistrations.size() > 0) {
+			timeRegistrations.add(registration);
+			sort();
 		}
 		else {
 			timeRegistrations.add(registration);
@@ -109,21 +132,16 @@ public class ActivityCalendar {
 		
 		return registration;
 	}
-	
-	private int sortInsert(int index, TimeRegistration registration) {
-		Date currDate = timeRegistrations.get(index).getDate();
-		Date prevDate = timeRegistrations.get(index - 1).getDate();
-		Date nextDate = timeRegistrations.get(index + 1).getDate();
-		if (prevDate.isLEQ(registration.getDate()) && nextDate.isGEQ(registration.getDate())) {
-			return index;
+
+	private void sort() {
+		int index = timeRegistrations.size()-1;
+		while (timeRegistrations.get(index).getDate().isLEQ(timeRegistrations.get(index-1).getDate())) {
+			Collections.swap(timeRegistrations, index-1, index);
+			if (index == 1) {
+				return;
+			}	
+			index--;
 		}
-		else if (currDate.isLessThan(registration.getDate())) {
-			index += index / 2;
-		}
-		else if (currDate.isGreaterThan(registration.getDate())) {
-			index /= 2;
-		}
-		return sortInsert(index, registration);
 	}
 	
 	public boolean contains(Date date) {

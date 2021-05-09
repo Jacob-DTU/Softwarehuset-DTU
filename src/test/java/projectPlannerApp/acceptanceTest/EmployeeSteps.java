@@ -28,8 +28,7 @@ public class EmployeeSteps {
 	public EmployeeSteps(ProjectPlannerApp projectPlannerApp, ErrorMessageHolder errorMessageHolder) throws OperationNotAllowedException {
 		this.projectPlannerApp = projectPlannerApp;
 		this.errorMessageHolder = errorMessageHolder;
-		this.projectLead = projectPlannerApp.newEmployee("LEAD");
-		
+		this.projectLead = projectPlannerApp.newEmployee("ABDC");
 	}
 	
 	// employee should be project lead or activity should be added manually
@@ -72,7 +71,7 @@ public class EmployeeSteps {
 	@Given("the employee is unavailable")
 	public void theEmployeeIsUnavailable() throws TooManyActivitiesException, ProjectLeadException, OperationNotAllowedException {
 	    for (int i=0; i<20; i++) {
-	    	Activity tmpActivity = project.newActivity(employee, Integer.toString(i));
+	    	Activity tmpActivity = project.newActivity(projectLead, Integer.toString(i));
 	    	tmpActivity.addEmployee(employee);
 	    }
 	    

@@ -13,7 +13,7 @@ public class Activity {
 	
 	private List<Employee> employees = new ArrayList<Employee>();
 	private ActivityCalendar calendar;
-	private boolean isPredefined;
+	public boolean isPredefined;
 	
 	private String name;
 	private int start, end, duration;
@@ -46,28 +46,28 @@ public class Activity {
 		this.name = name;
 	}
 	
-	public void setStart(int start) {
-		this.start = start;
-	}
-	
-	public void setEnd(int end) {
-		this.end = end;
-	}
-	
-	public void setDuration(int duration) {
-		this.duration = duration;
-	}
-	
 	public int getStart() {
 		return start;
+	}
+	
+	public void setStart(int start) {
+		this.start = start;
 	}
 	
 	public int getEnd() {
 		return end;
 	}
 	
+	public void setEnd(int end) {
+		this.end = end;
+	}
+	
 	public int getDuration() {
 		return duration;
+	}
+	
+	public void setDuration(int duration) {
+		this.duration = duration;
 	}
 	
 	public ActivityCalendar getCalendar() {

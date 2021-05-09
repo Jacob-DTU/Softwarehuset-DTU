@@ -8,9 +8,9 @@ public class Search{
 
 	public static List<Employee> searchEmployees(Map<String, Employee> employees, String initials){
 		List<Employee> list = new ArrayList<Employee>();
-		if(employees.size()!= 0){
-			for (Employee e: employees.values()){
-				if(e.getInitials().contains(initials)){
+		if(employees.size()!= 0){//1
+			for (Employee e: employees.values()){//2
+				if(e.getInitials().contains(initials)){//3
 					list.add(e);	
 				}
 			}

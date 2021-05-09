@@ -25,7 +25,4 @@ public class Employee {
 	public boolean isAvailable() {
 		return (currActivities.size() < 20);
 	}
-
-
-
 }

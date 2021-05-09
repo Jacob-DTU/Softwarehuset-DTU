@@ -82,8 +82,8 @@ public class Validators extends ClientInterface {
     	
     	System.out.println("\nEnter a date");
     	year = getValidInt("Year");
-    	while (year < app.calendar.YEAR) {
-    		System.out.println("Invalid year: It can not be a year earlier than" + app.calendar.YEAR);
+    	while (year < app.getCalendar().YEAR) {
+    		System.out.println("Invalid year: It can not be a year earlier than" + app.getCalendar().YEAR);
     		year = getValidInt("Year");
     	}
     	

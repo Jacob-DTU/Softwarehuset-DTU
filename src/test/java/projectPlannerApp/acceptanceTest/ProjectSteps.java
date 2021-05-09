@@ -71,7 +71,7 @@ public class ProjectSteps {
 	@When("an employee creates a project with a start time")
 	public void anEmployeeCreatesAProjectWithAStartTime() {
 		projectStart = new Date(2021, 1, 1);
-	    project = projectPlannerApp.newProject("projectWithStartTime", 2021, 1, 1);
+	    project = projectPlannerApp.newProject("projectWithStartTime", projectStart);
 	}
 
 	@Then("the start time is assigned to the project")

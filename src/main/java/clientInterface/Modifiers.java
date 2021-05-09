@@ -83,8 +83,8 @@ public class Modifiers extends ClientInterface {
             
         case 2: // Name, start, end and duration
         	name = Validators.stringValidator("name");
-        	int start = Validators.rangeValidator(app.calendar.WEEKS);
-        	int end = Validators.rangeValidator(app.calendar.WEEKS);
+        	int start = Validators.rangeValidator(app.getCalendar().WEEKS);
+        	int end = Validators.rangeValidator(app.getCalendar().WEEKS);
         	int duration = Validators.getValidInt("Input");
         	activity = project.newActivity(client, name, start, end, duration);
             break;
@@ -135,14 +135,14 @@ public class Modifiers extends ClientInterface {
     public static void changeActivityStart() {
     	Options.printChangeActivityStart();
     	
-    	int newStart = Validators.rangeValidator(app.calendar.WEEKS);
+    	int newStart = Validators.rangeValidator(app.getCalendar().WEEKS);
     	activity.setStart(newStart);
     }
     
     public static void changeActivityEnd() {
     	Options.printChangeActivityEnd();
     	
-    	int newEnd = Validators.rangeValidator(app.calendar.WEEKS);
+    	int newEnd = Validators.rangeValidator(app.getCalendar().WEEKS);
     	activity.setStart(newEnd);
     }
     
