@@ -225,7 +225,7 @@ public class Modifiers extends ClientInterface {
 		Options.subpaths.remove(Options.subpaths.size()-1);
 	}
 	
-	public static void addEmployee() throws OperationNotAllowedException, ProjectLeadException, InvalidTimeRegistrationException {
+	public static void addEmployee(Activity act) throws OperationNotAllowedException, ProjectLeadException, InvalidTimeRegistrationException {
 		Options.subpaths.add("->Add Employee");
 		Options.printSectionLine();
 
@@ -235,7 +235,13 @@ public class Modifiers extends ClientInterface {
 		
 		if(employee != null){
 			try {
-				activity.addEmployee(employee);
+				if(!act.getEmployees().contains(employee)){
+					act.addEmployee(employee);
+				}
+				else{
+					Options.printActivityContainsEmployee();
+				}
+				
 			} catch (TooManyActivitiesException e) {
 				System.out.println(e.getMessage());
 			}
@@ -246,7 +252,7 @@ public class Modifiers extends ClientInterface {
 		Options.subpaths.remove(Options.subpaths.size()-1);
 	}
 	
-	public static void removeEmployee() throws OperationNotAllowedException, ProjectLeadException, InvalidTimeRegistrationException {
+	public static void removeEmployee(Activity act) throws OperationNotAllowedException, ProjectLeadException, InvalidTimeRegistrationException {
 		Options.subpaths.add("->Remove employee");
 		Options.printSectionLine();
 
@@ -255,7 +261,7 @@ public class Modifiers extends ClientInterface {
 		showEmployeeOverview();
 		
 		if(employee != null){
-			activity.removeEmployee(employee);
+			act.removeEmployee(employee);
 		}
 		else {
 			Options.printNoEmployeeSelected();
