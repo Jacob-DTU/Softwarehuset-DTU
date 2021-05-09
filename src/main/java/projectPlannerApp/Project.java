@@ -26,9 +26,9 @@ public class Project {
 	private Date projectStart;
 	private Employee projectLead;
 
-	public Project(String name, Employee employee) {
+	public Project(String name, int numberOfProjects) {
 		this.name = name;
-		this.projectNumber = String.format("%ty", Year.now()) + String.format("%04d", employee);
+		this.projectNumber = String.format("%ty", Year.now()) + String.format("%04d", numberOfProjects);
 	}
 	
 	public Project(String name, int numberOfProjects, Date date) {

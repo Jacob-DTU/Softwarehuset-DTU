@@ -15,7 +15,7 @@ class EmployeeTest {
 	void testA() throws OperationNotAllowedException {
 		ProjectPlannerApp app = new ProjectPlannerApp();
 		employee = app.newEmployee("test");
-		assertEquals(employee.getInitials(),employee.getInitials());
+		assertEquals("test",employee.getInitials());
 	}
 	@Test
 	void testB()  {
@@ -56,7 +56,7 @@ class EmployeeTest {
 		ProjectPlannerApp app = new ProjectPlannerApp();
 		employee = app.newEmployee("test");
 		employee.setInitials("newD");
-		assertEquals(employee.getInitials(),"newD");
+		assertEquals("newD",employee.getInitials());
 }
 	@Test
 	void testE() throws OperationNotAllowedException, ProjectLeadException {

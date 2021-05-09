@@ -31,23 +31,26 @@ class ProjectPlannerAppTest {
 		
 		String inputB = "TestB";
 		project = app.newProject(inputB,employee);
+		
 		assertEquals(app.getProjects().get(0),project);
-		assertEquals(app.getProjects().get(0).getName(),project.getName());
-		assertEquals(app.getProjects().get(0).getProjectNumber(),project.getProjectNumber());
+		assertEquals("TestB",project.getName());
+		assertEquals("210001",project.getProjectNumber());
 		
 	}
 	@Test
 	void testC() throws ProjectLeadException,OperationNotAllowedException {
 		ProjectPlannerApp app = new ProjectPlannerApp();
 		employee = app.newEmployee("HELP");
-		String inputB = "TestB";
-
-		date = project.setProjectStart();;
-		project = app.newProject(inputB,employee, date);
+		String inputC = "TestC";
+		project = app.newProject(inputC,employee);
+		project.setProjectStart(date);;
+		
 		assertEquals(app.getProjects().get(0),project);
-		assertEquals(app.getProjects().get(0).getName(),project.getName());
-		assertEquals(app.getProjects().get(0).getProjectNumber(),project.getProjectNumber());
-		assertEquals(app.getProjects().get(0).getProjectStart(),project.getProjectStart());
+		assertEquals("TestC",project.getName());
+		assertEquals("210001",project.getProjectNumber());
+		
+		assertEquals(date,project.getProjectStart());
+		assertEquals(employee,project.getProjectLead());
 		
 	}
 	@Test
@@ -67,10 +70,3 @@ class ProjectPlannerAppTest {
 	}
 	
 }
-
-/*
-	private ProjectLeadException alreadyProjectLeadError = new ProjectLeadException("Project lead is already assigned");
-	private ProjectLeadException noProjectLeadError = new ProjectLeadException("Project lead is not assigned");
-	private ProjectLeadException notProjectLeadError = new ProjectLeadException("Only " + this.getProjectLead() + " can make a new activity");
-	private OperationNotAllowedException nameAlreadyAssignedError = new OperationNotAllowedException("Activity with this name already exist");
-*/
