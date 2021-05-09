@@ -103,7 +103,7 @@ public class Project {
 
 	//Startvariable ProjectLead
 	private Activity createActivity(Employee client, String name, int start, int end, int duration) throws ProjectLeadException, OperationNotAllowedException { 
-		assert client.equals(projectLead) && !name.equals(null): "Precondition";
+		assert !client.equals(null) && !name.equals(null): "Precondition";
 		Activity activity;
 		if (hasProjectLead()) {
 			if (client.equals(projectLead)) {//1

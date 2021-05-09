@@ -75,7 +75,7 @@ public class ProjectPlannerApp {
 		if (this.contains(newEmployee)) {
 			throw employeeAlreadyExistsError;
 		}
-		employees.put(initials, newEmployee);
+		employees.put(initials.toUpperCase(), newEmployee);
 		
 		return newEmployee;
 	}
