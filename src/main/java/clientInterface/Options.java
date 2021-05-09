@@ -45,7 +45,6 @@ public class Options extends ClientInterface {
 	
 	public static void printProjectOverview() {
 		printCloseConfirm();
-
     	int i = 1;
         for (Project project : app.getProjects()) {
         	if (i < 10) {
@@ -53,7 +52,6 @@ public class Options extends ClientInterface {
 			}
 			else {
 				System.out.println(i++ + ". " + project.toString());
-
 			}
         }
 	}

@@ -18,11 +18,12 @@ class CreateActivityTest {
 	void testInputA() {
 		ProjectPlannerApp app = new ProjectPlannerApp();
 		try {
-			app.newProject("testProject", projectLead);
+			this.project = app.newProject("testProject", projectLead);
 		} catch (ProjectLeadException e) {
 			e.printStackTrace();
 		}
 		private Employee employee = new Employee("EFGH");
+		project.newActivity(employee, "testActivity");
 		
 
 

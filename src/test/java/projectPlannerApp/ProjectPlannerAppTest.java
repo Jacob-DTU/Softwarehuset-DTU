@@ -21,8 +21,8 @@ class ProjectPlannerAppTest {
 		
 
 		assertEquals(app.getProjects().get(0),project);
-		assertEquals(app.getProjects().get(0).getName(),project.getName());
-		assertEquals(app.getProjects().get(0).getProjectNumber(),project.getProjectNumber());
+		assertEquals("TestA",project.getName());
+		assertEquals("210001",project.getProjectNumber());
 	}
 	@Test
 	void testB() throws ProjectLeadException, OperationNotAllowedException {

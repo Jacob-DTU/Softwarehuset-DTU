@@ -49,6 +49,14 @@ public class ActivityCalendar {
 		calendar.set(YEAR, MONTH, DAY);
 	}
 	
+	public void setStart(Date date) {
+		if (startDate != null) {
+			dates.remove(startDate.getDateStamp());
+		}
+		startDate = date;	
+		addDate(startDate);
+	}
+	
 	public Date getDate(int year, int month, int day) {
 		Date date = new Date(year, month, day);
 		if (this.contains(date)) {
@@ -98,6 +106,10 @@ public class ActivityCalendar {
 	
 	public TimeRegistration getTimeRegistration(Date date, Employee employee) {
 		return date.getTimeRegistration(employee);
+	}
+	
+	public List<TimeRegistration> getTimeRegistrations() {
+		return timeRegistrations;
 	}
 	
 	public TimeRegistration newTimeRegistration(Date date, Employee employee, double hours) throws InvalidTimeRegistrationException {

@@ -7,8 +7,8 @@ public class ErrorMessageHolder {
 		return errorMessage;
 	}
 
-	public void setErrorMessage(String errorMessage) {
-		this.errorMessage = errorMessage;
+	public void setErrorMessage(Object object) {
+		this.errorMessage = object;
 	}
 }
 

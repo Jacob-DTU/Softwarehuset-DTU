@@ -104,7 +104,6 @@ public class ClientInterface {
 			Options.printEmployeeOverview();
 
 			selector = Validators.rangeValidator(employees.size());
-
 			switch(selector) {
 			case 0: // close/confirm
 				break employeeOverviewLoop;
@@ -122,56 +121,63 @@ public class ClientInterface {
 	}
 
 	public static void showProjectOverview() throws OperationNotAllowedException, ProjectLeadException {
-		Options.printProjectOverview();        
-		selector = Validators.rangeValidator(app.getProjects().size());
+		projectOverviewLoop: while (true) {
+			Options.printProjectOverview();  
+			
+			selector = Validators.rangeValidator(app.getProjects().size());
+			switch(selector) {
+			case 0: // close/confirm
+				break projectOverviewLoop;
 
-		switch(selector) {
-		case 0: // Main menu
-			break;
-
-		default: // Select project
-			project = app.getProjects().get(selector-1);
-			showProject();
-			break;
+			default: // Select project
+				project = app.getProjects().get(selector-1);
+				showProject();
+				break;
+			}
 		}
-		showProjectPlannerApp();
 	}
 
 	public static void showActivityOverview() throws OperationNotAllowedException, ProjectLeadException {
-		Options.printActivityOverview();        
-		selector = Validators.rangeValidator(project.getActivities().size());
+		activityOverviewLoop: while (true) {
+			Options.printActivityOverview();    
+			
+			selector = Validators.rangeValidator(project.getActivities().size());
+			switch(selector) {
+			case 0: // close/confirm
+				break activityOverviewLoop;
 
-		switch(selector) {
-		case 0: // Main menu
-			break;
-
-		default: // Select activity
-			activity = project.getActivities().get(selector-1);
-			showActivity(); 
-			break;
+			default: // Select activity
+				activity = project.getActivities().get(selector-1);
+				showActivity(); 
+				break;
+			}
 		}
-		showProjectPlannerApp();
 	}
-
+	
+	// not done
 	public static void showCalendar() throws OperationNotAllowedException, ProjectLeadException {
-		Options.printCalendar(calendar);
-		selector = Validators.rangeValidator(0);
-		
-		showProjectPlannerApp();
+		calendarLoop: while (true) {
+			Options.printCalendar(calendar);
+			selector = Validators.rangeValidator(0);
+			
+		}
 	}
-
+	
+	// not done
 	public static void showEmployee() throws OperationNotAllowedException, ProjectLeadException {
 		Options.printEmployee(employee);
 		selector = Validators.rangeValidator(0);
 	}
-
+	
+	// not done
 	public static void showProject() throws OperationNotAllowedException,ProjectLeadException {
 		Options.printProject(project);
 		selector = Validators.rangeValidator(0);
 		
 		showProjectPlannerApp();
 	}
-
+	
+	// not done
 	public static void showActivity() throws OperationNotAllowedException, ProjectLeadException {
 		Options.printActivity(activity);
 		selector = Validators.rangeValidator(0);
@@ -179,13 +185,15 @@ public class ClientInterface {
 		showProjectPlannerApp();
 	}
 	
+	// not done
 	public static void showDate() throws OperationNotAllowedException, ProjectLeadException {
 		Options.printDate(date);
 		selector = Validators.rangeValidator(0);
 		
 		showProjectPlannerApp();
 	}
-
+	
+	// not done
 	public static void showTimeRegistration() throws OperationNotAllowedException, ProjectLeadException {
 		Options.printTimeRegistration(registration);
 		selector = Validators.rangeValidator(0);

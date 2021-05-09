@@ -32,8 +32,8 @@ public class Activity {
 	public Activity(String name, int start, int end, int duration) {
 		this.isPredefined = false;
 		this.name = name;
-		this.start = start;
-		this.end = end;
+		setStart(start);
+		setEnd(end);
 		this.duration = duration;
 		this.calendar = new ActivityCalendar();
 	}
@@ -52,6 +52,7 @@ public class Activity {
 	
 	public void setStart(int start) {
 		this.start = start;
+		calendar.setStart(calendar.getDate(start));
 	}
 	
 	public int getEnd() {
