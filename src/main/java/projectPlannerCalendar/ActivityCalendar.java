@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import projectPlannerApp.Activity;
 import projectPlannerApp.Employee;
 import projectPlannerApp.InvalidTimeRegistrationException;
 import projectPlannerApp.TimeRegistration;
@@ -30,6 +31,7 @@ public class ActivityCalendar {
 	private Map<Integer, Date> dates = new HashMap<Integer, Date>();
 	private List<TimeRegistration> timeRegistrations = new ArrayList<TimeRegistration>();
 
+	private Activity activity;
 	private Date startDate, endDate;
 	
 	public ActivityCalendar() {
@@ -55,6 +57,18 @@ public class ActivityCalendar {
 		}
 		startDate = date;	
 		addDate(startDate);
+	}
+	
+	public void setEnd(Date date) {
+		if (endDate != null) {
+			dates.remove(endDate.getDateStamp());
+		}
+		endDate = date;	
+		addDate(endDate);
+	}
+	
+	public void setActivity(Activity activity) {
+		this.activity = activity;
 	}
 	
 	public Map<Integer, Date> getDates() {
@@ -165,5 +179,9 @@ public class ActivityCalendar {
 			return true;
 		}
 		return false;
+	}
+	
+	public String toString() {
+		return "Calendar for activity " + activity.getName();
 	}
 }

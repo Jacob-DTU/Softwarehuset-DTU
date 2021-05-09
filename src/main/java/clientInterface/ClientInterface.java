@@ -60,38 +60,42 @@ public class ClientInterface {
 		appLoop: while (true) {
 			Options.printProjectPlannerApp();
 			
-			selector = Validators.rangeValidator(6);
+			selector = Validators.rangeValidator(7);
 			switch(selector) {
 
 				case 0: // Switch user
 					Options.subpaths.remove(Options.subpaths.size()-1);
 					showLogin();
 					break appLoop;
-
-				case 1: // View employees
+				case 1: // view client
+					employee = client;
+					showEmployee();
+					break;
+				case 2: // View employees
 					employees = new ArrayList<Employee>(app.getEmployees().values());
 					showEmployeeOverview();
 					break;
 
-				case 2: // View projects
+				case 3: // View projects
 					projects = app.getProjects();
 					showProjectOverview();
 					break;
 
-				case 3:  // View app calendar
+				case 4:  // View app calendar
 					calendar = app.getCalendar();
+					dates = new ArrayList(calendar.getDates().values());
 					showCalendar();
 					break;
 
-				case 4: // Create employee
+				case 5: // Create employee
 					Modifiers.createEmployee();
 					break;
 
-				case 5: // Create project
+				case 6: // Create project
 					Modifiers.createProject();
 					break;
 					
-				case 6: // close program
+				case 7: // close program
 					Options.subpaths.remove(Options.subpaths.size()-1);
 					break appLoop;
 			}

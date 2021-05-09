@@ -31,12 +31,14 @@ public class Activity {
 		}
 		this.name = name;
 		this.calendar = new ActivityCalendar();
+		calendar.setActivity(this);
 	}
 	
 	public Activity(String name, int start, int end, int duration) {
 		this.isPredefined = false;
 		this.name = name;
 		this.calendar = new ActivityCalendar();
+		calendar.setActivity(this);
 		setStart(start);
 		setEnd(end);
 		this.duration = duration;
@@ -95,13 +97,15 @@ public class Activity {
 	}
 
 	public void addEmployee(Employee employee) throws TooManyActivitiesException {
-		if (employee.getActivities().size() == 20) {
+		assert !employee.equals(null) && employee.isAvailable(): "Precondition";
+		if (employee.getActivities().size() == 20) { //1
 			throw tooManyActivitiesError;
 		}
 		else {
 			getEmployees().add(employee);
 			employee.getActivities().add(this);
 		}
+		assert employee.getActivities().contains(this): "Postcondition";
 	}
 	
 	public TimeRegistration newTimeRegistration(Date date, Employee employee, double hours) throws InvalidTimeRegistrationException {

@@ -10,7 +10,7 @@ import projectPlannerCalendar.Date;
 import projectPlannerCalendar.ActivityCalendar;
 
 public class ProjectPlannerApp {
-	
+
 	private OperationNotAllowedException employeeAlreadyExistsError = new OperationNotAllowedException("An employee with these initials already exists");
 	
 	private Map<String, Employee> employees = new HashMap<String, Employee>();
@@ -19,9 +19,10 @@ public class ProjectPlannerApp {
 	private ActivityCalendar calendar = new ActivityCalendar();  // Maybe not needed
 	private List<Project> leadProjects = new ArrayList<Project>();
 	
-	private Activity vacation = new Activity("Vacation");
+	private Activity vacation;
 	
 	public ProjectPlannerApp() {
+		vacation = new Activity("Vacation");
 	}
 	
 	public Map<String, Employee> getEmployees() {
@@ -75,7 +76,7 @@ public class ProjectPlannerApp {
 		if (this.contains(newEmployee)) {
 			throw employeeAlreadyExistsError;
 		}
-		employees.put(initials, newEmployee);
+		employees.put(initials.toUpperCase(), newEmployee);
 		
 		return newEmployee;
 	}

@@ -34,12 +34,13 @@ public class Options extends ClientInterface {
 		printSectionLine();
 		
 		System.out.println("\n 0. Switch user");
-		System.out.println(" 1. View employees");
-    	System.out.println(" 2. View projects");
-    	System.out.println(" 3. View app calendar");
-    	System.out.println(" 4. Create new Employee");
-		System.out.println(" 5. Create new project");
-		System.out.println(" 6. Close program");
+		System.out.println(" 1. View client profile");
+		System.out.println(" 2. View employees");
+    	System.out.println(" 3. View projects");
+    	System.out.println(" 4. View app calendar");
+    	System.out.println(" 5. Create new Employee");
+		System.out.println(" 6. Create new project");
+		System.out.println(" 7. Close program");
 	}
 	
 	public static void printEmployeeOverview() {
