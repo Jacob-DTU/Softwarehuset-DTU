@@ -17,11 +17,15 @@ public class Modifiers extends ClientInterface {
 	public static void createEmployee() throws OperationNotAllowedException, ProjectLeadException, InvalidTimeRegistrationException {
 		Options.subpaths.add("->Create Employee");
 		Options.printSectionLine();
-		
-		initials = Validators.stringValidator("initials");
-		employee = app.newEmployee(initials);
 
-		showEmployee();
+		initials = Validators.stringValidator("initials");
+		try {
+			employee = app.newEmployee(initials);
+			showEmployee();
+		}
+		catch(OperationNotAllowedException e) {
+			System.out.println(e.getMessage());
+		}
 		Options.subpaths.remove(Options.subpaths.size()-1);
 	}
 

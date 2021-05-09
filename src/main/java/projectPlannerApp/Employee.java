@@ -11,7 +11,7 @@ public class Employee {
 	private List<Project> leadProjects = new ArrayList<Project>();
 	
 	public Employee(String initials) {
-		this.initials = initials.toUpperCase();
+		this.initials = initials;
 	}
 	
 	public String getInitials() {

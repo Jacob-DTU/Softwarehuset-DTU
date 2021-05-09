@@ -71,7 +71,7 @@ public class ProjectPlannerApp {
 	}
 	
 	public Employee newEmployee(String initials) throws OperationNotAllowedException {
-		Employee newEmployee = new Employee(initials);
+		Employee newEmployee = new Employee(initials.toUpperCase());
 		if (this.contains(newEmployee)) {
 			throw employeeAlreadyExistsError;
 		}

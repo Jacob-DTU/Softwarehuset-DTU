@@ -187,5 +187,4 @@ public class Options extends ClientInterface {
 	public static void printNoActivitySelected() {
 		System.out.println("No activity selected");
 	}
-		
 }
