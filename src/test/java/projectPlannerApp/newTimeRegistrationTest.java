@@ -64,4 +64,10 @@ class newTimeRegistrationTest {
 		assertEquals(time.getDate(), date);
 	}
 
+	@Test
+	void DbCTest() throws InvalidTimeRegistrationException {
+		time = activity.newTimeRegistration(date, employee, 1);
+		time = activity.newTimeRegistration(date, employee, 23);
+	}
+
 }

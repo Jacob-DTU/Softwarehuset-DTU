@@ -128,7 +128,7 @@ public class Project {
 		else {
 			throw noProjectLeadError;
 		}
-		assert (activity.getStart() == start && activity.getEnd() == end && activity.getDuration() == duration
+		assert activities.containsValue(activity) && (activity.getStart() == start && activity.getEnd() == end && activity.getDuration() == duration
 		&& activity.getName().equals(name)) || activity.getName().equals(name): "Postcondition";
 		return activity;
 	}
@@ -160,10 +160,10 @@ public class Project {
 		String startText = "";
 		String leadText = "";
 		if(projectStart != null){
-			startText =  "  ProjectStart : " + getProjectStart().toString();
+			startText =  ",  ProjectStart : " + getProjectStart().toString();
 		}
 		if(projectLead != null){
-			leadText = " ProjectLead : " + getProjectLead().toString();
+			leadText = ", ProjectLead : " + getProjectLead().toString();
 		}
 		return projectNumber + " : " + name + startText + leadText;
 	}

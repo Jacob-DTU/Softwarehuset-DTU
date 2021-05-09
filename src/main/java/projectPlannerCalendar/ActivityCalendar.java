@@ -131,6 +131,7 @@ public class ActivityCalendar {
 	}
 	
 	public TimeRegistration newTimeRegistration(Date date, Employee employee, double hours) throws InvalidTimeRegistrationException {
+		assert hours > 0 && hours < 24 && !date.equals(null) && !employee.equals(null); 
 		if (hours < 0 || hours > 24) {//1
 			throw invalidTimeRegistrationError;
 		}
@@ -144,7 +145,7 @@ public class ActivityCalendar {
 		else {
 			timeRegistrations.add(registration);
 		}
-		
+		assert timeRegistrations.contains(registration);
 		return registration;
 	}
 

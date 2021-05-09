@@ -58,57 +58,50 @@ Activities overview:
 	- Activity
 
 
-
-	
-
 Layer structure:
 Login
-	-> Project planner app													
-		-> Show client profile -> Employee									
-                                                                            
-		-> Employees overview                                               
-			-> Employee                                                     
-				-> Activities overview                                      
-				-> Projects overview (Lead)                                 
-				                                                            
-		-> Projects overview                                                
-			-> Project                                                      
-				-> Activities overview                                                                                       
-				-> Show project lead -> Employee                            
-				-> Set project lead                                         
-				-> Change project name                                      
-				-> Change project starting date                             
-				                                                            
-		-> Activities overview       
-			-> Activity                                                     
-				-> Activity calendar (overview of dates)                                       
-					-> Date
-					-> Time registrations overview
-						-> Time registration
-				-> Change activity name                                     
-				-> Change start                                             
-				-> Change end                                               
-				-> Change duration                                    
-				                                                            
-		-> Calendar (overview of dates)                                                    
-			-> Date                                                         
-				-> Time registration                                        
-					-> Change registered hours                              
-					-> Change date                                          
-                                                                            
-		-> Create project                                                   
-			-> Project with name and starting date                          
-				-> Project                                                  
-			-> Project with name and lead                                   
-				-> Project                                                  
-			-> Project with name, lead and starting date                    
-				-> Project                                                  
-						                                                    
-		-> Create employee                                                  
-			-> Employee                                                     
-		                                                                    
-		-> Show login                                                       
-			-> Project planner app                                          
+	-> Project planner app											     |X|
+		-> Switch user  -> Login										 |X|
+		-> Show client profile  -> Employee			                     |X|
+                                                                         | |  
+		-> Employees overview  -> Employee                               | |
+			-> Search                                                    | |
+				-> Employee overview                                     | |         
+				                                                         | |  
+		-> Projects overview                                             | |  
+			-> Project                                                   | |  
+				-> Activities overview                                   | |                                                   
+				-> Show project lead -> Employee                         | |  
+				-> Set project lead                                      | |  
+				-> Change project name                                   | |  
+				-> Change project starting date                          | |  
+				                                                         | |
+				                                                         | |  
+		-> Activities overview                                           | |
+			-> Activity                                                  | |  
+				-> Activity calendar (overview of dates)                 | |                     
+					-> Date                                              | |
+					-> Time registrations overview                       | |
+						-> Time registration                             | |
+				-> Change activity name                                  | |  
+				-> Change start                                          | |  
+				-> Change end                                            | |  
+				-> Change duration                                       | |
+				                                                         | |  
+		-> Calendar (overview of dates with timeReg.)                    | |                               
+			-> Date                                                      | |  
+				-> Time registration                                     | |  
+					-> Change registered hours                           | |  
+					-> Change date                                       | |  
+                                                                         | |
+        -> Create employee  -> Employee                                  |X|            
+		                                                                 | |
+		-> Create project												 | |
+			-> Project with name  -> Project                             |X|  
+			-> Project with name and starting date  -> Project           | |          
+			-> Project with name and lead  -> Project                    | |
+			-> Project with name, lead and starting date  -> Project     | |              
+		                                                                                                            
 			
 			
 			

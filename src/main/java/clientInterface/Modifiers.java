@@ -79,6 +79,19 @@ public class Modifiers extends ClientInterface {
 		Options.subpaths.add("->Create Activity");
 		Options.printCreateActivity();
 
+		try {
+			if (!project.hasProjectLead()) {
+				project.newActivity(client, "name");
+			}
+			else if (!project.getProjectLead().equals(client)) {
+				project.newActivity(client, "name");
+			}
+		} catch(ProjectLeadException e) {
+			System.out.println("\n" + e.getMessage());
+			Options.subpaths.remove(Options.subpaths.size()-1);
+			return;
+		}
+		
 		selector = Validators.rangeValidator(2);
 		switch(selector) {
 			case 0: // cancel

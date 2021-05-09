@@ -33,7 +33,7 @@ public class ClientInterface {
 	public static String initials, name;
 	public static Employee client, employee;
 	public static Project project;
-	public static Activity activity;
+	public static Activity activity, selectedActivity;
 	public static ActivityCalendar calendar;
 	public static Date date;
 	public static TimeRegistration registration;
@@ -129,7 +129,6 @@ public class ClientInterface {
 	}
 
 	public static void showProjectOverview() throws OperationNotAllowedException, ProjectLeadException, InvalidTimeRegistrationException {
-		project = null;
 		Options.subpaths.add("->Project Overview");
 
 		projectOverviewLoop: while (true) {
@@ -171,7 +170,6 @@ public class ClientInterface {
 	}
 	
 	public static void showDateOverview() throws OperationNotAllowedException, ProjectLeadException {
-		date = null;
 		Options.subpaths.add("->Date Overview");
 
 		dateOverviewLoop: while (true) {
@@ -192,7 +190,6 @@ public class ClientInterface {
 	}
 	
 	public static void showTimeRegistrationOverview() throws OperationNotAllowedException, ProjectLeadException {
-		registration = null;
 		Options.subpaths.add("->Time Registration Overview");
 
 		registrationOverviewLoop: while (true) {
@@ -278,22 +275,23 @@ public class ClientInterface {
 	
 	public static void showActivity() throws OperationNotAllowedException, ProjectLeadException, InvalidTimeRegistrationException {
 		Options.subpaths.add("->Activity " + activity.getName());
-
-		activityLoop: while(true){
+		Activity selectedActivity = activity;
+		
+		activityLoop: while(true) {
 			Options.printActivity();
 			selector = Validators.rangeValidator(7);
-			switch(selector){
-				case 0: //Close
+			switch(selector) {
+				case 0: // Close/confirm
 					Options.subpaths.remove(Options.subpaths.size()-1);
 					break activityLoop;
 					
 				case 1: //Employeeoverview
-					employees = activity.getEmployees();
+					employees = selectedActivity.getEmployees();
 					showEmployeeOverview();
 					break;
 					
 				case 2: //Calendar
-					calendar = activity.getCalendar();
+					calendar = selectedActivity.getCalendar();
 					showDateOverview();
 					break; 
 					
@@ -316,6 +314,7 @@ public class ClientInterface {
 					Modifiers.createTimeRegistration();
 					break;
 			}
+			activity = selectedActivity;
 		}
 	}
 	
