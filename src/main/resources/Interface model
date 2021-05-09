@@ -1,32 +1,63 @@
+Login:
+	- projectPlannerApp
 
 ProjectPlannerApp:
-	- Projects overview
+	- Login
 	- Employees overview
-	- App calendar (predefined activities)
+	- Projects overview
+	- Activities overview (Predefined activities)
+	- Create employee
+	- create project
 
+Employee:
+	- Activities overview (employee assigned to)
+	- Projects overview (employee is lead)
 
 Project:
-Info about project (Name, Projectlead, Project start date)
-    - New activity
-    - list of activities
-    - Project calendar
-    - If no project lead -> set project lead
-    - 
+    - Create activity
+    - Remove activity
+    - Activities overview
+    - set project lead (fin)
+    - set project start (fin)
+    - set project name (fin)
 
+Activity:
+	- Employees overview
+	- Calendar
+	- set time frame (fin)
+	- Set name (fin)
+	- Add Employee
+	- Remove employee
+	- Create time registration
+	
+	Maybe:
+	- Set start (fin)
+	- Set end (fin)
+	- Set duration (fin)
+	
+Calendar:
+	- Dates overview
+	- time registrations overview (if project lead)	
 
-Activities:
-Info about activity
-	- Activity calendar
-
-
-App calendar:	
+Date:
 	- time registrations overview
 
-Project calendar:
+Time registration:
+	- set date
+	- set hours
+
+	
+Employees overview:
+	- Search employee
+	- Employee
+
+Projects overview:
 
 
-Activity calendar:
-	- If project lead -> time registrations overview
+Activities overview:
+
+
+
 
 	
 
@@ -53,6 +84,7 @@ Login
 				-> Activity calendar (overview of dates)                                       
 					-> Date
 					-> Time registrations overview
+						-> Time registration
 				-> Change activity name                                     
 				-> Change start                                             
 				-> Change end                                               

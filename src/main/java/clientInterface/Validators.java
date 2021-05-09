@@ -49,29 +49,29 @@ public class Validators extends ClientInterface {
     	    	
     	switch (command) {
     	
-    	case "initials": // Get valid employee initials
-	    	System.out.println("\nEnter initials with a length of 4 letters");
-	    	input = getValidString("Initials");
-		    while (input.length() != 4) {
-		    	System.out.println("Invalid initials: It must be a string of 4 letters");
+	    	case "initials": // Get valid employee initials
+		    	System.out.println("\nEnter initials with a length of 4 letters");
 		    	input = getValidString("Initials");
-		    }
-    		
-	    	break; 
-	    	
-    	case "search": //Get valid employee intitials thats partial
-    		System.out.println("\nSearch for initials with up to 4 letters");
-	    	input = getValidString("Search for");
-	    	while (input.length() > 4) {
-	    		System.out.println("Invalid search: It must be a string with up to 4 letters");
-	    		input = getValidString("Search for");
-    		}
-	    	break;  
-
-        case "name":
-            System.out.println("\nEnter a string without any numbers");
-            input = getValidString("Name");
-            break;
+			    while (input.length() != 4) {
+			    	System.out.println("Invalid initials: It must be a string of 4 letters");
+			    	input = getValidString("Initials");
+			    }
+	    		
+		    	break; 
+		    	
+	    	case "search": //Get valid employee intitials thats partial
+	    		System.out.println("\nSearch for initials with up to 4 letters");
+		    	input = getValidString("Search for");
+		    	while (input.length() > 4) {
+		    		System.out.println("Invalid search: It must be a string with up to 4 letters");
+		    		input = getValidString("Search for");
+	    		}
+		    	break;  
+	
+	        case "name":
+	            System.out.println("\nEnter a string without any numbers");
+	            input = getValidString("Name");
+	            break;
 		}
 
         return input;
@@ -101,11 +101,11 @@ public class Validators extends ClientInterface {
     	}
     	
     	switch (command) {
-    	case "project": // get date from app calendar
-    		calendar = app.getCalendar();
+    		case "project": // get date from app calendar
+    			calendar = app.getCalendar();
     	
-    	case "registration": // get date from activity calendar
-    		calendar = activity.getCalendar();
+    		case "registration": // get date from activity calendar
+    			calendar = activity.getCalendar();
     	}
     	
     	return calendar.getDate(year, month, day);

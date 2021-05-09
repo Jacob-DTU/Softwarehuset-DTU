@@ -77,7 +77,7 @@ public class ActivitySteps {
 
 	@When("the project lead adds a start time {int}, end time {int} and duration {int} to the activity")
 	public void theProjectLeadAddsAStartTimeEndTimeAndDurationToTheActivity(int start, int end, int duration) throws ProjectLeadException {
-	    project.setActivityTimeframe(projectLead, activity, start, end, duration);
+	    activity.setTimeframe(projectLead, start, end, duration);
 	}
 
 	@Then("a timeframe is added to the activity")

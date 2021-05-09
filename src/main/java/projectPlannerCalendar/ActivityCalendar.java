@@ -57,6 +57,10 @@ public class ActivityCalendar {
 		addDate(startDate);
 	}
 	
+	public Map<Integer, Date> getDates() {
+		return dates;
+	}
+	
 	public Date getDate(int year, int month, int day) {
 		Date date = new Date(year, month, day);
 		if (this.contains(date)) {

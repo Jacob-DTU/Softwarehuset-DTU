@@ -39,7 +39,7 @@ class EmployeeTest {
 				project.newActivity(employee, "activity " + i);
 			}
 			employee = app.newEmployee("Work");
-			for(Activity a :project.getActivities().values() ) {
+			for(Activity a : project.getActivities().values()) {
 				a.addEmployee(employee);
 			}
 		}catch(TooManyActivitiesException e) {
@@ -63,6 +63,6 @@ class EmployeeTest {
 		ProjectPlannerApp app = new ProjectPlannerApp();
 		employee = app.newEmployee("test");
 		app.newProject("testE", employee);
-		assertEquals(employee.leadProjects,app.getEmployee("test").leadProjects);
+		assertEquals(employee.getProjects(),app.getEmployee("test").getProjects());
 	}
 }

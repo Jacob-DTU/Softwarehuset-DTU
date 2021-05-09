@@ -56,7 +56,7 @@ public class ProjectleadSteps {
 
 	@Then("the employee is the project lead for the project")
 	public void theEmployeeIsTheProjectLeadForTheProject() {
-	    employee.leadProjects.contains(project);
+	    employee.getProjects().contains(project);
 	}
 	
 	@Given("a project with name {string} exists with a project lead")

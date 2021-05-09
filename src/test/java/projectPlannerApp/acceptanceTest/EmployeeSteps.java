@@ -65,7 +65,7 @@ public class EmployeeSteps {
 
 	@Then("the activity is added to the employee")
 	public void theActivityIsAddedToTheEmployee() {
-		assertTrue(employee.currActivities.contains(activity));
+		assertTrue(employee.getActivities().contains(activity));
 	}
 	
 	@Given("the employee is unavailable")
@@ -85,7 +85,7 @@ public class EmployeeSteps {
 
 	@Then("the activity is not added to the employee")
 	public void theActivityIsNotAddedToTheEmployee() {
-		assertFalse(employee.currActivities.contains(activity));
+		assertFalse(employee.getActivities().contains(activity));
 	}
 	
 	@Then("error message {string} is shown")

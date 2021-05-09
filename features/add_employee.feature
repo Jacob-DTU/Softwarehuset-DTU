@@ -17,5 +17,5 @@ Scenario: Add employee unsucessfully
 	When the employee is assigned to the activity
 	Then the employee is not added to the activity
 	And the activity is not added to the employee
-	And error message "Employee is unavailable during the given timeframe" is shown
+	And error message "Employee has too many activities" is shown
 	

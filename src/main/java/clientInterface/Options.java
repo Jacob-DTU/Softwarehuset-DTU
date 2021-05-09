@@ -15,23 +15,19 @@ public class Options extends ClientInterface {
 		System.out.println("\n 0. Close/Confirm");
 	}
 	
-	public static void printMain() {
-		System.out.println("\n 0. Close program");
-		System.out.println("1. Login");
-	}
-	
 	public static void printProjectPlannerApp() {
 		System.out.println("\n 0. Switch user");
 		System.out.println(" 1. View employees");
     	System.out.println(" 2. View projects");
     	System.out.println(" 3. View global calendar");
-    	System.out.println(" 4. Create new project");
-		System.out.println(" 5. Create new Employee");
+    	System.out.println(" 4. Create new Employee");
+		System.out.println(" 5. Create new project");
+		System.out.println(" 6. Close program");
 	}
 	
 	public static void printEmployeeOverview() {
 		printCloseConfirm();
-		System.out.println("1. Search employee");
+		System.out.println(" 1. Search employee");
 		int i = 2;
 		for (Employee employee : employees) {
 			if (i < 10) {
@@ -46,7 +42,7 @@ public class Options extends ClientInterface {
 	public static void printProjectOverview() {
 		printCloseConfirm();
     	int i = 1;
-        for (Project project : app.getProjects()) {
+        for (Project project : projects) {
         	if (i < 10) {
 				System.out.println(" " + i++ + ". " + project.toString());
 			}
@@ -61,40 +57,54 @@ public class Options extends ClientInterface {
 
 	}
 	
-	public static void printCalendar(ActivityCalendar calendar) {
+	public static void printDateOverview() {
 		printCloseConfirm();
-		System.out.println(calendar.toString());
 	}
 	
-	public static void printEmployee(Employee employee) {
+	public static void printTimeRegistrationOverview() {
 		printCloseConfirm();
+	}
+		
+	public static void printEmployee() {
 		System.out.println(employee.toString());
+		printCloseConfirm();
+		System.out.println(" 1. View activities for this employee");
+		System.out.println(" 2. View projects lead by this employee");
 	}
 	
-	public static void printProject(Project project) {
-		printCloseConfirm();
+	public static void printProject() {
 		System.out.println(project.toString());
+		printCloseConfirm();
+		System.out.println(" 1. Create Activity");
+    	System.out.println(" 2. Remove Activity");
+    	System.out.println(" 3. View Activities");
+    	System.out.println(" 4. Set Project lead");
+		System.out.println(" 5. Set Project start");
+		System.out.println(" 6. Set Project name");
 	}
 	
-	public static void printActivity(Activity activity) {
-		printCloseConfirm();
+	public static void printActivity() {
 		System.out.println(activity.toString());
+		printCloseConfirm();
 	}
 	
-	public static void printDate(Date date) {
+	public static void printCalendar() {
+		System.out.println(calendar.toString());
 		printCloseConfirm();
+	}
+	
+	public static void printDate() {
 		System.out.println(date.toString());
+		printCloseConfirm();
 	}
 	
-	public static void printTimeRegistration(TimeRegistration registration) {
-		printCloseConfirm();
+	public static void printTimeRegistration() {
 		System.out.println(registration.toString());
+		printCloseConfirm();
 	}
 	
 	public static void printCreateEmployee() {
 		printCloseConfirm();
-
-		
 	}
 	
 	public static void printCreateProject() {
@@ -132,17 +142,17 @@ public class Options extends ClientInterface {
 	}
 	
 	public static void printChangeActivityStart() {
-		printCloseConfirm();
-
+		System.out.println("Set a week number for at starting week");
+		
 	}
 	
 	public static void printChangeActivityEnd() {
-		printCloseConfirm();
+		System.out.println("Set a week number for at ending week");
 
 	}
 	
 	public static void printChangeActivityDuration() {
-		printCloseConfirm();
+		System.out.println("Set a hour number for number of hours this activity might take");
 
 	}
 	
@@ -161,5 +171,28 @@ public class Options extends ClientInterface {
 		printCloseConfirm();
 
 	}
+	
+	public static void printAddEmployee(){
+		System.out.println("Add an new Employee by typing in a initial or part of the inital");
+	}
+	
+	public static void printRemoveEmployee() {
+		System.out.println("Remove an new Employee by typing in a initial or part of the inital");
+	}
+	
+	public static void printRemoveActivity() {
+		System.out.println("Select activity to be removed and confirm twice ");
+	}
 
+	
+	// ------------Error messages------------ //
+	
+	public static void printNoEmployeeSelected() {
+		System.out.println("No employee selected");
+	}
+
+	public static void printNoActivitySelected() {
+		System.out.println("No activity selected");
+	}
+		
 }

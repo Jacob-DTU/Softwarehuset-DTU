@@ -9,10 +9,13 @@ import projectPlannerCalendar.ActivityCalendar;
 
 public class Activity {
 	
-	private TooManyActivitiesException tooManyActivitiesError = new TooManyActivitiesException("Employee is unavailable during the given timeframe");
+	private TooManyActivitiesException tooManyActivitiesError = new TooManyActivitiesException("Employee has too many activities");
+	private ProjectLeadException notProjectLeadError = new ProjectLeadException("Only project lead can make a new activity");
+
 	
 	private List<Employee> employees = new ArrayList<Employee>();
 	private ActivityCalendar calendar;
+	private Project associatedProject;
 	public boolean isPredefined;
 	
 	private String name;
@@ -20,10 +23,10 @@ public class Activity {
 	
 	public Activity(String name) {
 		switch (name) {
-		case "Vacation":
-			this.isPredefined = true;
-		default:
-			this.isPredefined = false;
+			case "Vacation":
+				this.isPredefined = true;
+			default:
+				this.isPredefined = false;
 		}
 		this.name = name;
 		this.calendar = new ActivityCalendar();
@@ -75,13 +78,28 @@ public class Activity {
 		return calendar;
 	}
 	
+	public void setAssociatedProject(Project project) {
+		this.associatedProject = project;
+	}
+	
+	public void setTimeframe(Employee client, int start, int end, int duration) throws ProjectLeadException {
+		if (client.equals(associatedProject.getProjectLead())) {
+			setStart(start);
+			setEnd(end);
+			setDuration(duration);
+		}
+		else {
+			throw notProjectLeadError;
+		}
+	}
+
 	public void addEmployee(Employee employee) throws TooManyActivitiesException {
-		if (employee.currActivities.size() == 20) {
+		if (employee.getActivities().size() == 20) {
 			throw tooManyActivitiesError;
 		}
 		else {
 			getEmployees().add(employee);
-			employee.currActivities.add(this);
+			employee.getActivities().add(this);
 		}
 	}
 	
@@ -100,7 +118,7 @@ public class Activity {
 		return false;
 	}
 	
-	public void removeActivity(Employee employee){
+	public void removeEmployee(Employee employee){
 		getEmployees().remove(employee);
 	}
 

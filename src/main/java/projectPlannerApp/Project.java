@@ -66,10 +66,6 @@ public class Project {
 		return projectNumber;
 	}
 
-	public void setProjectNumber(String projectNumber) {
-		this.projectNumber = projectNumber;
-	}
-
 	public Date getProjectStart() {
 		return projectStart;
 	}
@@ -88,26 +84,9 @@ public class Project {
 		}
 		else {
 			projectLead = employee;
-			employee.leadProjects.add(this);
+			employee.getProjects().add(this);
 		}		
 	}
-	
-	public void setActivityTimeframe(Employee client, Activity activity, int start, int end, int duration) throws ProjectLeadException {
-		if (hasProjectLead()) {
-			if (client.equals(projectLead)) {
-				activity.setStart(start);
-				activity.setEnd(end);
-				activity.setDuration(duration);
-			}
-			else {
-				throw notProjectLeadError;
-			}
-		}
-		else {
-			throw noProjectLeadError;
-		}
-	}
-
 	
 	public Activity newActivity(Employee client, String name) throws ProjectLeadException, OperationNotAllowedException {
 		Activity activity = createActivity(client, name, -1, -1, -1);
@@ -133,6 +112,7 @@ public class Project {
 					} else {
 						activity = new Activity(name, start, end, duration);
 					}
+					activity.setAssociatedProject(this);
 					activities.put(name, activity);
 					
 					return activity;
@@ -162,14 +142,23 @@ public class Project {
 		}
 		return false;
 	}
-	public void removeActivity(String activity) throws OperationNotAllowedException{
-		if(activities.remove(activity) == null){
-			throw noSuchNameError;
+	
+	public void removeActivity(Activity activity) throws OperationNotAllowedException{
+		if (this.contains(activity)) {
+			activities.remove(activity.getName());
 		}
+		else {
+			throw noSuchNameError;
+		}	
 	}
 	
 	public String toString() {
-		return getProjectNumber() + " : " + getName();
+		String startText = "";
+		String leadText = "";
+		startText = getProjectStart() == null? "  ProjectStart : " + getProjectStart().toString(): "";
+		leadText = getProjectLead()== null? " ProjectLead : " + getProjectLead().toString() : "";
+		return getProjectNumber() + " : " + getName() + startText + leadText;
 	}
-	
+
 }
+
