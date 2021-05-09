@@ -48,13 +48,15 @@ public class ClientInterface {
 	
 
 	public static void showLogin() throws OperationNotAllowedException, ProjectLeadException, InvalidTimeRegistrationException {
-		String initials = Validators.stringValidator("initials");	
+		initials = Validators.stringValidator("initials");
 		client = app.getEmployee(initials.toUpperCase());
-
+		
 		showProjectPlannerApp();
 	}
 
 	public static void showProjectPlannerApp() throws OperationNotAllowedException, ProjectLeadException, InvalidTimeRegistrationException {   	
+		Options.subpaths.add("->Project Planner App");
+
 		appLoop: while (true) {
 			Options.printProjectPlannerApp();
 			
@@ -62,7 +64,9 @@ public class ClientInterface {
 			switch(selector) {
 
 				case 0: // Switch user
+					Options.subpaths.remove(Options.subpaths.size()-1);
 					showLogin();
+					break appLoop;
 
 				case 1: // View employees
 					employees = new ArrayList<Employee>(app.getEmployees().values());
@@ -72,7 +76,6 @@ public class ClientInterface {
 				case 2: // View projects
 					projects = app.getProjects();
 					showProjectOverview();
-					showProject();
 					break;
 
 				case 3:  // View app calendar
@@ -89,6 +92,7 @@ public class ClientInterface {
 					break;
 					
 				case 6: // close program
+					Options.subpaths.remove(Options.subpaths.size()-1);
 					break appLoop;
 			}
 		}
@@ -96,12 +100,15 @@ public class ClientInterface {
 
 	public static void showEmployeeOverview() throws OperationNotAllowedException, ProjectLeadException, InvalidTimeRegistrationException {
 		employee = null;
+		Options.subpaths.add("->Employee Overview");
+
 		employeeOverviewLoop: while (true) {
 			Options.printEmployeeOverview();
 			
 			selector = Validators.rangeValidator(employees.size()+1);
 			switch(selector) {
 				case 0: // close/confirm
+					Options.subpaths.remove(Options.subpaths.size()-1);
 					break employeeOverviewLoop;
 					
 				case 1: // Search employee
@@ -119,12 +126,15 @@ public class ClientInterface {
 
 	public static void showProjectOverview() throws OperationNotAllowedException, ProjectLeadException, InvalidTimeRegistrationException {
 		project = null;
+		Options.subpaths.add("->Project Overview");
+
 		projectOverviewLoop: while (true) {
 			Options.printProjectOverview();  
 			
 			selector = Validators.rangeValidator(projects.size());
 			switch(selector) {
 				case 0: // close/confirm
+					Options.subpaths.remove(Options.subpaths.size()-1);
 					break projectOverviewLoop;
 
 				default: // Select project
@@ -137,12 +147,15 @@ public class ClientInterface {
 
 	public static void showActivityOverview() throws OperationNotAllowedException, ProjectLeadException, InvalidTimeRegistrationException {
 		activity = null;
+		Options.subpaths.add("->Activity Overview");
+
 		activityOverviewLoop: while (true) {
 			Options.printActivityOverview();    
 			
 			selector = Validators.rangeValidator(activities.size());
 			switch(selector) {
 			case 0: // close/confirm
+				Options.subpaths.remove(Options.subpaths.size()-1);
 				break activityOverviewLoop;
 
 			default: // Select activity
@@ -155,12 +168,15 @@ public class ClientInterface {
 	
 	public static void showDateOverview() throws OperationNotAllowedException, ProjectLeadException {
 		date = null;
+		Options.subpaths.add("->Date Overview");
+
 		dateOverviewLoop: while (true) {
 			Options.printDateOverview();
 			
 			selector = Validators.rangeValidator(dates.size());
 			switch(selector) {
 				case 0: // close/confirm
+					Options.subpaths.remove(Options.subpaths.size()-1);
 					break dateOverviewLoop;
 
 				default: // Select date
@@ -173,12 +189,15 @@ public class ClientInterface {
 	
 	public static void showTimeRegistrationOverview() throws OperationNotAllowedException, ProjectLeadException {
 		registration = null;
+		Options.subpaths.add("->Time Registration Overview");
+
 		registrationOverviewLoop: while (true) {
 			Options.printTimeRegistrationOverview();
 			
 			selector = Validators.rangeValidator(registrations.size());
 			switch(selector) {
 				case 0: // close/confirm
+					Options.subpaths.remove(Options.subpaths.size()-1);
 					break registrationOverviewLoop;
 
 				default: // Select registration
@@ -190,61 +209,78 @@ public class ClientInterface {
 	}
 	
 	public static void showEmployee() throws OperationNotAllowedException, ProjectLeadException, InvalidTimeRegistrationException {
+		Options.subpaths.add("->Employee " + employee.toString());
+
 		employeeLoop: while (true) {
 			Options.printEmployee();
 			
 			selector = Validators.rangeValidator(2);
 			switch(selector) {
 				case 0: // close/confirm
+					Options.subpaths.remove(Options.subpaths.size()-1);
 					break employeeLoop;
 					
 				case 1: // view activities
 					activities = employee.getActivities();
 					showActivityOverview();
+					break;
 					
 				case 2: // view projects
 					projects = employee.getProjects();
 					showProjectOverview();
+					break;
 			}
 		}
 	}
 	
 	public static void showProject() throws OperationNotAllowedException,ProjectLeadException, InvalidTimeRegistrationException {
+		Options.subpaths.add("->Project " + project.getProjectNumber());
+
 		projectLoop: while(true){
 			Options.printProject();
 			selector = Validators.rangeValidator(6);
 			switch(selector) {
 				case 0: //close/confirm
+					Options.subpaths.remove(Options.subpaths.size()-1);
 					break projectLoop;
 					
 				case 1:	//create activity 
 					Modifiers.createActivity();
+					break;
 					
 				case 2: //remove activity
 					Modifiers.removeActivity();
-					
+					break;
+				
 				case 3: //Activities overview
 					activities = new ArrayList(project.getActivities().values());
 					showActivityOverview();
-					
+					break;
+				
 				case 4: //Set project lead
 					Modifiers.setProjectLead();
-					
+					break;
+				
 				case 5: //Set project start
 					Modifiers.changeProjectStart();
-					
+					break;
+				
 				case 6: //Set project name
 					Modifiers.changeProjectName();
+					break;
 			}
 		}
 	}
 	
 	public static void showActivity() throws OperationNotAllowedException, ProjectLeadException, InvalidTimeRegistrationException {
+		Options.subpaths.add("->Activity " + activity.getName());
+
 		activityLoop: while(true){
 			Options.printActivity();
 			selector = Validators.rangeValidator(7);
 			switch(selector){
 				case 0: //Close
+					Options.subpaths.remove(Options.subpaths.size()-1);
 					break activityLoop;
 					
 				case 1: //Employeeoverview
@@ -280,57 +316,71 @@ public class ClientInterface {
 	}
 	
 	public static void showCalendar() throws OperationNotAllowedException, ProjectLeadException {
+		Options.subpaths.add("->Activity calendar");
+
 		calendarLoop: while (true) {
 			Options.printCalendar();
 			
 			selector = Validators.rangeValidator(2);
 			switch(selector) {
 				case 0: // close/confirm
+					Options.subpaths.remove(Options.subpaths.size()-1);
 					break calendarLoop;
 					
 				case 1: // view dates
 					dates = new ArrayList(calendar.getDates().values());
 					showDateOverview();
+					break;
 					
 				case 2: // view time registrations
 					registrations = calendar.getTimeRegistrations();
 					showTimeRegistrationOverview();
+					break;
 			}
 		}
 	}
 	
 	public static void showDate() throws OperationNotAllowedException, ProjectLeadException {
+		Options.subpaths.add("->" + date.toString());
+
 		dateLoop: while (true) {
 			Options.printDate();
 			
 			selector = Validators.rangeValidator(1);
 			switch(selector) {
 				case 0: // close/confirm
+					Options.subpaths.remove(Options.subpaths.size()-1);
 					break dateLoop;
 					
 				case 1: // view time registrations
 					registrations = date.getTimeRegistrations();
 					showTimeRegistrationOverview();
+					break;
 			}
 		}
 	}
 	
 	public static void showTimeRegistration() throws OperationNotAllowedException, ProjectLeadException {
+		Options.subpaths.add("->Time Registration " + registration.toString());
+
 		registrationLoop: while (true) {
 			Options.printTimeRegistration();
 			
 			selector = Validators.rangeValidator(2);
 			switch(selector) {
 				case 0: // close/confirm
+					Options.subpaths.remove(Options.subpaths.size()-1);
 					break registrationLoop;
 					
 				case 1: // change time registration date
 					date = Validators.dateValidator("registration");
 					Modifiers.changeTimeRegistrationDate();
+					break;
 					
 				case 2: // change time registration hours
 					double hours = Validators.hoursValidator();
 					Modifiers.changeTimeRegistrationHours();
+					break;
 			}
 		}		
 	}

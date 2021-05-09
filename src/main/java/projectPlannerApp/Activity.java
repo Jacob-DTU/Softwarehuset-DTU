@@ -25,6 +25,7 @@ public class Activity {
 		switch (name) {
 			case "Vacation":
 				this.isPredefined = true;
+				break;
 			default:
 				this.isPredefined = false;
 		}

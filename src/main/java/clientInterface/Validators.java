@@ -16,7 +16,7 @@ public class Validators extends ClientInterface {
 		
 	public static int rangeValidator(int range) {
 		if (range == 0) {
-		    System.out.println("\nInput 0 to return to main menu");
+		    System.out.println("\nInput 0 to go back");
 		}
 		else {
 			System.out.println("\nInput a number between 0 and " + range);
@@ -56,15 +56,15 @@ public class Validators extends ClientInterface {
 			    	System.out.println("Invalid initials: It must be a string of 4 letters");
 			    	input = getValidString("Initials");
 			    }
-	    		
-		    	break; 
+		    	
+			    break; 
 		    	
 	    	case "search": //Get valid employee intitials thats partial
 	    		System.out.println("\nSearch for initials with up to 4 letters");
 		    	input = getValidString("Search for");
 		    	while (input.length() > 4) {
 		    		System.out.println("Invalid search: It must be a string with up to 4 letters");
-		    		input = getValidString("Search for").toUpperCase();
+		    		input = getValidString("Search for");
 	    		}
 		    	break;  
 	
@@ -74,7 +74,7 @@ public class Validators extends ClientInterface {
 	            break;
 		}
 
-        return input;
+	    return input;
     }
     
     public static Date dateValidator(String command) {

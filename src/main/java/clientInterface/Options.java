@@ -1,5 +1,6 @@
 package clientInterface;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import projectPlannerApp.*;
@@ -7,25 +8,43 @@ import projectPlannerCalendar.*;
 
 public class Options extends ClientInterface {
 	
+	public static List<String> subpaths = new ArrayList<String>();
+	private static String path;
+	
 	/*
 	 * This class contains all visual parts of the interface
 	 */
+	public static void printSectionLine() {
+		path = "";
+		for (String subpath : subpaths) {
+			path += subpath;
+		}
+		
+		System.out.println();
+		System.out.println("_".repeat(path.length()+4));
+		System.out.println(client.getInitials() + path);
+		System.out.println("_".repeat(path.length()+4));
+	}
 	
 	private static void printCloseConfirm() {
 		System.out.println("\n 0. Close/Confirm");
 	}
 	
 	public static void printProjectPlannerApp() {
+		printSectionLine();
+		
 		System.out.println("\n 0. Switch user");
 		System.out.println(" 1. View employees");
     	System.out.println(" 2. View projects");
-    	System.out.println(" 3. View global calendar");
+    	System.out.println(" 3. View app calendar");
     	System.out.println(" 4. Create new Employee");
 		System.out.println(" 5. Create new project");
 		System.out.println(" 6. Close program");
 	}
 	
 	public static void printEmployeeOverview() {
+		printSectionLine();
+
 		printCloseConfirm();
 		System.out.println(" 1. Search employee");
 		int i = 2;
@@ -40,6 +59,8 @@ public class Options extends ClientInterface {
 	}
 	
 	public static void printProjectOverview() {
+		printSectionLine();
+
 		printCloseConfirm();
     	int i = 1;
         for (Project project : projects) {
@@ -53,27 +74,37 @@ public class Options extends ClientInterface {
 	}
 	
 	public static void printActivityOverview() {
+		printSectionLine();
+
 		printCloseConfirm();
 
 	}
 	
 	public static void printDateOverview() {
+		printSectionLine();
+
 		printCloseConfirm();
 	}
 	
 	public static void printTimeRegistrationOverview() {
+		printSectionLine();
+
 		printCloseConfirm();
 	}
 		
 	public static void printEmployee() {
-		System.out.println(employee.toString());
+		printSectionLine();
+
+		System.out.println("\nEmployee initials : " + employee.toString());
 		printCloseConfirm();
 		System.out.println(" 1. View activities for this employee");
 		System.out.println(" 2. View projects lead by this employee");
 	}
 	
 	public static void printProject() {
-		System.out.println(project.toString());
+		printSectionLine();
+
+		System.out.println("\n" + project.toString());
 		printCloseConfirm();
 		System.out.println(" 1. Create Activity");
     	System.out.println(" 2. Remove Activity");
@@ -84,26 +115,35 @@ public class Options extends ClientInterface {
 	}
 	
 	public static void printActivity() {
-		System.out.println(activity.toString());
+		printSectionLine();
+
+		System.out.println("\n" + activity.toString());
 		printCloseConfirm();
 	}
 	
 	public static void printCalendar() {
-		System.out.println(calendar.toString());
+		printSectionLine();
+
+		System.out.println("\n" + calendar.toString());
 		printCloseConfirm();
 	}
 	
 	public static void printDate() {
-		System.out.println(date.toString());
+		printSectionLine();
+
+		System.out.println("\n" + date.toString());
 		printCloseConfirm();
 	}
 	
 	public static void printTimeRegistration() {
-		System.out.println(registration.toString());
+		printSectionLine();
+
+		System.out.println("\n" + registration.toString());
 		printCloseConfirm();
 	}
 	
 	public static void printCreateProject() {
+		printSectionLine();
 		printCloseConfirm();
 
 		System.out.println(" 1. Make a new project with a name");
@@ -113,6 +153,7 @@ public class Options extends ClientInterface {
 	}
 	
 	public static void printCreateActivity() {
+		printSectionLine();
 		printCloseConfirm();
 		
 		System.out.println(" 1. Make a new activity with a name");
@@ -120,16 +161,19 @@ public class Options extends ClientInterface {
 	}
 	
 	public static void printChangeActivityStart() {
+		printSectionLine();
 		System.out.println("Set a week number for at starting week");
 		
 	}
 	
 	public static void printChangeActivityEnd() {
+		printSectionLine();
 		System.out.println("Set a week number for at ending week");
 
 	}
 	
 	public static void printChangeActivityDuration() {
+		printSectionLine();
 		System.out.println("Set a hour number for number of hours this activity might take");
 
 	}

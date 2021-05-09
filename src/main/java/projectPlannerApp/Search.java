@@ -11,7 +11,7 @@ public class Search{
 		List<Employee> list = new ArrayList<Employee>();
 		if(employees.size()!= 0){//1
 			for (Employee e: employees.values()){//2
-				if(e.getInitials().contains(initials)){//3
+				if(e.getInitials().contains(initials.toUpperCase())){//3
 					list.add(e);	
 				}
 			}
