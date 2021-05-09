@@ -11,16 +11,17 @@ public class Options extends ClientInterface {
 	 * This class contains all visual parts of the interface
 	 */
 	
-	public static void printToMainMenu() {
-		System.out.println("\n 0. Go to main menu");
+	private static void printCloseConfirm() {
+		System.out.println("\n 0. Close/Confirm");
 	}
 	
-	public static void printLogin() {
-		System.out.println("\n 0. Switch user");
+	public static void printMain() {
+		System.out.println("\n 0. Close program");
+		System.out.println("1. Login");
 	}
 	
 	public static void printProjectPlannerApp() {
-		printLogin();
+		System.out.println("\n 0. Switch user");
 		System.out.println(" 1. View employees");
     	System.out.println(" 2. View projects");
     	System.out.println(" 3. View global calendar");
@@ -29,9 +30,9 @@ public class Options extends ClientInterface {
 	}
 	
 	public static void printEmployeeOverview() {
-		printToMainMenu();
-		
-		int i = 1;
+		printCloseConfirm();
+		System.out.println("1. Search employee");
+		int i = 2;
 		for (Employee employee : employees) {
 			if (i < 10) {
 				System.out.println(" " + i++ + ". " + employee.toString());
@@ -43,7 +44,7 @@ public class Options extends ClientInterface {
 	}
 	
 	public static void printProjectOverview() {
-		printToMainMenu();
+		printCloseConfirm();
 
     	int i = 1;
         for (Project project : app.getProjects()) {
@@ -58,48 +59,48 @@ public class Options extends ClientInterface {
 	}
 	
 	public static void printActivityOverview() {
-		printToMainMenu();
+		printCloseConfirm();
 
 	}
 	
 	public static void printCalendar(ActivityCalendar calendar) {
-		printToMainMenu();
+		printCloseConfirm();
 		System.out.println(calendar.toString());
 	}
 	
 	public static void printEmployee(Employee employee) {
-		printToMainMenu();
+		printCloseConfirm();
 		System.out.println(employee.toString());
 	}
 	
 	public static void printProject(Project project) {
-		printToMainMenu();
+		printCloseConfirm();
 		System.out.println(project.toString());
 	}
 	
 	public static void printActivity(Activity activity) {
-		printToMainMenu();
+		printCloseConfirm();
 		System.out.println(activity.toString());
 	}
 	
 	public static void printDate(Date date) {
-		printToMainMenu();
+		printCloseConfirm();
 		System.out.println(date.toString());
 	}
 	
 	public static void printTimeRegistration(TimeRegistration registration) {
-		printToMainMenu();
+		printCloseConfirm();
 		System.out.println(registration.toString());
 	}
 	
 	public static void printCreateEmployee() {
-		printToMainMenu();
+		printCloseConfirm();
 
 		
 	}
 	
 	public static void printCreateProject() {
-		printToMainMenu();
+		printCloseConfirm();
 
 		System.out.println(" 1. Make a new project with a name");
         System.out.println(" 2. Make a new project with a name and starting date");
@@ -108,58 +109,58 @@ public class Options extends ClientInterface {
 	}
 	
 	public static void printCreateActivity() {
-		printToMainMenu();
+		printCloseConfirm();
 
 	}
 	
 	public static void printCreateTimeRegistration() {
-		printToMainMenu();
+		printCloseConfirm();
 
 	}
 	
 	public static void printChangeProjectName() {
-		printToMainMenu();
+		printCloseConfirm();
 
 	}
 	
 	public static void printChangeProjectStart() {
-		printToMainMenu();
+		printCloseConfirm();
 
 	}
 	
 	public static void printChangeActivityName() {
-		printToMainMenu();
+		printCloseConfirm();
 
 	}
 	
 	public static void printChangeActivityStart() {
-		printToMainMenu();
+		printCloseConfirm();
 
 	}
 	
 	public static void printChangeActivityEnd() {
-		printToMainMenu();
+		printCloseConfirm();
 
 	}
 	
 	public static void printChangeActivityDuration() {
-		printToMainMenu();
+		printCloseConfirm();
 
 	}
 	
 	public static void printChangeTimeRegistrationHours() {
-		printToMainMenu();
+		printCloseConfirm();
 
 	}
 	
 	public static void printChangeTimeRegistrationDate() {
-		printToMainMenu();
+		printCloseConfirm();
 
 	}
 	
 	public static void printSetProjectLead() {
 		System.out.println("Please input initials for an existing employee");
-		printToMainMenu();
+		printCloseConfirm();
 
 	}
 

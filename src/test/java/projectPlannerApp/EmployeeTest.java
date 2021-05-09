@@ -39,7 +39,7 @@ class EmployeeTest {
 				project.newActivity(employee, "activity " + i);
 			}
 			employee = app.newEmployee("Work");
-			for(Activity a :project.getActivities() ) {
+			for(Activity a :project.getActivities().values() ) {
 				a.addEmployee(employee);
 			}
 		}catch(TooManyActivitiesException e) {

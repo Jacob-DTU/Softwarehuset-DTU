@@ -106,5 +106,7 @@ public class Activity {
 	public List<Employee> getEmployees() {
 		return employees;
 	}
-	
+	public String toString(){
+		return getName() + " : " + getStart() + " : " + getEnd() + " : " + getDuration();
+	}
 }

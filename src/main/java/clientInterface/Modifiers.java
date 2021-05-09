@@ -16,6 +16,7 @@ public class Modifiers extends ClientInterface {
 		
 	public static void createEmployee() throws OperationNotAllowedException, ProjectLeadException {
     	Options.printCreateEmployee();
+    	
     	initials = Validators.stringValidator("initials");
     	employee = app.newEmployee(initials);
     	
@@ -110,12 +111,9 @@ public class Modifiers extends ClientInterface {
     
     public static void changeProjectName() throws OperationNotAllowedException, ProjectLeadException {
     	Options.printChangeProjectName();
-        int projectNumber = Validators.rangeValidator(app.getProjects().size());
-        project = app.getProjects().get(projectNumber);
+    	
         project.setName(Validators.stringValidator("name"));
         System.out.println("New name is " + project.getName() + "Project number is " + project.getProjectNumber()); // Måske bare print project (project.toString)
-        showProjectPlannerApp();
-        
     }
     
     public static void changeProjectStart() {
@@ -173,7 +171,7 @@ public class Modifiers extends ClientInterface {
         initials = Validators.stringValidator("search");
         employees = app.searchEmployees(initials);
         
-        Options.showEmployeeOverview();
+        showEmployeeOverview();
 		project.setProjectLead(employee);
 		showProject();
     }
