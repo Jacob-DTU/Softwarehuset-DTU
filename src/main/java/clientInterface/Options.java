@@ -49,12 +49,12 @@ public class Options extends ClientInterface {
 		printCloseConfirm();
 		System.out.println(" 1. Search employee");
 		int i = 2;
-		for (Employee employee : employees) {
+		for (Employee emp : employees) {
 			if (i < 10) {
-				System.out.println(" " + i++ + ". " + employee.toString());
+				System.out.println(" " + i++ + ". " + emp.toString());
 			}
 			else {
-				System.out.println(i++ + ". " + employee.toString());
+				System.out.println(i++ + ". " + emp.toString());
 			}
 		}
 	}
@@ -64,12 +64,12 @@ public class Options extends ClientInterface {
 
 		printCloseConfirm();
     	int i = 1;
-        for (Project project : projects) {
+        for (Project proj : projects) {
         	if (i < 10) {
-				System.out.println(" " + i++ + ". " + project.toString());
+				System.out.println(" " + i++ + ". " + proj.toString());
 			}
 			else {
-				System.out.println(i++ + ". " + project.toString());
+				System.out.println(i++ + ". " + proj.toString());
 			}
         }
 	}
@@ -78,19 +78,46 @@ public class Options extends ClientInterface {
 		printSectionLine();
 
 		printCloseConfirm();
-
+		int i = 1;
+        for (Activity act : activities) {
+        	if (i < 10) {
+				System.out.println(" " + i++ + ". " + act.toString());
+			}
+			else {
+				System.out.println(i++ + ". " + act.toString());
+			}
+        }
+		
 	}
 	
 	public static void printDateOverview() {
 		printSectionLine();
 
 		printCloseConfirm();
+		int i = 1;
+        for (Date dat : dates) {
+        	if (i < 10) {
+				System.out.println(" " + i++ + ". " + dat.toString());
+			}
+			else {
+				System.out.println(i++ + ". " + dat.toString());
+			}
+        }
 	}
 	
 	public static void printTimeRegistrationOverview() {
 		printSectionLine();
 
 		printCloseConfirm();
+		int i = 1;
+        for (TimeRegistration reg : registrations) {
+        	if (i < 10) {
+				System.out.println(" " + i++ + ". " + reg.toString());
+			}
+			else {
+				System.out.println(i++ + ". " + reg.toString());
+			}
+        }
 	}
 		
 	public static void printEmployee() {
@@ -196,5 +223,9 @@ public class Options extends ClientInterface {
 
 	public static void printNoActivitySelected() {
 		System.out.println("No activity selected");
+	}
+
+	public static void printActivityContainsEmployee() {
+		System.out.println("Employee was already added to activity " + activity.getName());		
 	}
 }

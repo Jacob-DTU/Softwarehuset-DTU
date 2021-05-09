@@ -128,8 +128,10 @@ public class Project {
 		else {
 			throw noProjectLeadError;
 		}
-		assert activities.containsValue(activity) && (activity.getStart() == start && activity.getEnd() == end && activity.getDuration() == duration
-		&& activity.getName().equals(name)) || activity.getName().equals(name): "Postcondition";
+		assert activities.containsValue(activity) && (activity.getStart() == start && activity.getEnd() == end &&
+		 activity.getDuration() == duration && activity.getName().equals(name)) || (activity.getName().equals(name) &&
+		 activity.getStart() == null && activity.getEnd() == null && activity.getDuration() == null) // SKAL FIXES
+		 : "Postcondition";
 		return activity;
 	}
 	

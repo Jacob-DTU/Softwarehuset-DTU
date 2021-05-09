@@ -33,7 +33,7 @@ public class ClientInterface {
 	public static String initials, name;
 	public static Employee client, employee;
 	public static Project project;
-	public static Activity activity, selectedActivity;
+	public static Activity activity;
 	public static ActivityCalendar calendar;
 	public static Date date;
 	public static TimeRegistration registration;
@@ -103,7 +103,6 @@ public class ClientInterface {
 	}
 
 	public static void showEmployeeOverview() throws OperationNotAllowedException, ProjectLeadException, InvalidTimeRegistrationException {
-		employee = null;
 		Options.subpaths.add("->Employee Overview");
 
 		employeeOverviewLoop: while (true) {
@@ -149,7 +148,6 @@ public class ClientInterface {
 	}
 
 	public static void showActivityOverview() throws OperationNotAllowedException, ProjectLeadException, InvalidTimeRegistrationException {
-		activity = null;
 		Options.subpaths.add("->Activity Overview");
 
 		activityOverviewLoop: while (true) {
@@ -211,7 +209,8 @@ public class ClientInterface {
 	
 	public static void showEmployee() throws OperationNotAllowedException, ProjectLeadException, InvalidTimeRegistrationException {
 		Options.subpaths.add("->Employee " + employee.toString());
-
+		Employee selectedEmployee = employee;
+		
 		employeeLoop: while (true) {
 			Options.printEmployee();
 			
@@ -231,6 +230,7 @@ public class ClientInterface {
 					showProjectOverview();
 					break;
 			}
+			employee = selectedEmployee;
 		}
 	}
 	
@@ -303,11 +303,11 @@ public class ClientInterface {
 					Modifiers.changeActivityName();
 					break; 
 				case 5: //Add Employee
-					Modifiers.addEmployee();
+					Modifiers.addEmployee(selectedActivity);
 					break;
 					
 				case 6: //Remove employee
-					Modifiers.removeEmployee();
+					Modifiers.removeEmployee(selectedActivity);
 					break;
 					
 				case 7: //Create time registration
