@@ -33,7 +33,7 @@ public class Search{
 		}
 		
 	}
-	
+	//Design by contract only 
 	public static boolean Compair(List<Employee> sortedlist,Map<String,Employee> originallist) {
 		boolean exist = false;
 		for(Employee sorted: sortedlist) {

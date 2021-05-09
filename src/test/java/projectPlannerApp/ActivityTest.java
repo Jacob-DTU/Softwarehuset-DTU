@@ -3,19 +3,24 @@ package projectPlannerApp;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import projectPlannerApp.acceptanceTest.ErrorMessageHolder;
+import org.junit.jupiter.api.BeforeEach;
 
 class ActivityTest {
 	private Project project; 
 	private Employee employee;
 	private Activity activity;
 	private ErrorMessageHolder error = new ErrorMessageHolder();
+	private ProjectPlannerApp app = new ProjectPlannerApp();
 	
+	@BeforeEach
+    void init() throws OperationNotAllowedException {
+		app = new ProjectPlannerApp();
+		employee = app.newEmployee("TEST");
+    }
 
 	
 	@Test
 	void testA() throws ProjectLeadException, OperationNotAllowedException {
-		ProjectPlannerApp app = new ProjectPlannerApp();
-		employee = app.newEmployee("TEST");
 		project = app.newProject("testA");
 		project.setProjectLead(employee);
 		activity = project.newActivity(employee,"test activity", 10, 20, 30);
@@ -27,8 +32,6 @@ class ActivityTest {
 	
 	@Test
 	void TestB() throws OperationNotAllowedException, ProjectLeadException, TooManyActivitiesException {
-		ProjectPlannerApp app = new ProjectPlannerApp();
-		employee = app.newEmployee("TEST");
 		project = app.newProject("testB");
 		project.setProjectLead(employee);
 		activity = project.newActivity(employee,"test activity", 10, 20, 30);
@@ -40,8 +43,6 @@ class ActivityTest {
 	
 	@Test
 	void TestC() throws ProjectLeadException, OperationNotAllowedException{
-		ProjectPlannerApp app = new ProjectPlannerApp();
-		employee = app.newEmployee("TEST");
 		project = app.newProject("testC");
 		project.setProjectLead(employee);
 		activity = project.newActivity(employee, "Name");
@@ -55,8 +56,6 @@ class ActivityTest {
 	
 	@Test
 	void TestD() throws OperationNotAllowedException {
-		ProjectPlannerApp app = new ProjectPlannerApp();
-		employee = app.newEmployee("TEST");
 		project = app.newProject("TestD");
 		try {
 			project.newActivity(employee, "Break");
@@ -69,8 +68,6 @@ class ActivityTest {
 	
 	@Test
 	void TestF() throws ProjectLeadException, OperationNotAllowedException{
-		ProjectPlannerApp app = new ProjectPlannerApp();
-		employee = app.newEmployee("TEST");
 		project = app.newProject("testC");
 		project.setProjectLead(employee);
 		activity = project.newActivity(employee, "TestF");
@@ -78,11 +75,20 @@ class ActivityTest {
 		assertEquals(activity.getName(),"hello");
 	}
 	
+	@Test
+	void testInputRemove() throws ProjectLeadException, OperationNotAllowedException {
+		Project project;
+		project = app.newProject("Project", employee);
+		Activity activity1 = project.newActivity(employee, "activity1", -1, -1, -1);
+		Activity activity2 = project.newActivity(employee, "activity2", 0, 0, 0);
+		project.removeActivity(activity1);
+		assertFalse(project.contains(activity1));
+		assertTrue(project.contains(activity2));		
+	}
 
 	
 	@Test
 	void WhiteboxTestA() throws ProjectLeadException, OperationNotAllowedException {
-		ProjectPlannerApp app = new ProjectPlannerApp();
 		Employee worker = app.newEmployee("ABCD");
 		employee = app.newEmployee("LEAD");
 		project = app.newProject("testC");
@@ -99,7 +105,6 @@ class ActivityTest {
 	}
 	@Test
 	void WhiteboxTestB() throws OperationNotAllowedException, ProjectLeadException, TooManyActivitiesException {
-		ProjectPlannerApp app = new ProjectPlannerApp();
 		Employee worker = app.newEmployee("ABCD");
 		employee = app.newEmployee("LEAD");
 		project = app.newProject("testC");
@@ -115,7 +120,6 @@ class ActivityTest {
 	
 	@Test
 	void WhiteboxTestC() throws TooManyActivitiesException, ProjectLeadException, OperationNotAllowedException {
-		ProjectPlannerApp app = new ProjectPlannerApp();
 		Employee worker = app.newEmployee("ABCD");
 		employee = app.newEmployee("LEAD");
 		project = app.newProject("testC");

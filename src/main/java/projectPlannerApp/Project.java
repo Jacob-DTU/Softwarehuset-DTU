@@ -128,8 +128,9 @@ public class Project {
 		else {
 			throw noProjectLeadError;
 		}
-		assert activities.containsValue(activity) && (activity.getStart() == start && activity.getEnd() == end && activity.getDuration() == duration
-		&& activity.getName().equals(name)) || activity.getName().equals(name): "Postcondition";
+		assert activities.containsValue(activity) && (activity.getStart() == start && activity.getEnd() == end &&
+				 activity.getDuration() == duration && activity.getName().equals(name)) || (activity.getName().equals(name) &&
+				 activity.getStart() == 0 && activity.getEnd() == 0 && activity.getDuration() == 0) : "PostCondition";
 		return activity;
 	}
 	

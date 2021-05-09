@@ -97,7 +97,7 @@ public class Activity {
 	}
 
 	public void addEmployee(Employee employee) throws TooManyActivitiesException {
-		assert !employee.equals(null) && employee.isAvailable(): "Precondition";
+		assert !employee.equals(null): "Precondition";
 		if (employee.getActivities().size() == 20) { //1
 			throw tooManyActivitiesError;
 		}
