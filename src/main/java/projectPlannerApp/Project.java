@@ -114,8 +114,6 @@ public class Project {
 				}
 			}
 			else {
-			System.out.println(client.getInitials());
-			System.out.println(projectLead.getInitials());
 				throw notProjectLeadError;
 			}
 		}
