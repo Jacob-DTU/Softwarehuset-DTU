@@ -274,7 +274,6 @@ public class Modifiers extends ClientInterface {
 	
 	public static void removeActivity() throws OperationNotAllowedException, ProjectLeadException, InvalidTimeRegistrationException {
 		Options.subpaths.add("->Remove Activity");
-		Options.printSectionLine();
 
 		activities = new ArrayList(project.getActivities().values());
 		showActivityOverview();
