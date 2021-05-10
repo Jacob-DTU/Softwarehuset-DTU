@@ -16,7 +16,7 @@ import projectPlannerApp.ProjectPlannerApp;
 import projectPlannerApp.TooManyActivitiesException;
 
 
-public class EmployeeSteps {
+public class EmployeeSteps { //Jacob
 	
 	private ProjectPlannerApp projectPlannerApp;
 	private Project project;

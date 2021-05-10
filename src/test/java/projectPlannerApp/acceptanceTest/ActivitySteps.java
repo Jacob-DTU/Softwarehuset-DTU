@@ -14,7 +14,7 @@ import projectPlannerApp.Project;
 import projectPlannerApp.ProjectLeadException;
 import projectPlannerApp.ProjectPlannerApp;
 
-public class ActivitySteps {
+public class ActivitySteps {//Tobias
 	
 	private ProjectPlannerApp projectPlannerApp;
 	private ErrorMessageHolder errorMessageHolder;
@@ -28,7 +28,7 @@ public class ActivitySteps {
 		this.projectLead = projectPlannerApp.newEmployee("LEAD");
 	}
 	
-	// Vi har ændret lidt i feature filen
+
 	@Given("that a project with a project lead exists")
 	public void thatAProjectWithAProjectLeadExists() throws ProjectLeadException {
 	    project = projectPlannerApp.newProject("project1", projectLead);

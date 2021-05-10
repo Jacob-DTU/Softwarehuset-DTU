@@ -5,6 +5,10 @@ import projectPlannerCalendar.Date;
 import java.util.HashMap;
 
 public class Project {
+
+	/*
+	 * Project object: Jacob
+	 */
 	
 	private ProjectLeadException alreadyProjectLeadError = new ProjectLeadException("Project lead is already assigned");
 	private ProjectLeadException noProjectLeadError = new ProjectLeadException("Project lead is not assigned");
@@ -72,7 +76,7 @@ public class Project {
 		return projectLead;
 	}
 	
-	public void setProjectLead(Employee employee) throws ProjectLeadException { 
+	public void setProjectLead(Employee employee) throws ProjectLeadException { //Tobias
 		if (hasProjectLead()) {
 			throw alreadyProjectLeadError;
 		}
@@ -82,21 +86,21 @@ public class Project {
 		}		
 	}
 	
-	public Activity newActivity(Employee client, String name) throws ProjectLeadException, OperationNotAllowedException {
+	public Activity newActivity(Employee client, String name) throws ProjectLeadException, OperationNotAllowedException {//Simon
 		Activity activity = createActivity(client, name, -1, -1, -1);
 		
 		return activity;
 	}
 	
-	public Activity newActivity(Employee client, String name, int start, int end, int duration) throws ProjectLeadException, OperationNotAllowedException  {
+	public Activity newActivity(Employee client, String name, int start, int end, int duration) throws ProjectLeadException, OperationNotAllowedException  {//Simon
 		Activity activity = createActivity(client, name, start, end, duration);
 		
 		return activity;
 	}
 	
 
-
-	private Activity createActivity(Employee client, String name, int start, int end, int duration) throws ProjectLeadException, OperationNotAllowedException { 
+	
+	private Activity createActivity(Employee client, String name, int start, int end, int duration) throws ProjectLeadException, OperationNotAllowedException {//Simon 
 		assert !client.equals(null) && !name.equals(null): "Precondition";
 		Activity activity;
 		if (hasProjectLead()) {
@@ -126,21 +130,21 @@ public class Project {
 		return activity;
 	}
 	
-	public boolean hasProjectLead() {
+	public boolean hasProjectLead() { //Christopher
 		if (projectLead == null) return false;
 		return true; 
 	}
 	
 
 
-	public boolean contains(Activity activity) {
+	public boolean contains(Activity activity) { //Christopher
 		if (activities.containsValue(activity)) {
 			return true;
 		}
 		return false;
 	}
 	
-	public void removeActivity(Activity activity) throws OperationNotAllowedException{
+	public void removeActivity(Activity activity) throws OperationNotAllowedException{ //Christopher
 		if (this.contains(activity)) {
 			activities.remove(activity.getName());
 		}
@@ -149,7 +153,7 @@ public class Project {
 		}	
 	}
 	
-	public String toString() {
+	public String toString() { //Christopher
 		String startText = "";
 		String leadText = "";
 		if(projectStart != null){

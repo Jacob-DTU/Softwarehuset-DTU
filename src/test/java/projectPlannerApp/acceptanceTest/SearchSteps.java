@@ -15,7 +15,7 @@ import projectPlannerApp.OperationNotAllowedException;
 import projectPlannerApp.Project;
 import projectPlannerApp.ProjectPlannerApp;
 
-public class SearchSteps{
+public class SearchSteps{ // Christopher
 
 	private ProjectPlannerApp projectPlannerApp;
 	private List<Employee> employees;

@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Employee {
+
+	/*
+	 * Employee object: Christopher
+	 */
 		
 	private String initials;
 	

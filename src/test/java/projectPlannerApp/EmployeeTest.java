@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import projectPlannerApp.acceptanceTest.ErrorMessageHolder;
 
-class EmployeeTest {
+class EmployeeTest {//Simon
 	private Employee employee;
 	private ErrorMessageHolder error = new ErrorMessageHolder();
 	private Project project;

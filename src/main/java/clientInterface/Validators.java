@@ -13,7 +13,7 @@ public class Validators extends ClientInterface {
 	 * This class contains the methods used for validating a user input
 	 */
 		
-	public static int rangeValidator(int range, String input) {
+	public static int rangeValidator(int range, String input) { //Tobias
 		if (range == 0) {
 		    System.out.println("\nInput 0 to go back");
 		}
@@ -30,7 +30,7 @@ public class Validators extends ClientInterface {
 		return selector;
     }
 	
-	public static double hoursValidator() {
+	public static double hoursValidator() {//Simon
 		System.out.println("\nInput hours between 0 and 24");
 		
 	    double hours = getValidDouble("Input");
@@ -43,7 +43,7 @@ public class Validators extends ClientInterface {
 	}
 	
     
-    public static String stringValidator(String command) throws OperationNotAllowedException, ProjectLeadException {
+    public static String stringValidator(String command) throws OperationNotAllowedException, ProjectLeadException { //Christopher
     	String input = null;
     	    	
     	switch (command) {
@@ -76,7 +76,7 @@ public class Validators extends ClientInterface {
 	    return input;
     }
     
-    public static Date dateValidator(String command) {
+    public static Date dateValidator(String command) { // Jacob
     	int year = 0, month = 0, day = 0;
     	
     	System.out.println("\nEnter a date");
@@ -112,7 +112,7 @@ public class Validators extends ClientInterface {
     	return calendar.getDate(year, month, day);
 	}
     
-    private static String getValidString(String inputName) {
+    private static String getValidString(String inputName) {//Christopher
 		System.out.print(inputName + ": ");
     	String input = sc.next();
     	while (!sc.hasNextLine() || !Pattern.matches("[a-zA-Z]+", input)) {
@@ -124,7 +124,7 @@ public class Validators extends ClientInterface {
     	return input;
     }
     
-    public static int getValidInt(String inputName) {
+    public static int getValidInt(String inputName) { // Tobias
 		System.out.print(inputName + ": ");
 		sc.nextLine();
     	while (!sc.hasNextInt()) {
@@ -136,7 +136,7 @@ public class Validators extends ClientInterface {
     	return sc.nextInt();
     }
     
-    public static double getValidDouble(String inputName) {
+    public static double getValidDouble(String inputName) {//Simon
   		System.out.print(inputName + ": ");
   		sc.nextLine();
       	while (!sc.hasNextDouble()) {

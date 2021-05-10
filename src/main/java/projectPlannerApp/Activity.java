@@ -7,6 +7,10 @@ import projectPlannerCalendar.ActivityCalendar;
 import projectPlannerCalendar.Date;
 
 public class Activity {
+
+	/*
+	 * Class overview: Simon
+	 */
 	
 	private TooManyActivitiesException tooManyActivitiesError = new TooManyActivitiesException("Employee has too many activities");
 	private ProjectLeadException notProjectLeadError = new ProjectLeadException("Only project lead can make a new activity");
@@ -84,7 +88,7 @@ public class Activity {
 		this.associatedProject = project;
 	}
 	
-	public void setTimeframe(Employee client, int start, int end, int duration) throws ProjectLeadException {
+	public void setTimeframe(Employee client, int start, int end, int duration) throws ProjectLeadException { // Tobias
 		if (client.equals(associatedProject.getProjectLead())) {
 			setStart(start);
 			setEnd(end);
@@ -95,7 +99,7 @@ public class Activity {
 		}
 	}
 
-	public void addEmployee(Employee employee) throws TooManyActivitiesException {
+	public void addEmployee(Employee employee) throws TooManyActivitiesException { // Tobias
 		assert !employee.equals(null): "Precondition";
 		if (employee.getActivities().size() == 20) {//1
 			throw tooManyActivitiesError;
@@ -107,15 +111,15 @@ public class Activity {
 		assert employees.contains(employee) && employee.getActivities().contains(this): "Postcondition";
 	}
 	
-	public TimeRegistration newTimeRegistration(Date date, Employee employee, double hours) throws InvalidTimeRegistrationException {
+	public TimeRegistration newTimeRegistration(Date date, Employee employee, double hours) throws InvalidTimeRegistrationException { //Christopher
 		return calendar.newTimeRegistration(date, employee, hours);
 	}
 	
-	public TimeRegistration newTimeRegistration(Date startDate, Date endDate, Employee employee) throws InvalidTimeRegistrationException {
+	public TimeRegistration newTimeRegistration(Date startDate, Date endDate, Employee employee) throws InvalidTimeRegistrationException { //Christopher
 		return calendar.newTimeRegistration(startDate, endDate, employee);
 	}
 
-	public boolean contains(Employee employee) {
+	public boolean contains(Employee employee) { // Jacob
 		if (getEmployees().contains(employee)) {
 			return true;
 		}

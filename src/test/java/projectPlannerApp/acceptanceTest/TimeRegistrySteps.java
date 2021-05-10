@@ -18,7 +18,7 @@ import projectPlannerApp.TimeRegistration;
 import projectPlannerApp.TooManyActivitiesException;
 import projectPlannerCalendar.Date;
 
-public class TimeRegistrySteps {
+public class TimeRegistrySteps { // Christopher
 	
 	private ProjectPlannerApp projectPlannerApp;
 	private ErrorMessageHolder errorMessageHolder;

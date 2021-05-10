@@ -5,7 +5,9 @@ import java.util.Map;
 import java.util.ArrayList;
 
 public class Search{
-
+	/*
+	 * Search employees: Jacob
+	 */
 	public static List<Employee> searchEmployees(Map<String, Employee> employees, String initials){
 		assert (initials.length() <= 4 && employees != null) : "Precondition"; 
 		List<Employee> list = new ArrayList<Employee>();
@@ -40,7 +42,7 @@ public class Search{
 innerloop: for(Employee original: originallist.values()) {
 				if(sorted.getInitials().equals(original.getInitials())) {
 					exist = true;
-					break innerloop; //Speed so not O(n*k) always gets fulfilled
+					break innerloop;
 				}
 			}
 			if(!exist) {
@@ -59,7 +61,5 @@ innerloop: for(Employee original: originallist.values()) {
 		}
 		return false;
 	}
-    
-
 
 }

@@ -9,8 +9,10 @@ import java.util.Scanner;
 
 
 public class ClientInterface {
-	
+
+
 	/*
+	 * Client Interface: Jacob
 	 * This class consists of methods for the client to access/view objects
 	 */
 
@@ -40,14 +42,15 @@ public class ClientInterface {
 	}
 	
 
-	public static void showLogin() throws OperationNotAllowedException, ProjectLeadException, InvalidTimeRegistrationException {
+	public static void showLogin() throws OperationNotAllowedException, ProjectLeadException, InvalidTimeRegistrationException {//Tobias
 		initials = Validators.stringValidator("initials");
 		client = app.getEmployee(initials.toUpperCase());
 		
 		showProjectPlannerApp();
 	}
 
-	public static void showProjectPlannerApp() throws OperationNotAllowedException, ProjectLeadException, InvalidTimeRegistrationException {   	
+	public static void showProjectPlannerApp() throws OperationNotAllowedException, ProjectLeadException, InvalidTimeRegistrationException {//Tobias   	
+		
 		Options.subpaths.add("->Project Planner App");
 
 		appLoop: while (true) {
@@ -95,7 +98,7 @@ public class ClientInterface {
 		}
 	}
 
-	public static void showEmployeeOverview() throws OperationNotAllowedException, ProjectLeadException, InvalidTimeRegistrationException {
+	public static void showEmployeeOverview() throws OperationNotAllowedException, ProjectLeadException, InvalidTimeRegistrationException {//Tobias
 		Options.subpaths.add("->Employee Overview");
 
 		employeeOverviewLoop: while (true) {
@@ -120,7 +123,7 @@ public class ClientInterface {
 		}
 	}
 
-	public static void showProjectOverview() throws OperationNotAllowedException, ProjectLeadException, InvalidTimeRegistrationException {
+	public static void showProjectOverview() throws OperationNotAllowedException, ProjectLeadException, InvalidTimeRegistrationException {//Christopher
 		Options.subpaths.add("->Project Overview");
 
 		projectOverviewLoop: while (true) {
@@ -140,7 +143,7 @@ public class ClientInterface {
 		}
 	}
 
-	public static void showActivityOverview() throws OperationNotAllowedException, ProjectLeadException, InvalidTimeRegistrationException {
+	public static void showActivityOverview() throws OperationNotAllowedException, ProjectLeadException, InvalidTimeRegistrationException {//Christopher
 		Options.subpaths.add("->Activity Overview");
 
 		activityOverviewLoop: while (true) {
@@ -160,7 +163,7 @@ public class ClientInterface {
 		}
 	}
 	
-	public static void showDateOverview() throws OperationNotAllowedException, ProjectLeadException {
+	public static void showDateOverview() throws OperationNotAllowedException, ProjectLeadException {//Simon
 		Options.subpaths.add("->Date Overview");
 
 		dateOverviewLoop: while (true) {
@@ -180,7 +183,7 @@ public class ClientInterface {
 		}
 	}
 	
-	public static void showTimeRegistrationOverview() throws OperationNotAllowedException, ProjectLeadException {
+	public static void showTimeRegistrationOverview() throws OperationNotAllowedException, ProjectLeadException {//Simon
 		Options.subpaths.add("->Time Registration Overview");
 
 		registrationOverviewLoop: while (true) {
@@ -200,7 +203,7 @@ public class ClientInterface {
 		}
 	}
 	
-	public static void showEmployee() throws OperationNotAllowedException, ProjectLeadException, InvalidTimeRegistrationException {
+	public static void showEmployee() throws OperationNotAllowedException, ProjectLeadException, InvalidTimeRegistrationException { //Tobias
 		Options.subpaths.add("->Employee " + employee.toString());
 		Employee selectedEmployee = employee;
 		
@@ -227,7 +230,8 @@ public class ClientInterface {
 		}
 	}
 	
-	public static void showProject() throws OperationNotAllowedException,ProjectLeadException, InvalidTimeRegistrationException {
+	
+	public static void showProject() throws OperationNotAllowedException,ProjectLeadException, InvalidTimeRegistrationException { // Christopher
 		Options.subpaths.add("->Project " + project.getProjectNumber());
 
 		projectLoop: while(true){
@@ -266,7 +270,7 @@ public class ClientInterface {
 		}
 	}
 	
-	public static void showActivity() throws OperationNotAllowedException, ProjectLeadException, InvalidTimeRegistrationException {
+	public static void showActivity() throws OperationNotAllowedException, ProjectLeadException, InvalidTimeRegistrationException {//Simon
 		Options.subpaths.add("->Activity " + activity.getName());
 		Activity selectedActivity = activity;
 		
@@ -311,7 +315,7 @@ public class ClientInterface {
 		}
 	}
 	
-	public static void showCalendar() throws OperationNotAllowedException, ProjectLeadException {
+	public static void showCalendar() throws OperationNotAllowedException, ProjectLeadException { // Jacob
 		Options.subpaths.add("->Activity calendar");
 
 		calendarLoop: while (true) {
@@ -336,7 +340,7 @@ public class ClientInterface {
 		}
 	}
 	
-	public static void showDate() throws OperationNotAllowedException, ProjectLeadException {
+	public static void showDate() throws OperationNotAllowedException, ProjectLeadException { // Jacob
 		Options.subpaths.add("->" + date.toString());
 
 		dateLoop: while (true) {
@@ -356,7 +360,7 @@ public class ClientInterface {
 		}
 	}
 	
-	public static void showTimeRegistration() throws OperationNotAllowedException, ProjectLeadException {
+	public static void showTimeRegistration() throws OperationNotAllowedException, ProjectLeadException { // Jacob
 		Options.subpaths.add("->Time Registration " + registration.getDate().toString());
 
 		registrationLoop: while (true) {

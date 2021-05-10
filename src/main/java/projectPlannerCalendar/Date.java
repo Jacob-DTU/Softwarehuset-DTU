@@ -7,6 +7,10 @@ import projectPlannerApp.Employee;
 import projectPlannerApp.TimeRegistration;
 
 public class Date {
+
+	/*
+	 * Date Objects: Jacob
+	 */
 	
 	private int year;
 	private int month;
@@ -97,7 +101,7 @@ public class Date {
 		return false;
 	}
 	
-	public String toString() {
+	public String toString() { 
 		String dayString = Integer.toString(day);
 		String monthString = Integer.toString(month);
 		String yearString = Integer.toString(year);

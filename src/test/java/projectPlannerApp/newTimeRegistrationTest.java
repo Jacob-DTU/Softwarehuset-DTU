@@ -2,15 +2,13 @@ package projectPlannerApp;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.Calendar;
-import java.util.HashMap;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import projectPlannerApp.acceptanceTest.ErrorMessageHolder;
 import projectPlannerCalendar.Date;
-class newTimeRegistrationTest { 
+class newTimeRegistrationTest {  //Jacob
 	private Date date;
 	private ProjectPlannerApp app;
 	private TimeRegistration time;

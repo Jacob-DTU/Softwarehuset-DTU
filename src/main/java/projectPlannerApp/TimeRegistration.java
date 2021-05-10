@@ -4,6 +4,10 @@ import java.util.List;
 import projectPlannerCalendar.Date;
 
 public class TimeRegistration {
+
+	/*
+	 * Time registration objects: Christopher
+	 */
 		
 	private Date date;
 	private Employee employee;

@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import projectPlannerApp.acceptanceTest.ErrorMessageHolder;
 import org.junit.jupiter.api.BeforeEach;
 
-class ActivityTest {
+class ActivityTest { //Tobias
 	private Project project; 
 	private Employee employee;
 	private Activity activity;

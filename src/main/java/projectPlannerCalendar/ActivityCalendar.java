@@ -19,6 +19,10 @@ import java.time.temporal.WeekFields;
 
 public class ActivityCalendar {
 	
+	/*
+	 * Activity Calendar: Simon
+	 */
+	
 	private InvalidTimeRegistrationException invalidTimeRegistrationError = new InvalidTimeRegistrationException("Invalid time registration");
 
 	private Calendar gregCalendar = new GregorianCalendar();
@@ -84,7 +88,7 @@ public class ActivityCalendar {
 		return date;
 	}
 	
-	public Date getDate(int week) {
+	public Date getDate(int week) { // Tobias
 		WeekFields weekFields = WeekFields.of(DayOfWeek.MONDAY, 1);
 		LocalDate dateStart = LocalDate.ofYearDay(YEAR, 1).with(weekFields.weekOfYear(), week).with(weekFields.dayOfWeek(), 1);
 		Date date = new Date(dateStart.getYear(), dateStart.getMonthValue(), dateStart.getDayOfMonth());
@@ -100,7 +104,7 @@ public class ActivityCalendar {
 		return date;
 	}
 	
-	private List<Date> getDateRange(Date start, Date end) {
+	private List<Date> getDateRange(Date start, Date end) { // Jacob
 		List<Date> dateRange = new ArrayList<Date>();
 		dateRange.add(start);
 		
@@ -130,7 +134,7 @@ public class ActivityCalendar {
 		return timeRegistrations;
 	}
 	
-	public TimeRegistration newTimeRegistration(Date date, Employee employee, double hours) throws InvalidTimeRegistrationException {
+	public TimeRegistration newTimeRegistration(Date date, Employee employee, double hours) throws InvalidTimeRegistrationException { // Christopher
 		assert !date.equals(null) && !employee.equals(null); 
 		if (hours < 0 || hours > 24) {//1
 			throw invalidTimeRegistrationError;
@@ -150,7 +154,7 @@ public class ActivityCalendar {
 	}
 
 	
-	public TimeRegistration newTimeRegistration(Date start, Date end, Employee employee) {
+	public TimeRegistration newTimeRegistration(Date start, Date end, Employee employee) { // Christopher
 		TimeRegistration registration = new TimeRegistration(getDateRange(start, end), employee);
 		
 		if (timeRegistrations.size() > 0) {
@@ -164,7 +168,7 @@ public class ActivityCalendar {
 		return registration;
 	}
 
-	private void sort() {
+	private void sort() { // Christopher
 		int index = timeRegistrations.size()-1;
 		while (timeRegistrations.get(index).getDate().isLEQ(timeRegistrations.get(index-1).getDate())) {
 			Collections.swap(timeRegistrations, index-1, index);
@@ -175,7 +179,7 @@ public class ActivityCalendar {
 		}
 	}
 	
-	public boolean contains(Date date) {
+	public boolean contains(Date date) { // Simon
 		if (dates.containsKey(date.getDateStamp())) {
 			return true;
 		}

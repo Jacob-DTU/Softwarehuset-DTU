@@ -15,7 +15,7 @@ import projectPlannerApp.ProjectPlannerApp;
 import projectPlannerCalendar.Date;
 
 
-public class ProjectSteps {
+public class ProjectSteps { // Simon
 
 	private Project project;
 	private ProjectPlannerApp projectPlannerApp;

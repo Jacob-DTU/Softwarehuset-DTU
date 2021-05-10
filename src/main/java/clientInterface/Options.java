@@ -7,14 +7,15 @@ import projectPlannerApp.*;
 import projectPlannerCalendar.*;
 
 public class Options extends ClientInterface {
-	
+
 	public static List<String> subpaths = new ArrayList<String>();
 	private static String path;
 	
 	/*
 	 * This class contains all visual parts of the interface
+	 * Interface prints: Jacob
 	 */
-	public static void printSectionLine() {
+	public static void printSectionLine() { // Jacob
 		path = "";
 		for (String subpath : subpaths) {
 			path += subpath;
@@ -26,11 +27,11 @@ public class Options extends ClientInterface {
 		System.out.println("_".repeat(path.length()+4));
 	}
 	
-	private static void printCloseConfirm() {
+	private static void printCloseConfirm() {//Tobias
 		System.out.println("\n 0. Close/Confirm");
 	}
 	
-	public static void printProjectPlannerApp() {
+	public static void printProjectPlannerApp() { //Tobias
 		printSectionLine();
 		
 		System.out.println("\n 0. Switch user");
@@ -43,7 +44,7 @@ public class Options extends ClientInterface {
 		System.out.println(" 7. Close program");
 	}
 	
-	public static void printEmployeeOverview() {
+	public static void printEmployeeOverview() { //Tobias
 		printSectionLine();
 
 		printCloseConfirm();
@@ -59,7 +60,7 @@ public class Options extends ClientInterface {
 		}
 	}
 	
-	public static void printProjectOverview() {
+	public static void printProjectOverview() {//Christopher
 		printSectionLine();
 
 		printCloseConfirm();
@@ -74,7 +75,7 @@ public class Options extends ClientInterface {
         }
 	}
 	
-	public static void printActivityOverview() {
+	public static void printActivityOverview() {//Christopher
 		printSectionLine();
 
 		printCloseConfirm();
@@ -90,7 +91,7 @@ public class Options extends ClientInterface {
 		
 	}
 	
-	public static void printDateOverview() {
+	public static void printDateOverview() {//Simon
 		printSectionLine();
 
 		printCloseConfirm();
@@ -105,7 +106,7 @@ public class Options extends ClientInterface {
         }
 	}
 	
-	public static void printTimeRegistrationOverview() {
+	public static void printTimeRegistrationOverview() {//Simon
 		printSectionLine();
 
 		printCloseConfirm();
@@ -120,7 +121,7 @@ public class Options extends ClientInterface {
         }
 	}
 		
-	public static void printEmployee() {
+	public static void printEmployee() { //Tobias
 		printSectionLine();
 
 		System.out.println("\nEmployee initials : " + employee.toString());
@@ -129,7 +130,7 @@ public class Options extends ClientInterface {
 		System.out.println(" 2. View projects lead by this employee");
 	}
 	
-	public static void printProject() {
+	public static void printProject() {//Christopher
 		printSectionLine();
 
 		System.out.println("\n" + project.toString());
@@ -142,7 +143,7 @@ public class Options extends ClientInterface {
 		System.out.println(" 6. Set Project name");
 	}
 	
-	public static void printActivity() {
+	public static void printActivity() {//Simon
 		printSectionLine();
 
 		System.out.println("\n" + activity.toString());
@@ -156,7 +157,7 @@ public class Options extends ClientInterface {
 		System.out.println(" 7. Create time registration");
 	}
 	
-	public static void printCalendar() {
+	public static void printCalendar() { // Jacob
 		printSectionLine();
 
 		System.out.println("\n" + calendar.toString());
@@ -165,7 +166,7 @@ public class Options extends ClientInterface {
 		System.out.println(" 2. View all time registrations");
 	}
 	
-	public static void printDate() {
+	public static void printDate() { // Jacob
 		printSectionLine();
 
 		System.out.println("\n" + date.toString());
@@ -173,7 +174,7 @@ public class Options extends ClientInterface {
 		System.out.println(" 1. View time registrations");
 	}
 	
-	public static void printTimeRegistration() {
+	public static void printTimeRegistration() { // Jacob
 		printSectionLine();
 
 		System.out.println("\n" + registration.toString());
@@ -182,7 +183,7 @@ public class Options extends ClientInterface {
 		System.out.println(" 2. change registered hours");
 	}
 	
-	public static void printCreateProject() {
+	public static void printCreateProject() { //Tobias
 		printSectionLine();
 		printCloseConfirm();
 
@@ -192,7 +193,7 @@ public class Options extends ClientInterface {
         System.out.println(" 4. Make a new project with a name, project lead and starting date");
 	}
 	
-	public static void printCreateActivity() {
+	public static void printCreateActivity() {//Christopher
 		printSectionLine();
 		printCloseConfirm();
 		
@@ -200,21 +201,21 @@ public class Options extends ClientInterface {
 		System.out.println(" 2. Make a new activity with a name, starting date, end date and duration");
 	}
 	
-	public static void printChangeActivityDuration() {
+	public static void printChangeActivityDuration() { //Tobias
 		System.out.println("Enter a duration for the activity");
 	}
 	
 	// ------------Error messages------------ //
 	
-	public static void printNoEmployeeSelected() {
+	public static void printNoEmployeeSelected() {//Christopher
 		System.out.println("No employee selected");
 	}
 
-	public static void printNoActivitySelected() {
+	public static void printNoActivitySelected() { //Simon
 		System.out.println("No activity selected");
 	}
 
-	public static void printActivityContainsEmployee() {
+	public static void printActivityContainsEmployee() { //Simon
 		System.out.println("Employee was already added to activity " + activity.getName());		
 	}
 }

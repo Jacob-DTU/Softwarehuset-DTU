@@ -7,12 +7,12 @@ import java.util.ArrayList;
 
 
 public class Modifiers extends ClientInterface {
-
+	
 	/*
 	 * This class contains all methods used by the client to modify or add to the application
 	 */
 
-	public static void createEmployee() throws OperationNotAllowedException, ProjectLeadException, InvalidTimeRegistrationException {
+	public static void createEmployee() throws OperationNotAllowedException, ProjectLeadException, InvalidTimeRegistrationException {//Tobias
 		Options.subpaths.add("->Create Employee");
 		Options.printSectionLine();
 
@@ -27,7 +27,7 @@ public class Modifiers extends ClientInterface {
 		Options.subpaths.remove(Options.subpaths.size()-1);
 	}
 
-	public static void createProject() throws OperationNotAllowedException, ProjectLeadException, InvalidTimeRegistrationException {
+	public static void createProject() throws OperationNotAllowedException, ProjectLeadException, InvalidTimeRegistrationException {//Tobias
 		Options.subpaths.add("->Create Project");
 		Options.printCreateProject();
 
@@ -73,7 +73,7 @@ public class Modifiers extends ClientInterface {
 		Options.subpaths.remove(Options.subpaths.size()-1);
 	}
 
-	public static void createActivity() throws OperationNotAllowedException, ProjectLeadException, InvalidTimeRegistrationException {
+	public static void createActivity() throws OperationNotAllowedException, ProjectLeadException, InvalidTimeRegistrationException {//Christopher
 		Options.subpaths.add("->Create Activity");
 
 		try {
@@ -115,7 +115,7 @@ public class Modifiers extends ClientInterface {
 		Options.subpaths.remove(Options.subpaths.size()-1);
 	}
 
-	public static void createTimeRegistration() throws InvalidTimeRegistrationException, OperationNotAllowedException, ProjectLeadException {
+	public static void createTimeRegistration() throws InvalidTimeRegistrationException, OperationNotAllowedException, ProjectLeadException {//Simon
 		Options.subpaths.add("->Create Time Registration");
 		Options.printSectionLine();
 		
@@ -134,7 +134,7 @@ public class Modifiers extends ClientInterface {
 		Options.subpaths.remove(Options.subpaths.size()-1);
 	}
 
-	public static void changeProjectName() throws OperationNotAllowedException, ProjectLeadException {
+	public static void changeProjectName() throws OperationNotAllowedException, ProjectLeadException {//Christopher
 		Options.subpaths.add("->Change Project Name");
 		Options.printSectionLine();
 		
@@ -143,7 +143,7 @@ public class Modifiers extends ClientInterface {
 		Options.subpaths.remove(Options.subpaths.size()-1);
 	}
 
-	public static void changeProjectStart() {
+	public static void changeProjectStart() {//Christopher
 		Options.subpaths.add("->Change Project Start");
 		Options.printSectionLine();
 		
@@ -152,7 +152,7 @@ public class Modifiers extends ClientInterface {
 		Options.subpaths.remove(Options.subpaths.size()-1);
 	}
 
-	public static void changeActivityName() throws OperationNotAllowedException, ProjectLeadException {
+	public static void changeActivityName() throws OperationNotAllowedException, ProjectLeadException {//Simon
 		Options.subpaths.add("->Change Activity Name");
 		Options.printSectionLine();
 
@@ -161,24 +161,24 @@ public class Modifiers extends ClientInterface {
 		Options.subpaths.remove(Options.subpaths.size()-1);
 	}
 
-	private static void changeActivityStart() {
+	private static void changeActivityStart() { // Simon
 		int newStart = Validators.rangeValidator(app.getCalendar().WEEKS, "Start week");
 		activity.setStart(newStart);
 	}
 
-	private static void changeActivityEnd() {
+	private static void changeActivityEnd() { // Simon
 		int newEnd = Validators.rangeValidator(app.getCalendar().WEEKS, "End week");
 		activity.setEnd(newEnd);
 	}
 
-	private static void changeActivityDuration() {
+	private static void changeActivityDuration() { // Simon
 		Options.printChangeActivityDuration();
 
 		int newDuration = Validators.getValidInt("Duration");
 		activity.setDuration(newDuration);
 	}
 
-	public static void changeActivityTimeFrame() {
+	public static void changeActivityTimeFrame() {//Simon
 		Options.subpaths.add("->Change Activity Time Frame");
 		Options.printSectionLine();
 
@@ -188,7 +188,7 @@ public class Modifiers extends ClientInterface {
 		Options.subpaths.remove(Options.subpaths.size()-1);
 	}
 
-	public static void changeTimeRegistrationHours() {
+	public static void changeTimeRegistrationHours() { // Jacob
 		Options.subpaths.add("->Change Time Registration Hours");
 		Options.printSectionLine();
 
@@ -197,7 +197,7 @@ public class Modifiers extends ClientInterface {
 		Options.subpaths.remove(Options.subpaths.size()-1);
 	}
 
-	public static void changeTimeRegistrationDate() {
+	public static void changeTimeRegistrationDate() { // Jacob
 		Options.subpaths.add("->Change Time Registration Date");
 		Options.printSectionLine();
 
@@ -206,7 +206,7 @@ public class Modifiers extends ClientInterface {
 		Options.subpaths.remove(Options.subpaths.size()-1);
 	}
 
-	public static void setProjectLead() throws OperationNotAllowedException, ProjectLeadException, InvalidTimeRegistrationException {
+	public static void setProjectLead() throws OperationNotAllowedException, ProjectLeadException, InvalidTimeRegistrationException {//Christopher
 		Options.subpaths.add("->Set Project Lead");
 		Options.printSectionLine();
 
@@ -228,7 +228,7 @@ public class Modifiers extends ClientInterface {
 		Options.subpaths.remove(Options.subpaths.size()-1);
 	}
 	
-	public static void addEmployee(Activity act) throws OperationNotAllowedException, ProjectLeadException, InvalidTimeRegistrationException {
+	public static void addEmployee(Activity act) throws OperationNotAllowedException, ProjectLeadException, InvalidTimeRegistrationException { // Simon
 		Options.subpaths.add("->Add Employee");
 		Options.printSectionLine();
 
@@ -255,7 +255,7 @@ public class Modifiers extends ClientInterface {
 		Options.subpaths.remove(Options.subpaths.size()-1);
 	}
 	
-	public static void removeEmployee(Activity act) throws OperationNotAllowedException, ProjectLeadException, InvalidTimeRegistrationException {
+	public static void removeEmployee(Activity act) throws OperationNotAllowedException, ProjectLeadException, InvalidTimeRegistrationException { //Simon
 		Options.subpaths.add("->Remove employee");
 		Options.printSectionLine();
 
@@ -272,7 +272,7 @@ public class Modifiers extends ClientInterface {
 		Options.subpaths.remove(Options.subpaths.size()-1);
 	}
 	
-	public static void removeActivity() throws OperationNotAllowedException, ProjectLeadException, InvalidTimeRegistrationException {
+	public static void removeActivity() throws OperationNotAllowedException, ProjectLeadException, InvalidTimeRegistrationException {//Christopher
 		Options.subpaths.add("->Remove Activity");
 
 		activities = new ArrayList(project.getActivities().values());

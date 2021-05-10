@@ -1,6 +1,6 @@
 package projectPlannerApp.acceptanceTest;
 
-public class ErrorMessageHolder {
+public class ErrorMessageHolder { //Tobias
 	private String errorMessage = "";
 
 	public String getErrorMessage() {
