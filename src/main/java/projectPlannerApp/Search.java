@@ -40,7 +40,7 @@ public class Search{
 innerloop: for(Employee original: originallist.values()) {
 				if(sorted.getInitials().equals(original.getInitials())) {
 					exist = true;
-					break innerloop; //Speed so not O(n*k) always
+					break innerloop; //Speed so not O(n*k) always gets fulfilled
 				}
 			}
 			if(!exist) {
