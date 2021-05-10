@@ -1,14 +1,26 @@
-########## MAIN COMPONENTS ##########
+INTERFACE MODEL:
+
+This interface model shows the general structure of the UI.
+The model shows the options available at each step in the UI.
+Each step has a pointer to the next step (Either "-" or "->")
+
+	a) The "-" pointer shows the next step which either has another pointer or is a final step
+	b) The "->" pointer indicates that the next step is part of a main structure. The Main structures are the LOGIN, MAIN OBJECTS and OBJECT OVERVIEWS
+
+
+########## LOGIN ###########
 
 Login:
-	- projectPlannerApp
+	-> projectPlannerApp
+
+########## MAIN OBJECTS ##########
 
 ProjectPlannerApp:
-	- Login
-	- Employee
-	- Employees overview
-	- Projects overview
-	- Calendar
+	-> Login
+	-> Employee
+	-> Employees overview
+	-> Projects overview
+	-> Calendar
 	- Create employee -> Employee
 	- create project -> Project
 
