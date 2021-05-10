@@ -12,8 +12,6 @@ public class ProjectPlannerApp {
 	/*
 	 * ProjectPlannerApp : Tobias
 	 */
-	
-	
 
 	private OperationNotAllowedException employeeAlreadyExistsError = new OperationNotAllowedException("An employee with these initials already exists");
 	

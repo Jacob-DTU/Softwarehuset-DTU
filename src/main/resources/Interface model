@@ -1,95 +1,84 @@
+########## MAIN COMPONENTS ##########
+
 Login:
 	- projectPlannerApp
 
 ProjectPlannerApp:
 	- Login
+	- Employee
 	- Employees overview
 	- Projects overview
-	- Activities overview (Predefined activities)
-	- Create employee
-	- create project
+	- Calendar
+	- Create employee -> Employee
+	- create project -> Project
 
 Employee:
-	- Activities overview (employee assigned to)
-	- Projects overview (employee is lead)
+	-> Activity overview (employee is assigned to)
+	-> Project overview (employee is lead)
 
 Project:
-    - Create activity
-    - Remove activity
-    - Activities overview
-    - set project lead (fin)
-    - set project start (fin)
-    - set project name (fin)
+    - Create activity -> Activity
+    - Remove activity -> Activity overview
+    -> Activities overview
+    - set project lead -> Employee overview
+    - set project start (final)
+    - set project name (final)
 
 Activity:
-	- Employees overview
-	- Calendar
-	- set time frame (fin)
-	- Set name (fin)
-	- Add Employee (fin)
-	- Remove employee (fin)
-	- Create time registration
-	
-	Maybe:
-	- Set start (fin)
-	- Set end (fin)
-	- Set duration (fin)
+	-> Employees overview
+	-> Calendar
+	- set time frame (final)
+	- Set name (finalal)
+	- Add Employee -> Employee overview
+	- Remove employee -> Employee overview
+	- Create time registration -> Time registration
 	
 Calendar:
-	- Dates overview
-	- time registrations overview (if project lead)	
+	- Dates overview -> Date
+	- time registrations overview (if project lead) -> Time registration
 
 Date:
-	- time registrations overview
-
+	- time registrations overview -> Time registraition
+	
 Time registration:
-	- set date (fin)
-	- set hours (fin)
+	- set date (final)
+	- set hours (final)
 
+########## OBJECT OVERVIEWS ##########
+
+Employee overview:
+	- Search -> Employee overview
+	-> Employee
+
+Project overview:
+	-> Project
+
+Activity overview:
+	-> Activity
+
+
+########## LAYER STRUCTURE ##########
 
 Layer structure:
 Login
 	-> Project planner app											
-		-> Switch user  -> Login								
-		-> Show client profile  -> Employee			                
-                                                                      
-		-> Employees overview  -> Employee                          
-			-> Search                                               
-				-> Employee overview                                         
+		- Switch user -> Login								
+		- Show client profile  			                
+        	-> Employee
+                                       
+		-> Employees overview                                                             
 				                                                      
-		-> Projects overview                                          
-			-> Project                                                
-				-> Activities overview                                                                                 
-				-> Show project lead -> Employee                      
-				-> Set project lead                                   
-				-> Change project name                                
-				-> Change project starting date                       
-				                                                    
-				                                                      
-		-> Activities overview                                      
-			-> Activity                                               
-				-> Activity calendar (overview of dates)                                 
-					-> Date                                         
-					-> Time registrations overview                  
-						-> Time registration                        
-				-> Change activity name                               
-				-> Change start                                       
-				-> Change end                                         
-				-> Change duration                                  
-				                                                      
-		-> Calendar (overview of dates with timeReg.)                                              
-			-> Date                                                   
-				-> Time registration                                  
-					-> Change registered hours                        
-					-> Change date                                    
+		-> Projects overview                                       
+		                              				                                                      
+		-> Calendar                                             
+					                                 
+        - Create employee -> Employee
 
-        -> Create employee  -> Employee
-
-		-> Create project
-			-> Project with name  -> Project                          
-			-> Project with name and starting date  -> Project
-			-> Project with name and lead  -> Project
-			-> Project with name, lead and starting date  -> Project
+		- Create project
+			- Project with name  -> Project                          
+			- Project with name and starting date  -> Project
+			- Project with name and lead  -> Project
+			- Project with name, lead and starting date  -> Project
 		                                                                                                            
 			
 			
