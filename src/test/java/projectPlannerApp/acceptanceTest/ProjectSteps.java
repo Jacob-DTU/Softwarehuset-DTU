@@ -12,7 +12,6 @@ import projectPlannerApp.OperationNotAllowedException;
 import projectPlannerApp.Project;
 import projectPlannerApp.ProjectLeadException;
 import projectPlannerApp.ProjectPlannerApp;
-import projectPlannerCalendar.ActivityCalendar;
 import projectPlannerCalendar.Date;
 
 

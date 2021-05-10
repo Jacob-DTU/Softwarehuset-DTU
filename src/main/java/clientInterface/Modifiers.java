@@ -4,9 +4,7 @@ import projectPlannerApp.*;
 import projectPlannerCalendar.*;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import clientInterface.*;
 
 public class Modifiers extends ClientInterface {
 
@@ -33,7 +31,7 @@ public class Modifiers extends ClientInterface {
 		Options.subpaths.add("->Create Project");
 		Options.printCreateProject();
 
-		selector = Validators.rangeValidator(4);
+		selector = Validators.rangeValidator(4, "Input");
 		switch(selector) {
 			case 0: // go back
 				break;
@@ -77,7 +75,6 @@ public class Modifiers extends ClientInterface {
 
 	public static void createActivity() throws OperationNotAllowedException, ProjectLeadException, InvalidTimeRegistrationException {
 		Options.subpaths.add("->Create Activity");
-		Options.printCreateActivity();
 
 		try {
 			if (!project.hasProjectLead()) {
@@ -92,7 +89,9 @@ public class Modifiers extends ClientInterface {
 			return;
 		}
 		
-		selector = Validators.rangeValidator(2);
+		Options.printCreateActivity();
+		
+		selector = Validators.rangeValidator(2, "Input");
 		switch(selector) {
 			case 0: // cancel
 				break;
@@ -105,8 +104,9 @@ public class Modifiers extends ClientInterface {
 
 			case 2: // Name, start, end and duration
 				name = Validators.stringValidator("name");
-				int start = Validators.rangeValidator(app.getCalendar().WEEKS);
-				int end = Validators.rangeValidator(app.getCalendar().WEEKS);
+				int start = Validators.rangeValidator(app.getCalendar().WEEKS, "Start week");
+				int end = Validators.rangeValidator(app.getCalendar().WEEKS, "End week");
+				System.out.println("\nEnter a duration");
 				int duration = Validators.getValidInt("Input");
 				activity = project.newActivity(client, name, start, end, duration);
 				showActivity();
@@ -115,7 +115,7 @@ public class Modifiers extends ClientInterface {
 		Options.subpaths.remove(Options.subpaths.size()-1);
 	}
 
-	public static void createTimeRegistration() throws InvalidTimeRegistrationException {
+	public static void createTimeRegistration() throws InvalidTimeRegistrationException, OperationNotAllowedException, ProjectLeadException {
 		Options.subpaths.add("->Create Time Registration");
 		Options.printSectionLine();
 		
@@ -123,11 +123,13 @@ public class Modifiers extends ClientInterface {
 			Date start = Validators.dateValidator("registration");
 			Date end = Validators.dateValidator("registration");
 			registration = activity.newTimeRegistration(start, end, client);
+			showTimeRegistration();
 		}
 		else {			
 			date = Validators.dateValidator("registration");
 			double hours = Validators.hoursValidator();
 			registration = activity.newTimeRegistration(date, client, hours);
+			showTimeRegistration();
 		}
 		Options.subpaths.remove(Options.subpaths.size()-1);
 	}
@@ -160,24 +162,20 @@ public class Modifiers extends ClientInterface {
 	}
 
 	private static void changeActivityStart() {
-		Options.printChangeActivityStart();
-
-		int newStart = Validators.rangeValidator(app.getCalendar().WEEKS);
+		int newStart = Validators.rangeValidator(app.getCalendar().WEEKS, "Start week");
 		activity.setStart(newStart);
 	}
 
 	private static void changeActivityEnd() {
-		Options.printChangeActivityEnd();
-
-		int newEnd = Validators.rangeValidator(app.getCalendar().WEEKS);
-		activity.setStart(newEnd);
+		int newEnd = Validators.rangeValidator(app.getCalendar().WEEKS, "End week");
+		activity.setEnd(newEnd);
 	}
 
 	private static void changeActivityDuration() {
 		Options.printChangeActivityDuration();
 
-		int newDuration = Validators.getValidInt("Input");
-		activity.setStart(newDuration);
+		int newDuration = Validators.getValidInt("Duration");
+		activity.setDuration(newDuration);
 	}
 
 	public static void changeActivityTimeFrame() {
@@ -217,7 +215,12 @@ public class Modifiers extends ClientInterface {
 
 		showEmployeeOverview();
 		if(employee != null) {
-			project.setProjectLead(employee);
+			try{
+				project.setProjectLead(employee);
+			}
+			catch(ProjectLeadException e){
+				System.out.println("\n" + e.getMessage());
+			}
 		}
 		else {
 			Options.printNoEmployeeSelected();

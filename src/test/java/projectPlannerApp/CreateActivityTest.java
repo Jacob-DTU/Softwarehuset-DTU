@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 
 import projectPlannerApp.acceptanceTest.ErrorMessageHolder;
 
-import projectPlannerCalendar.Date;
 
 class CreateActivityTest {
 	private ProjectPlannerApp app = new ProjectPlannerApp();
@@ -84,7 +83,8 @@ class CreateActivityTest {
 		assertTrue(project.getActivities().get("activity").getDuration() == 17);
 		assertTrue(project.contains(activity));
 	}
-
+	
+	//creates two activities. If it works, then pre- and post-conditions are met.
 	@Test
 	void DbCTest() throws ProjectLeadException, OperationNotAllowedException {
 		Project project;

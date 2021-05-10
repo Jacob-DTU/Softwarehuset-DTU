@@ -16,12 +16,12 @@ public class Search{
 				}
 			}
 		}
-		assert (list != null && comparer(list,employees)): "Postcondition";
+		assert (list != null && compare(list,employees)): "Postcondition";
 		return list;
 	}
 	
 	//Design by contract only
-	public static boolean comparer(List<Employee> sortedlist,Map<String,Employee> originallist) {
+	public static boolean compare(List<Employee> sortedlist,Map<String,Employee> originallist) {
 		if(sortedlist.size()==0) {
 			return true;
 		}

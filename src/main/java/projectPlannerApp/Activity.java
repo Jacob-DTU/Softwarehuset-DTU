@@ -5,7 +5,6 @@ import java.util.List;
 
 import projectPlannerCalendar.ActivityCalendar;
 import projectPlannerCalendar.Date;
-import projectPlannerCalendar.ActivityCalendar;
 
 public class Activity {
 	
@@ -98,14 +97,14 @@ public class Activity {
 
 	public void addEmployee(Employee employee) throws TooManyActivitiesException {
 		assert !employee.equals(null): "Precondition";
-		if (employee.getActivities().size() == 20) { //1
+		if (employee.getActivities().size() == 20) {//1
 			throw tooManyActivitiesError;
 		}
 		else {
 			getEmployees().add(employee);
 			employee.getActivities().add(this);
 		}
-		assert employee.getActivities().contains(this): "Postcondition";
+		assert employees.contains(employee) && employee.getActivities().contains(this): "Postcondition";
 	}
 	
 	public TimeRegistration newTimeRegistration(Date date, Employee employee, double hours) throws InvalidTimeRegistrationException {
@@ -131,6 +130,6 @@ public class Activity {
 		return employees;
 	}
 	public String toString(){
-		return getName() + " : " + getStart() + " : " + getEnd() + " : " + getDuration();
+		return name + ", Start : " + start + ", End : " + end + ", Duration : " + duration;
 	}
 }

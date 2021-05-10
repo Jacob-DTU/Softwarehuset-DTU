@@ -1,7 +1,6 @@
 package clientInterface;
 
 import java.time.YearMonth;
-import java.util.Scanner;
 import java.util.regex.Pattern;
 
 import projectPlannerApp.OperationNotAllowedException;
@@ -14,7 +13,7 @@ public class Validators extends ClientInterface {
 	 * This class contains the methods used for validating a user input
 	 */
 		
-	public static int rangeValidator(int range) {
+	public static int rangeValidator(int range, String input) {
 		if (range == 0) {
 		    System.out.println("\nInput 0 to go back");
 		}
@@ -22,10 +21,10 @@ public class Validators extends ClientInterface {
 			System.out.println("\nInput a number between 0 and " + range);
 		}
 		
-	    selector = getValidInt("Input");
+	    selector = getValidInt(input);
 	    while (selector > range || selector < 0) {
             System.out.println("Invalid number: It must be a number between 0 and " + range );
-            selector = getValidInt("Input");
+            selector = getValidInt(input);
 	    }
 	    
 		return selector;
@@ -83,7 +82,7 @@ public class Validators extends ClientInterface {
     	System.out.println("\nEnter a date");
     	year = getValidInt("Year");
     	while (year < app.getCalendar().YEAR) {
-    		System.out.println("Invalid year: It can not be a year earlier than" + app.getCalendar().YEAR);
+    		System.out.println("Invalid year: It can not be a year earlier than " + app.getCalendar().YEAR);
     		year = getValidInt("Year");
     	}
     	
@@ -101,11 +100,13 @@ public class Validators extends ClientInterface {
     	}
     	
     	switch (command) {
-    		case "project": // get date from app calendar
+			case "project": // get date from app calendar
     			calendar = app.getCalendar();
-    	
+				break;
+				
     		case "registration": // get date from activity calendar
     			calendar = activity.getCalendar();
+    			break;
     	}
     	
     	return calendar.getDate(year, month, day);

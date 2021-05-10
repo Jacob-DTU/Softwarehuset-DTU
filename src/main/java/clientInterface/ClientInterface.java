@@ -2,17 +2,10 @@ package clientInterface;
 
 import projectPlannerApp.*;
 import projectPlannerCalendar.*;
-
-import java.util.NoSuchElementException;
-
 import java.util.List;
-import java.util.Map;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Scanner;
-import java.util.regex.Pattern;
 
-import javax.print.attribute.IntegerSyntax;
 
 
 public class ClientInterface {
@@ -60,7 +53,7 @@ public class ClientInterface {
 		appLoop: while (true) {
 			Options.printProjectPlannerApp();
 			
-			selector = Validators.rangeValidator(7);
+			selector = Validators.rangeValidator(7, "Input");
 			switch(selector) {
 
 				case 0: // Switch user
@@ -108,7 +101,7 @@ public class ClientInterface {
 		employeeOverviewLoop: while (true) {
 			Options.printEmployeeOverview();
 			
-			selector = Validators.rangeValidator(employees.size()+1);
+			selector = Validators.rangeValidator(employees.size()+1, "Input");
 			switch(selector) {
 				case 0: // close/confirm
 					Options.subpaths.remove(Options.subpaths.size()-1);
@@ -133,7 +126,7 @@ public class ClientInterface {
 		projectOverviewLoop: while (true) {
 			Options.printProjectOverview();  
 			
-			selector = Validators.rangeValidator(projects.size());
+			selector = Validators.rangeValidator(projects.size(), "Input");
 			switch(selector) {
 				case 0: // close/confirm
 					Options.subpaths.remove(Options.subpaths.size()-1);
@@ -153,7 +146,7 @@ public class ClientInterface {
 		activityOverviewLoop: while (true) {
 			Options.printActivityOverview();    
 			
-			selector = Validators.rangeValidator(activities.size());
+			selector = Validators.rangeValidator(activities.size(), "Input");
 			switch(selector) {
 			case 0: // close/confirm
 				Options.subpaths.remove(Options.subpaths.size()-1);
@@ -173,7 +166,7 @@ public class ClientInterface {
 		dateOverviewLoop: while (true) {
 			Options.printDateOverview();
 			
-			selector = Validators.rangeValidator(dates.size());
+			selector = Validators.rangeValidator(dates.size(), "Input");
 			switch(selector) {
 				case 0: // close/confirm
 					Options.subpaths.remove(Options.subpaths.size()-1);
@@ -193,7 +186,7 @@ public class ClientInterface {
 		registrationOverviewLoop: while (true) {
 			Options.printTimeRegistrationOverview();
 			
-			selector = Validators.rangeValidator(registrations.size());
+			selector = Validators.rangeValidator(registrations.size(), "Input");
 			switch(selector) {
 				case 0: // close/confirm
 					Options.subpaths.remove(Options.subpaths.size()-1);
@@ -214,7 +207,7 @@ public class ClientInterface {
 		employeeLoop: while (true) {
 			Options.printEmployee();
 			
-			selector = Validators.rangeValidator(2);
+			selector = Validators.rangeValidator(2, "Input");
 			switch(selector) {
 				case 0: // close/confirm
 					Options.subpaths.remove(Options.subpaths.size()-1);
@@ -239,7 +232,7 @@ public class ClientInterface {
 
 		projectLoop: while(true){
 			Options.printProject();
-			selector = Validators.rangeValidator(6);
+			selector = Validators.rangeValidator(6, "Input");
 			switch(selector) {
 				case 0: //close/confirm
 					Options.subpaths.remove(Options.subpaths.size()-1);
@@ -279,7 +272,7 @@ public class ClientInterface {
 		
 		activityLoop: while(true) {
 			Options.printActivity();
-			selector = Validators.rangeValidator(7);
+			selector = Validators.rangeValidator(7, "Input");
 			switch(selector) {
 				case 0: // Close/confirm
 					Options.subpaths.remove(Options.subpaths.size()-1);
@@ -292,7 +285,7 @@ public class ClientInterface {
 					
 				case 2: //Calendar
 					calendar = selectedActivity.getCalendar();
-					showDateOverview();
+					showCalendar();
 					break; 
 					
 				case 3: //set time frame
@@ -324,7 +317,7 @@ public class ClientInterface {
 		calendarLoop: while (true) {
 			Options.printCalendar();
 			
-			selector = Validators.rangeValidator(2);
+			selector = Validators.rangeValidator(2, "Input");
 			switch(selector) {
 				case 0: // close/confirm
 					Options.subpaths.remove(Options.subpaths.size()-1);
@@ -349,7 +342,7 @@ public class ClientInterface {
 		dateLoop: while (true) {
 			Options.printDate();
 			
-			selector = Validators.rangeValidator(1);
+			selector = Validators.rangeValidator(1, "Input");
 			switch(selector) {
 				case 0: // close/confirm
 					Options.subpaths.remove(Options.subpaths.size()-1);
@@ -364,24 +357,22 @@ public class ClientInterface {
 	}
 	
 	public static void showTimeRegistration() throws OperationNotAllowedException, ProjectLeadException {
-		Options.subpaths.add("->Time Registration " + registration.toString());
+		Options.subpaths.add("->Time Registration " + registration.getDate().toString());
 
 		registrationLoop: while (true) {
 			Options.printTimeRegistration();
 			
-			selector = Validators.rangeValidator(2);
+			selector = Validators.rangeValidator(2, "Input");
 			switch(selector) {
 				case 0: // close/confirm
 					Options.subpaths.remove(Options.subpaths.size()-1);
 					break registrationLoop;
 					
 				case 1: // change time registration date
-					date = Validators.dateValidator("registration");
 					Modifiers.changeTimeRegistrationDate();
 					break;
 					
 				case 2: // change time registration hours
-					double hours = Validators.hoursValidator();
 					Modifiers.changeTimeRegistrationHours();
 					break;
 			}

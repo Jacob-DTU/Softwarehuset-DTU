@@ -48,7 +48,7 @@ public class TimeRegistration {
 	}
 	
 	public String toString() {
-		return date.toString() + "\t" + employee.getInitials() + "\t" + Double.toString(hours);
+		return date.toString() + ", Employee : " + employee.getInitials() + ", Hours : " + Double.toString(hours);
 	}
 	
 }

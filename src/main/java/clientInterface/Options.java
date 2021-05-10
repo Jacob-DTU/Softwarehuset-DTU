@@ -161,8 +161,8 @@ public class Options extends ClientInterface {
 
 		System.out.println("\n" + calendar.toString());
 		printCloseConfirm();
-		System.out.println(" 1. View dates with time registrations");
-		System.out.println(" 1. View all time registrations");
+		System.out.println(" 1. View dates");
+		System.out.println(" 2. View all time registrations");
 	}
 	
 	public static void printDate() {
@@ -200,18 +200,7 @@ public class Options extends ClientInterface {
 		System.out.println(" 2. Make a new activity with a name, starting date, end date and duration");
 	}
 	
-	public static void printChangeActivityStart() {
-		printSectionLine();
-		System.out.println("Enter a week number");
-	}
-	
-	public static void printChangeActivityEnd() {
-		printSectionLine();
-		System.out.println("Enter a week number");
-	}
-	
 	public static void printChangeActivityDuration() {
-		printSectionLine();
 		System.out.println("Enter a duration for the activity");
 	}
 	

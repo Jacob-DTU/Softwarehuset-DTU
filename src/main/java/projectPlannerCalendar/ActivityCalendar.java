@@ -21,12 +21,12 @@ public class ActivityCalendar {
 	
 	private InvalidTimeRegistrationException invalidTimeRegistrationError = new InvalidTimeRegistrationException("Invalid time registration");
 
-	private Calendar calendar = new GregorianCalendar();
+	private Calendar gregCalendar = new GregorianCalendar();
       
 	public final int YEAR = LocalDate.now().getYear();
 	public final int MONTH = LocalDate.now().getMonthValue();
 	public final int DAY = LocalDate.now().getDayOfMonth();
-	public final int WEEKS = calendar.getActualMaximum(calendar.WEEK_OF_YEAR);
+	public final int WEEKS = gregCalendar.getActualMaximum(gregCalendar.WEEK_OF_YEAR);
 	
 	private Map<Integer, Date> dates = new HashMap<Integer, Date>();
 	private List<TimeRegistration> timeRegistrations = new ArrayList<TimeRegistration>();
@@ -47,8 +47,8 @@ public class ActivityCalendar {
 	}
 	
 	private void initCalendar() {
-		calendar.setFirstDayOfWeek(Calendar.MONDAY);
-		calendar.set(YEAR, MONTH, DAY);
+		gregCalendar.setFirstDayOfWeek(Calendar.MONDAY);
+		gregCalendar.set(YEAR, MONTH, DAY);
 	}
 	
 	public void setStart(Date date) {
@@ -89,7 +89,7 @@ public class ActivityCalendar {
 		LocalDate dateStart = LocalDate.ofYearDay(YEAR, 1).with(weekFields.weekOfYear(), week).with(weekFields.dayOfWeek(), 1);
 		Date date = new Date(dateStart.getYear(), dateStart.getMonthValue(), dateStart.getDayOfMonth());
 		
-		if (date.isLEQ(getDate(calendar.YEAR, calendar.MONTH, calendar.DATE))) {
+		if (date.isLessThan(getDate(YEAR, MONTH, DAY))) {
 			dateStart = LocalDate.ofYearDay(YEAR+1, 1).with(weekFields.weekOfYear(), week).with(weekFields.dayOfWeek(), 1);
 			date = new Date(dateStart.getYear(), dateStart.getMonthValue(), dateStart.getDayOfMonth());
 		}
@@ -104,12 +104,12 @@ public class ActivityCalendar {
 		List<Date> dateRange = new ArrayList<Date>();
 		dateRange.add(start);
 		
-		calendar.set(start.getYear(), start.getMonth(), start.getDay());
+		gregCalendar.set(start.getYear(), start.getMonth(), start.getDay());
 		Date currDate = start;
 		
 		while (currDate.isLessThan(end)) {
-			calendar.roll(DAY, true);
-			currDate = getDate(calendar.YEAR, calendar.MONTH, calendar.DATE);
+			gregCalendar.roll(DAY, true);
+			currDate = getDate(YEAR, MONTH, DAY);
 			dateRange.add(currDate);
 		}
 		
@@ -131,7 +131,7 @@ public class ActivityCalendar {
 	}
 	
 	public TimeRegistration newTimeRegistration(Date date, Employee employee, double hours) throws InvalidTimeRegistrationException {
-		assert hours > 0 && hours < 24 && !date.equals(null) && !employee.equals(null); 
+		assert !date.equals(null) && !employee.equals(null); 
 		if (hours < 0 || hours > 24) {//1
 			throw invalidTimeRegistrationError;
 		}
@@ -145,7 +145,7 @@ public class ActivityCalendar {
 		else {
 			timeRegistrations.add(registration);
 		}
-		assert timeRegistrations.contains(registration);
+		assert timeRegistrations.contains(registration) && registration.getHours() > 0 && registration.getHours() < 24;
 		return registration;
 	}
 
@@ -183,6 +183,9 @@ public class ActivityCalendar {
 	}
 	
 	public String toString() {
+		if (activity == null) {
+			return "App calendar";
+		}
 		return "Calendar for activity " + activity.getName();
 	}
 }

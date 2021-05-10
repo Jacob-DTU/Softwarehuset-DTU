@@ -1,13 +1,7 @@
 package projectPlannerApp;
 
 import java.time.Year;
-import java.util.List;
-
-import projectPlannerCalendar.ActivityCalendar;
 import projectPlannerCalendar.Date;
-
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 
 public class Project {
@@ -40,13 +34,13 @@ public class Project {
 	public Project(String name, int numberOfProjects, Employee projectLead) throws ProjectLeadException {
 		this.name = name;
 		this.projectNumber = String.format("%ty", Year.now()) + String.format("%04d", numberOfProjects);
-		this.projectLead = projectLead;
+		setProjectLead(projectLead);
 	}
 	
 	public Project(String name, int numberOfProjects, Employee projectLead, Date date) throws ProjectLeadException {
 		this.name = name;
 		this.projectNumber = String.format("%ty", Year.now()) + String.format("%04d", numberOfProjects);
-		this.projectLead = projectLead;
+		setProjectLead(projectLead);
 		this.projectStart = date;
 	}
 	
@@ -128,10 +122,9 @@ public class Project {
 		else {
 			throw noProjectLeadError;
 		}
-		assert activities.containsValue(activity) && (activity.getStart() == start && activity.getEnd() == end &&
-		 activity.getDuration() == duration && activity.getName().equals(name)) || (activity.getName().equals(name) &&
-		 activity.getStart() == null && activity.getEnd() == null && activity.getDuration() == null) // SKAL FIXES
-		 : "Postcondition";
+		assert activities.containsValue(activity) && ((activity.getStart() == start && activity.getEnd() == end &&
+		 activity.getDuration() == duration && activity.getName().equals(name)) ||
+		 (activity.getName().equals(name) &&activity.getStart() == 0 && activity.getEnd() == 0 && activity.getDuration() == 0)): "Postcondition";
 		return activity;
 	}
 	
@@ -162,7 +155,7 @@ public class Project {
 		String startText = "";
 		String leadText = "";
 		if(projectStart != null){
-			startText =  ",  ProjectStart : " + getProjectStart().toString();
+			startText =  ", ProjectStart : " + getProjectStart().toString();
 		}
 		if(projectLead != null){
 			leadText = ", ProjectLead : " + getProjectLead().toString();

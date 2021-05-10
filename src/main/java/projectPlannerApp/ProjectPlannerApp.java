@@ -3,7 +3,6 @@ package projectPlannerApp;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 
 import projectPlannerCalendar.Date;
@@ -16,7 +15,7 @@ public class ProjectPlannerApp {
 	private Map<String, Employee> employees = new HashMap<String, Employee>();
 	private List<Project> projects = new ArrayList<Project>();
 	
-	private ActivityCalendar calendar = new ActivityCalendar();  // Maybe not needed
+	private ActivityCalendar calendar = new ActivityCalendar();  
 	private List<Project> leadProjects = new ArrayList<Project>();
 	
 	private Activity vacation;
