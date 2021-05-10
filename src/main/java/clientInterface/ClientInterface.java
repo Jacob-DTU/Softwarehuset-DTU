@@ -3,6 +3,7 @@ package clientInterface;
 import projectPlannerApp.*;
 import projectPlannerCalendar.*;
 import java.util.List;
+import java.util.Locale;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -36,6 +37,7 @@ public class ClientInterface {
 	public static int selector;
 
 	public static void main(String[] args) throws OperationNotAllowedException, ProjectLeadException, InvalidTimeRegistrationException {
+		sc.useLocale(Locale.US);
 		showLogin();
 		sc.close();
 		System.exit(0);

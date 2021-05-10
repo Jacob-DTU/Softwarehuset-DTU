@@ -34,7 +34,7 @@ public class Validators extends ClientInterface {
 		System.out.println("\nInput hours between 0 and 24");
 		
 	    double hours = getValidDouble("Input");
-	    while (hours > 24 || hours < 0 || 2*hours != (int) 2*hours) {
+	    while (hours > 24 || hours < 0 || (double)(2.0*hours) != (int)(2*hours)) {
             System.out.println("Invalid hours: The time registration should be within 24 hours with an accuracy of half hours");
             hours = getValidDouble("Input");
 	    }
@@ -145,7 +145,7 @@ public class Validators extends ClientInterface {
       		sc.nextLine();
       	}
       	
-      	return sc.nextInt();
+      	return sc.nextDouble();
       }
 
 }
